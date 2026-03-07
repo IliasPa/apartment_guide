@@ -1,0 +1,7 @@
+{
+  "id":"apt-1",
+  "name":"Apartment 1",
+  "shortName":"Apt-1",
+  "coordinates":{ "lat":38.831791, "lon":20.696838 },
+  "address":"Lefkada, Greece"
+}

@@ -12,6 +12,42 @@
   const scriptSrc = (document.currentScript && document.currentScript.src) || '';
   const SITE_ROOT = scriptSrc.replace(/\/assets\/js\/app\.js$/, '/') || './';
 
+  // Properties configuration: add available properties here
+  const PROPERTIES = [
+    { id: 'apt-1', name: 'Apartment 1', shortName: 'Apt-1', coords:{lat:38.831791, lon:20.696838} },
+    { id: 'apt-2', name: 'Apartment 2', shortName: 'Apt-2', coords:{lat:38.831791, lon:20.696838} }
+  ];
+
+  // Helper: read property param from URL, validate against PROPERTIES
+  function getCurrentProperty(){
+    try{
+      const params = new URLSearchParams(location.search);
+      const p = params.get('property') || '';
+      if(!p) return PROPERTIES[0].id;
+      if(PROPERTIES.find(x=>x.id===p)) return p;
+      return PROPERTIES[0].id;
+    }catch(e){ return PROPERTIES[0].id; }
+  }
+
+  // Append or replace property query param in a URL string
+  function withPropertyParam(url, propId){
+    try{
+      const u = new URL(url, location.origin);
+      const p = propId || getCurrentProperty();
+      u.searchParams.set('property', p);
+      return u.pathname + u.search + (u.hash || '');
+    }catch(e){
+      // fallback: naive append
+      const q = (url.indexOf('?')>-1)? '&' : '?';
+      return url + q + 'property=' + encodeURIComponent(propId || getCurrentProperty());
+    }
+  }
+
+  function getPropertyDatasetPath(propId){
+    const id = propId || getCurrentProperty();
+    return SITE_ROOT + 'data/properties/' + id + '/';
+  }
+
   function getLang(){
     return localStorage.getItem('lang') === 'gr' ? 'gr' : 'en';
   }
@@ -42,11 +78,12 @@
   }
 
   async function loadContentAndRender(lang){
-    const contentUrl = SITE_ROOT + 'data/content.' + lang + '.json';
+    const prop = getCurrentProperty();
+    const contentUrl = getPropertyDatasetPath(prop) + 'content.' + lang + '.json';
     let content = await fetchJson(contentUrl);
     if(!content){
-      // fallback: basic English shell
-      content = { site:{apartmentName:'Cozy City Apartment', welcomeTitle:'Welcome!', welcomeText:'Your digital guest guide — everything you need during your stay.'}, navCards:[], pages:{} };
+      // fallback: try the global content paths (legacy) then a simple fallback
+      content = await fetchJson(SITE_ROOT + 'data/content.' + lang + '.json') || { site:{apartmentName:'Cozy City Apartment', welcomeTitle:'Welcome!', welcomeText:'Your digital guest guide — everything you need during your stay.'}, navCards:[], pages:{} };
     }
 
     // Update site title and hero
@@ -76,6 +113,9 @@
         if(p) p.textContent = nav.subtitle||p.textContent;
       }
     });
+
+    // rewrite internal links to preserve property param
+    rewriteInternalLinks();
 
     // If on a page with .page-content and data-page attribute, render
     const container = document.querySelector('.page-content[data-page]');
@@ -108,6 +148,15 @@
           img.alt = ui[shortKey] || (lang==='gr' ? 'Ελληνικά' : 'English');
         }
       });
+      // ensure property selector shows current property
+      try{
+        const propId = getCurrentProperty();
+        const selBtn = document.querySelector('.property-selector-btn');
+        if(selBtn){
+          const p = PROPERTIES.find(x=>x.id===propId) || PROPERTIES[0];
+          selBtn.textContent = p.name;
+        }
+      }catch(e){}
     }catch(e){/* ignore */}
   }
 
@@ -379,7 +428,7 @@
 
   // Generic dataset list renderer for restaurants/attractions
   async function renderDatasetList(container, type, datasetPath, pageData, siteContent){
-    const dsUrl = SITE_ROOT + datasetPath;
+    const dsUrl = getPropertyDatasetPath() + datasetPath;
     const ds = await fetchJson(dsUrl) || {items:[]};
     const items = ds.items || [];
     const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder) || 'Search';
@@ -420,7 +469,7 @@
 
   // Beaches renderer with simple region filters
   async function renderBeaches(container, datasetPath, siteContent){
-    const dsUrl = SITE_ROOT + datasetPath;
+    const dsUrl = getPropertyDatasetPath() + datasetPath;
     const ds = await fetchJson(dsUrl) || {items:[]};
     const items = ds.items || [];
     const regions = ['All','West Coast','East Coast','South Coast'];
@@ -487,6 +536,71 @@
         setLang(lang);
       });
     });
+  }
+
+  // Rewrite internal links to preserve the property parameter
+  function rewriteInternalLinks(){
+    const prop = getCurrentProperty();
+    document.querySelectorAll('a[href]').forEach(a=>{
+      try{
+        const href = a.getAttribute('href');
+        if(!href) return;
+        // only modify internal relative links (pages/ or root index)
+        if(href.startsWith('pages/') || href.startsWith('./pages/') || href.startsWith('index.html') || href.startsWith('./') && href.indexOf('http')===-1){
+          a.setAttribute('href', withPropertyParam(href, prop));
+        }
+      }catch(e){}
+    });
+  }
+
+  // Initialize a property selector in the header (dropdown)
+  function initPropertySelector(){
+    try{
+      // find header area; prefer .site-header then .page-header
+      const header = document.querySelector('.site-header') || document.querySelector('.page-header');
+      if(!header) return;
+      let left = header.querySelector('.header-left');
+      if(!left){
+        left = document.createElement('div'); left.className='header-left'; header.insertBefore(left, header.firstChild);
+      }
+      // avoid duplicating
+      if(header.querySelector('.property-selector')) return;
+      const wrap = document.createElement('div'); wrap.className = 'property-selector';
+      const btn = document.createElement('button'); btn.type='button'; btn.className='property-selector-btn'; btn.setAttribute('aria-haspopup','true'); btn.setAttribute('aria-expanded','false');
+      wrap.appendChild(btn);
+      const list = document.createElement('div'); list.className='property-selector-list'; list.setAttribute('role','menu'); list.style.display='none';
+      PROPERTIES.forEach(p=>{
+        const it = document.createElement('button'); it.type='button'; it.className='property-item'; it.textContent = p.name; it.dataset.prop = p.id; it.addEventListener('click', ()=>{ switchProperty(p.id); });
+        list.appendChild(it);
+      });
+      wrap.appendChild(list);
+      left.insertBefore(wrap, left.firstChild);
+
+      // toggle
+      btn.addEventListener('click', ()=>{
+        const open = list.style.display!=='none';
+        list.style.display = open ? 'none' : 'block';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+      // close on outside click
+      document.addEventListener('click', (e)=>{ if(!wrap.contains(e.target)) { list.style.display='none'; btn.setAttribute('aria-expanded','false'); } });
+
+      // set initial label
+      const p = PROPERTIES.find(x=>x.id===getCurrentProperty()) || PROPERTIES[0];
+      btn.textContent = p.name;
+    }catch(e){/* ignore */}
+  }
+
+  function switchProperty(propId){
+    const lang = getLang();
+    const params = new URLSearchParams(location.search);
+    params.set('property', propId);
+    params.set('lang', lang);
+    // preserve path and hash
+    const base = location.pathname;
+    const href = base + '?' + params.toString();
+    // navigate to same page with property param
+    location.href = href;
   }
 
   // Simple swipe-right to go back gesture for touch devices
