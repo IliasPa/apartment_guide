@@ -1,0 +1,122 @@
+:root{
+  --bg:#faf7f3;
+  --card:#fff;
+  --muted:#6b6b6b;
+  --accent:#c47a4a;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#222}
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:transparent;gap:12px}
+.header-left{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px}
+.apt-name{font-size:1rem;margin:0}
+.lang-switch{margin-left:auto;display:flex;gap:6px;align-items:center}
+.lang-btn{background:transparent;border:0;padding:4px;border-radius:8px;margin-left:0;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.flag-icon{width:28px;height:18px;border-radius:6px;display:block;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+.lang-btn.active,.lang-btn[aria-pressed="true"]{box-shadow:0 0 0 3px rgba(196,122,74,0.12)}
+.lang-btn{opacity:0.95}
+.lang-btn:focus{outline:3px solid rgba(196,122,74,0.18);outline-offset:2px}
+
+.hero{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.hero-img{width:110px;height:80px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.hero-text h2{margin:0;font-size:1.15rem}
+.hero-text p{margin:4px 0 0;color:var(--muted)}
+
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px}
+.card{display:block;background:var(--card);padding:12px;border-radius:var(--radius);text-decoration:none;color:inherit;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform .12s ease,box-shadow .12s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.09)}
+.card:active{transform:translateY(-1px)}
+.card-icon{font-size:40px;display:block;margin-bottom:8px}
+.card h3{margin:0 0 6px;font-size:1rem}
+.card p{margin:0;color:var(--muted);font-size:.9rem}
+
+/* Page layout */
+.page-header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:transparent}
+.back{background:transparent;border:none;color:var(--accent);font-size:1rem;padding:8px;border-radius:8px}
+.page-content{padding:12px 16px}
+.section{background:var(--card);padding:12px;border-radius:12px;margin-bottom:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
+.section h3{margin-top:0}
+
+/* WiFi page */
+.wifi-card{display:block;max-width:760px;margin:0 auto}
+.wifi-info{padding:8px}
+.wifi-password{display:flex;gap:8px;align-items:center}
+.wifi-password .muted{font-weight:600}
+.wifi-qr{padding:8px;text-align:center}
+.wifi-qr img{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px;max-width:420px}
+
+/* dataset cards images full-width inside card */
+.ds-card img{width:100%;height:auto;display:block;border-radius:8px 8px 0 0}
+.ds-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);margin-bottom:12px}
+.ds-body{padding:12px}
+
+.ds-link{display:block;text-decoration:none;color:inherit}
+.ds-link .ds-card:hover{transform:translateY(-4px)}
+.beach-link .beach-card{transition:transform .12s ease,box-shadow .12s ease}
+.beach-link:hover .beach-card{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+.time-estimate{font-weight:600}
+
+/* beaches card image overlay */
+.beach-media img{width:100%;height:auto;display:block}
+.beach-overlay{position:relative;margin-top:-56px;padding:12px;color:#fff}
+
+/* emergency */
+.emergency-grid{display:flex;flex-direction:column;gap:10px}
+.emergency-btn{display:block;text-decoration:none;text-align:center;padding:12px;border-radius:12px;background:#fff;color:#111;border:2px solid #f1f1f1;font-size:1rem}
+.emergency-btn.call{background:#fff}
+.emergency-primary{background:#c92a2a;color:#fff;font-weight:700;font-size:1.15rem;padding:16px;border:none}
+.emergency-row{display:flex;gap:8px;flex-wrap:wrap}
+.emergency-small{flex:1}
+
+/* Contacts panel */
+.contact-panel{display:flex;flex-direction:column;gap:12px}
+.contact-card{display:flex;align-items:center;gap:12px;padding:12px;background:var(--card);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
+.contact-icon{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;}
+.contact-icon img{width:60px;height:60px;display:block}
+.contact-body{flex:1}
+.contact-actions{display:flex;gap:8px}
+.contact-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.contact-actions .btn{padding:10px 12px;border-radius:10px}
+
+/* Weather section */
+.weather-section{background:var(--card);margin:12px;padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.05);display:block;text-decoration:none;color:inherit}
+.weather-section:hover{box-shadow:0 12px 36px rgba(0,0,0,0.08)}
+.weather-section:focus{outline:3px solid rgba(196,122,74,0.12);outline-offset:4px}
+.weather-top{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #f1f1f1}
+.weather-location{font-weight:700}
+.weather-current-icon{width:64px;height:64px;flex-shrink:0}
+.weather-right{display:flex;flex-direction:column;align-items:flex-end;margin-left:auto}
+.weather-current-temp{font-size:2rem;font-weight:700;line-height:1}
+.weather-desc{color:var(--muted);font-size:.95rem;margin-top:4px}
+.forecast-row{display:flex;gap:8px;flex-wrap:wrap;padding-top:12px;justify-content:center}
+.forecast-item{flex:0 0 72px;width:72px;padding:8px;text-align:center;background:transparent;border-radius:8px}
+.forecast-item .day{font-size:.85rem;color:var(--muted)}
+.forecast-item .icon{width:32px;height:32px;margin:6px auto}
+.forecast-item .temps{font-size:.85rem;color:var(--muted)}
+
+/* ensure no horizontal overflow */
+img,video,svg{max-width:100%;height:auto;display:block}
+main,header,footer{max-width:1100px;margin:0 auto}
+
+.restaurant{display:flex;gap:12px;align-items:center}
+.restaurant img{width:72px;height:56px;border-radius:8px;object-fit:cover}
+.muted{color:var(--muted)}
+
+/* responsive */
+@media(min-width:640px){
+  .menu-grid{grid-template-columns:repeat(3,1fr);padding:20px}
+  .hero-img{width:150px;height:100px}
+}
+@media(min-width:1000px){
+  .menu-grid{grid-template-columns:repeat(4,1fr);max-width:1200px;margin:0 auto}
+  main{max-width:1200px;margin:0 auto}
+}
+
+/* very narrow screens: stack cards vertically */
+@media(max-width:420px){
+  .menu-grid{grid-template-columns:1fr}
+}
+
+/* accessible focus */
+.card:focus,.back:focus{outline:3px solid rgba(196,122,74,0.18);outline-offset:2px}

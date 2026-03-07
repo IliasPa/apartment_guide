@@ -1,0 +1,14 @@
+{
+  "items": [
+    {"id":"porto-katsiki","name":"Porto Katsiki","area":"Southwest Lefkada","short":"Iconic cliff-backed beach with turquoise water.","tips":["Go early to avoid crowds","Bring shade/umbrella"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Porto+Katsiki+Beach"},
+    {"id":"egremni","name":"Egremni Beach","area":"West Lefkada","short":"Long sandy beach beneath high cliffs.","tips":["Access via stairs","Limited facilities in low season"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Egremni+Beach"},
+    {"id":"kathisma","name":"Kathisma Beach","area":"West Lefkada","short":"Popular sandy beach with bars and water sports.","tips":["Parking can be busy","Try the sunset from the western end"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Kathisma+Beach"},
+    {"id":"nydri","name":"Nydri (Dimosari) Waterfalls","area":"Nydri","short":"A pleasant short hike to small waterfalls.","tips":["Bring water shoes","Easy family-friendly trail"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Nydri+Waterfalls"},
+    {"id":"faneromeni","name":"Faneromeni Monastery","area":"Lefkada Town","short":"Historic monastery with scenic views.","tips":["Modest dress recommended","Check opening times"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Faneromeni+Monastery"},
+    {"id":"agia-mavra","name":"Agia Mavra Castle","area":"South Lefkada","short":"Ruins with coastal views and a peaceful atmosphere.","tips":["Rough access road","Wear sturdy shoes"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Agia+Mavra+Castle"},
+    {"id":"lefkada-town","name":"Lefkada Town Old Harbour","area":"Lefkada Town","short":"Picturesque harbour area with shops and cafés.","tips":["Nice for evening walks","Try local ice cream"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Lefkada+Town"},
+    {"id":"milos","name":"Mylos Beach","area":"West Lefkada","short":"Small pebble beach with clear water.","tips":["Small parking","Good for swimming"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Mylos+Beach"},
+    {"id":"avali","name":"Avali Beach","area":"South Lefkada","short":"Calm bay with nearby tavernas.","tips":["Shallow water ideal for kids","Look for local cantinas"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Avali+Beach"},
+    {"id":"kavalikefta","name":"Kavalikefta Beach","area":"West Lefkada","short":"Quiet pebble beach set in a small cove.","tips":["Bring supplies","Limited shade"],"image":"dataset/images/attractions/placeholder.svg","mapLink":"https://www.google.com/maps?q=Kavalikefta+Beach"}
+  ]
+}
