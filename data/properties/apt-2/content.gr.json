@@ -1,0 +1,122 @@
+{
+  "site": {
+    "apartmentName": "Seaside Family Apartment",
+    "welcomeTitle": "Καλώς ήρθατε στο Seaside!",
+    "welcomeText": "Ο ψηφιακός οδηγός φιλοξενίας — όλα όσα χρειάζεστε κατά τη διαμονή σας στη Λευκάδα!",
+    "address": "Demo Coast Road 18, Λευκάδα, Ελλάδα",
+    "heroImage": "data/properties/apt-2/images/hero.svg",
+    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Seaside Family Apartment"
+  },
+  "ui": {
+    "back": "← Πίσω",
+    "lang_en": "Switch to English",
+    "lang_gr": "Switch to Greek",
+    "copyPassword": "Αντιγραφή κωδικού",
+    "copied": "Αντιγράφηκε",
+    "scanToJoin": "Σαρώστε για σύνδεση Wi-Fi",
+    "searchPlaceholder": "Αναζήτηση",
+    "openInMaps": "Άνοιγμα σε Χάρτες",
+    "phoneLabel": "Τηλέφωνο",
+    "whatsappLabel": "WhatsApp",
+    "messengerLabel": "Messenger",
+    "viberLabel": "Viber",
+    "callAction": "Κλήση",
+    "openWhatsApp": "Άνοιγμα WhatsApp",
+    "openMessenger": "Άνοιγμα Messenger",
+    "openViber": "Άνοιγμα Viber"
+  },
+  "accommodation_ui": {
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "lateCheckoutLabel": "Late Check-out",
+    "waterLabel": "Νερό",
+    "hotWaterLabel": "Ζεστό Νερό",
+    "breakfastLabel": "Πρωινό",
+    "consumablesLabel": "Αναλώσιμα",
+    "houseRulesLabel": "Κανόνες Σπιτιού",
+    "wifiLabel": "Wi-Fi",
+    "mapLabel": "Χάρτης"
+  },
+  "navCards": [
+    {"id":"checkin","title":"Accommodation","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
+    {"id":"transport","title":"Transportation","subtitle":"Πώς να μετακινηθείτε."},
+    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
+    {"id":"attractions","title":"Local Attractions","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
+    {"id":"emergency","title":"Emergency Contacts","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
+    {"id":"beaches","title":"Beaches","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
+    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
+    {"id":"neighborhood","title":"Neighborhood","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
+  ],
+  "pages": {
+    "wifi": {
+      "title": "Πληροφορίες WiFi",
+      "ssid": "SeasideGuest",
+      "password": "seaside-demo-456",
+      "notes": "Δοκιμαστικά στοιχεία Wi-Fi για το δεύτερο διαμέρισμα."
+    },
+    "accommodation": {
+      "title": "Διαμονή",
+      "arrival": "Αυτόνομο check-in μετά τις 16:00. Χρησιμοποιήστε το μπλε lockbox δίπλα στην πύλη.",
+      "keybox": "Το μπλε keybox βρίσκεται δίπλα στην είσοδο του κήπου.",
+      "map": "Χρησιμοποιήστε τη διεύθυνση της κράτησής σας ή τον χάρτη του οδηγού για πλοήγηση.",
+      "checkout": "Το check-out είναι έως τις 10:30. Κλειδώστε την μπαλκονόπορτα πριν φύγετε.",
+      "late_checkout": "Το late check-out εξαρτάται από την επόμενη κράτηση. Στείλτε μήνυμα πρώτα στον οικοδεσπότη.",
+      "air_condition": "Τα τηλεκοντρόλ υπνοδωματίου και σαλονιού βρίσκονται στο ράφι της τραπεζαρίας.",
+      "bbq": "Φορητό γκριλ διατίθεται κατόπιν αιτήματος για διαμονές άνω των δύο νυχτών.",
+      "water": "Χρησιμοποιήστε εμφιαλωμένο νερό για πόση.",
+      "hot_water": "Ο ηλιακός θερμοσίφωνας αποδίδει καλύτερα μετά το μεσημέρι.",
+      "breakfast": "Τσάι, παξιμάδια και μαρμελάδα είναι διαθέσιμα για το πρώτο πρωινό.",
+      "consumables": "Παρακαλώ αφήστε πετσέτες παραλίας και φορτιστές μέσα στο διαμέρισμα."
+    },
+    "house_rules": {
+      "title": "Κανόνες Σπιτιού",
+      "rules": [
+        "Απαγορεύεται το κάπνισμα σε εσωτερικούς χώρους.",
+        "Ώρες κοινής ησυχίας: 23:00-08:00.",
+        "Τινάζετε την άμμο πριν μπείτε από την παραλία."
+      ]
+    },
+    "transport": {
+      "title": "Μεταφορές",
+      "info": "Υπάρχει χώρος στάθμευσης απέναντι από το διαμέρισμα και οι τοπικοί ταξιτζήδες γνωρίζουν τη διεύθυνση."
+    },
+    "restaurants": {
+      "title": "Εστιατόρια & Καφέ",
+      "intro": "Δοκιμαστικές τοπικές προτάσεις για το παραθαλάσσιο διαμέρισμα."
+    },
+    "attractions": {
+      "title": "Τοπικά Αξιοθέατα",
+      "intro": "Προτεινόμενα σημεία ενδιαφέροντος γύρω από το δεύτερο διαμέρισμα."
+    },
+    "emergency": {
+      "title": "Τηλέφωνα Έκτακτης Ανάγκης",
+      "contacts": [
+        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
+        {"label":"Αστυνομία","value":"100","priority":1},
+        {"label":"Πυροσβεστική","value":"199","priority":2},
+        {"label":"Νοσοκομείο","value":"166","priority":3}
+      ]
+    },
+    "contacts": {
+      "title": "Επικοινωνία",
+      "name": "Seaside Demo Host",
+      "whatsapp": "306900000002",
+      "messenger": "@seaside.demo.host",
+      "viber": "00306900000002",
+      "phone": "+30 6900000002",
+      "email": "seaside@example.com",
+      "whatsappLabel": "WhatsApp",
+      "messengerLabel": "Messenger",
+      "viberLabel": "Viber",
+      "phoneLabel": "Τηλέφωνο"
+    },
+    "neighborhood": {
+      "title": "Γειτονιά",
+      "supermarket": {"title": "Σούπερ Μάρκετ", "text": "Το mini market απέχει 3 λεπτά με τα πόδια."},
+      "pharmacy": {"title": "Φαρμακείο", "text": "Το κοντινότερο φαρμακείο βρίσκεται στο κέντρο του Νυδριού."},
+      "atm": {"title": "ATM", "text": "ATM υπάρχει κοντά στη μαρίνα."},
+      "bakery": {"title": "Φούρνος", "text": "Φρέσκα αρτοσκευάσματα διατίθενται από τις 07:00."},
+      "gas": {"title": "Πρατήριο Καυσίμων", "text": "Το πρατήριο καυσίμων βρίσκεται στον κεντρικό παραλιακό δρόμο."}
+    }
+  }
+}

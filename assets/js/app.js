@@ -1,7 +1,8 @@
 /*
   app.js — language-aware renderer and dataset loader
-  - Loads /data/content.{en,gr}.json depending on localStorage "lang" (default: en)
-  - Renders index nav card titles and page content without duplicating HTML
+  - Loads property-aware content from /data/properties/<property>/content.{en,gr}.json
+  - Preserves the active property in internal navigation links
+  - Renders shared page content without duplicating HTML/CSS/JS per property
   - Loads datasets for attractions/restaurants/beaches and provides simple search/filter
   - Provides WiFi QR image slot and "Copy password" button
 */
@@ -12,6 +13,112 @@
   const scriptSrc = (document.currentScript && document.currentScript.src) || '';
   const SITE_ROOT = scriptSrc.replace(/\/assets\/js\/app\.js$/, '/') || './';
 
+  // Properties configuration (loaded from data/properties.json when available)
+  let PROPERTIES = [{id:'apt-1', name:'Apartment 1'}];
+  let PROPERTIES_MAP = { 'apt-1': { id:'apt-1', name:'Apartment 1' } };
+
+  function withPropertyParam(url){
+    try{
+      const u = new URL(url, location.href);
+      if(u.protocol==='mailto:'||u.protocol==='tel:'||u.protocol==='javascript:') return url;
+      // only add for same-origin links (internal navigation)
+      if(u.origin !== location.origin) return url;
+      const qp = new URLSearchParams(u.search);
+      const prop = getCurrentProperty();
+      if(prop) qp.set('property', prop);
+      u.search = qp.toString();
+      return u.pathname + (u.search? '?' + u.search.replace(/^\?/, '') : '') + (u.hash||'');
+    }catch(e){ return url; }
+  }
+
+  function getCurrentProperty(){
+    try{
+      const qp = new URLSearchParams(location.search || '');
+      const p = qp.get('property');
+      if(p && PROPERTIES_MAP[p]) return p;
+    }catch(e){}
+    return (PROPERTIES && PROPERTIES[0] && PROPERTIES[0].id) || 'apt-1';
+  }
+
+  function getPropertyDatasetPath(propertyId, datasetFilename){
+    if(!propertyId) propertyId = getCurrentProperty();
+    return SITE_ROOT + 'data/properties/' + propertyId + '/dataset/' + datasetFilename;
+  }
+
+  async function loadPropertiesIndex(){
+    const p = await fetchJson(SITE_ROOT + 'data/properties.json');
+    if(p && Array.isArray(p) && p.length){
+      PROPERTIES = p;
+      PROPERTIES_MAP = {};
+      p.forEach(x=> PROPERTIES_MAP[x.id] = x);
+    }
+  }
+
+  function preservePropertyOnLinks(){
+    const prop = getCurrentProperty();
+    if(!prop) return;
+    document.querySelectorAll('a[href]').forEach(a=>{
+      try{
+        const href = a.getAttribute('href');
+        if(!href) return;
+        // ignore external and anchors, mailto, tel
+        if(href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+        const newHref = withPropertyParam(href);
+        a.setAttribute('href', newHref);
+      }catch(e){}
+    });
+  }
+
+  function setupPropertySwitcher(){
+    const btn = document.getElementById('property-btn');
+    const list = document.getElementById('property-list');
+    if(!btn || !list) return;
+    if(btn.dataset.bound === 'true'){
+      const currentProperty = getCurrentProperty();
+      const currentPropertyData = PROPERTIES_MAP[currentProperty] || PROPERTIES[0];
+      const labelNode = btn.querySelector('.property-label');
+      if(labelNode && currentPropertyData) labelNode.textContent = currentPropertyData.name;
+      list.querySelectorAll('.property-item').forEach(item=>{
+        item.setAttribute('aria-selected', String(item.getAttribute('data-id') === currentProperty));
+      });
+      return;
+    }
+    // populate list
+    list.innerHTML = PROPERTIES.map(p=>`<li role="option" data-id="${escapeHtml(p.id)}" class="property-item" aria-selected="false">${escapeHtml(p.name)}</li>`).join('');
+    // show current
+    const current = PROPERTIES_MAP[getCurrentProperty()] || PROPERTIES[0];
+    const labelNode = btn.querySelector('.property-label');
+    if(labelNode && current) labelNode.textContent = current.name;
+    list.querySelectorAll('.property-item').forEach(item=>{
+      item.setAttribute('aria-selected', String(item.getAttribute('data-id') === getCurrentProperty()));
+    });
+
+    btn.addEventListener('click', ()=>{
+      list.classList.toggle('open');
+      list.hidden = !list.classList.contains('open');
+      btn.setAttribute('aria-expanded', String(!list.hidden));
+    });
+    list.addEventListener('click', (ev)=>{
+      const li = ev.target.closest('.property-item');
+      if(!li) return;
+      const id = li.getAttribute('data-id');
+      if(!id) return;
+      // change property by updating URL (preserve language)
+      const qp = new URLSearchParams(location.search);
+      qp.set('property', id);
+      // navigate to same pathname with new query
+      const newUrl = location.pathname + '?' + qp.toString() + location.hash;
+      location.href = newUrl;
+    });
+    // close when clicking outside
+    document.addEventListener('click', (ev)=>{
+      if(!btn.contains(ev.target) && !list.contains(ev.target)){
+        list.classList.remove('open'); list.hidden = true; btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    btn.dataset.bound = 'true';
+  }
+
   function getLang(){
     return localStorage.getItem('lang') === 'gr' ? 'gr' : 'en';
   }
@@ -20,6 +127,8 @@
     updateLangButtons(lang);
     // reload content and then re-render cached weather (if any)
     loadContentAndRender(lang).then(()=>{
+      setupPropertySwitcher();
+      preservePropertyOnLinks();
       try{ if(window.weatherCache) renderWeather(window.weatherCache, lang); }catch(e){}
     });
   }
@@ -42,8 +151,24 @@
   }
 
   async function loadContentAndRender(lang){
-    const contentUrl = SITE_ROOT + 'data/content.' + lang + '.json';
-    let content = await fetchJson(contentUrl);
+    const property = getCurrentProperty();
+    // try property-specific content first
+    let content = null;
+    let propMeta = null;
+    if(property){
+      const propContentUrl = SITE_ROOT + 'data/properties/' + property + '/content.' + lang + '.json';
+      content = await fetchJson(propContentUrl);
+      // try to load property metadata for coordinates etc.
+      propMeta = await fetchJson(SITE_ROOT + 'data/properties/' + property + '/property.json');
+      if(propMeta && propMeta.coordinates){
+        try{ WEATHER_COORDS.lat = Number(propMeta.coordinates.lat) || WEATHER_COORDS.lat; WEATHER_COORDS.lon = Number(propMeta.coordinates.lon) || WEATHER_COORDS.lon; }catch(e){}
+      }
+    }
+    // fallback to site-wide content if not present
+    if(!content){
+      const contentUrl = SITE_ROOT + 'data/content.' + lang + '.json';
+      content = await fetchJson(contentUrl);
+    }
     if(!content){
       // fallback: basic English shell
       content = { site:{apartmentName:'Cozy City Apartment', welcomeTitle:'Welcome!', welcomeText:'Your digital guest guide — everything you need during your stay.'}, navCards:[], pages:{} };
@@ -56,6 +181,12 @@
     if(welcomeTitle && content.site && content.site.welcomeTitle) welcomeTitle.textContent = content.site.welcomeTitle;
     const welcomeText = document.querySelector('[data-welcome-text]');
     if(welcomeText && content.site && content.site.welcomeText) welcomeText.textContent = content.site.welcomeText;
+    const heroImg = document.querySelector('.hero-img');
+    const heroImagePath = (content.site && content.site.heroImage) || (propMeta && propMeta.heroImages && propMeta.heroImages[0]) || null;
+    if(heroImg && heroImagePath){
+      heroImg.src = SITE_ROOT + heroImagePath;
+      heroImg.alt = (content.site && content.site.heroAlt) || (content.site && content.site.apartmentName) || 'Apartment';
+    }
 
     // apply UI labels (back button, generic labels)
     applyUiLabels(content);
@@ -379,8 +510,17 @@
 
   // Generic dataset list renderer for restaurants/attractions
   async function renderDatasetList(container, type, datasetPath, pageData, siteContent){
-    const dsUrl = SITE_ROOT + datasetPath;
-    const ds = await fetchJson(dsUrl) || {items:[]};
+    // Prefer property-specific dataset when available
+    const property = getCurrentProperty();
+    let ds = null;
+    if(datasetPath && datasetPath.startsWith('dataset/') && property){
+      const propDs = SITE_ROOT + 'data/properties/' + property + '/' + datasetPath;
+      ds = await fetchJson(propDs);
+    }
+    if(!ds){
+      const dsUrl = SITE_ROOT + datasetPath;
+      ds = await fetchJson(dsUrl) || {items:[]};
+    }
     const items = ds.items || [];
     const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder) || 'Search';
     container.innerHTML = `
@@ -913,11 +1053,18 @@
   function getWeatherLocationName(lang){ return lang==='gr' ? 'Λευκάδα' : 'Lefkada'; }
 
   // initialize
-  document.addEventListener('DOMContentLoaded', ()=>{
+  // initialize
+  document.addEventListener('DOMContentLoaded', async ()=>{
     attachLangButtons();
+    await loadPropertiesIndex();
+    setupPropertySwitcher();
     const lang = getLang();
     updateLangButtons(lang);
-    loadContentAndRender(lang);
+    // ensure links include property param before rendering (index cards, etc.)
+    preservePropertyOnLinks();
+    await loadContentAndRender(lang);
+    preservePropertyOnLinks();
+    setupPropertySwitcher();
     initWeather();
   });
 

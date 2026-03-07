@@ -1,0 +1,122 @@
+{
+  "site": {
+    "apartmentName": "Old Town Studio",
+    "welcomeTitle": "Καλώς ήρθατε στο Old Town!",
+    "welcomeText": "Ο ψηφιακός οδηγός φιλοξενίας — όλα όσα χρειάζεστε κατά τη διαμονή σας στη Λευκάδα!",
+    "address": "Demo Old Town Alley 4, Λευκάδα, Ελλάδα",
+    "heroImage": "data/properties/apt-3/images/hero.svg",
+    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Old Town Studio"
+  },
+  "ui": {
+    "back": "← Πίσω",
+    "lang_en": "Switch to English",
+    "lang_gr": "Switch to Greek",
+    "copyPassword": "Αντιγραφή κωδικού",
+    "copied": "Αντιγράφηκε",
+    "scanToJoin": "Σαρώστε για σύνδεση Wi-Fi",
+    "searchPlaceholder": "Αναζήτηση",
+    "openInMaps": "Άνοιγμα σε Χάρτες",
+    "phoneLabel": "Τηλέφωνο",
+    "whatsappLabel": "WhatsApp",
+    "messengerLabel": "Messenger",
+    "viberLabel": "Viber",
+    "callAction": "Κλήση",
+    "openWhatsApp": "Άνοιγμα WhatsApp",
+    "openMessenger": "Άνοιγμα Messenger",
+    "openViber": "Άνοιγμα Viber"
+  },
+  "accommodation_ui": {
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "lateCheckoutLabel": "Late Check-out",
+    "waterLabel": "Νερό",
+    "hotWaterLabel": "Ζεστό Νερό",
+    "breakfastLabel": "Πρωινό",
+    "consumablesLabel": "Αναλώσιμα",
+    "houseRulesLabel": "Κανόνες Σπιτιού",
+    "wifiLabel": "Wi-Fi",
+    "mapLabel": "Χάρτης"
+  },
+  "navCards": [
+    {"id":"checkin","title":"Accommodation","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
+    {"id":"transport","title":"Transportation","subtitle":"Πώς να μετακινηθείτε."},
+    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
+    {"id":"attractions","title":"Local Attractions","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
+    {"id":"emergency","title":"Emergency Contacts","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
+    {"id":"beaches","title":"Beaches","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
+    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
+    {"id":"neighborhood","title":"Neighborhood","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
+  ],
+  "pages": {
+    "wifi": {
+      "title": "Πληροφορίες WiFi",
+      "ssid": "OldTownGuest",
+      "password": "oldtown-demo-789",
+      "notes": "Δοκιμαστικά στοιχεία Wi-Fi για το τρίτο διαμέρισμα."
+    },
+    "accommodation": {
+      "title": "Διαμονή",
+      "arrival": "Το check-in ξεκινά στις 15:30. Η είσοδος του στούντιο είναι δίπλα στη πέτρινη σκάλα.",
+      "keybox": "Το εφεδρικό keybox βρίσκεται δίπλα στη μικρή ξύλινη πόρτα.",
+      "map": "Η πρόσβαση γίνεται από το στενό της παλιάς πόλης. Χρησιμοποιήστε τον χάρτη του οδηγού για ευκολότερη άφιξη.",
+      "checkout": "Το check-out είναι στις 11:00. Αφήστε τα κλειδιά στον πάγκο της κουζίνας.",
+      "late_checkout": "Late check-out μπορεί να γίνει μόνο αν το ημερολόγιο είναι ελεύθερο.",
+      "air_condition": "Χρησιμοποιήστε τη λειτουργία eco τη νύχτα για λιγότερο θόρυβο.",
+      "bbq": "Δεν υπάρχει BBQ σε αυτό το διαμέρισμα πόλης.",
+      "water": "Το νερό βρύσης είναι κατάλληλο για πλύσιμο, αλλά προτείνεται εμφιαλωμένο για πόση.",
+      "hot_water": "Ενεργοποιήστε τον θερμοσίφωνα για 20 λεπτά πριν το ντους τον χειμώνα.",
+      "breakfast": "Κάψουλες καφέ και μπισκότα είναι διαθέσιμα στο στούντιο.",
+      "consumables": "Παρακαλώ αφήστε τον εξοπλισμό κουζίνας και τα πολύμπριζα μέσα στο στούντιο."
+    },
+    "house_rules": {
+      "title": "Κανόνες Σπιτιού",
+      "rules": [
+        "Απαγορεύονται τα πάρτι και η δυνατή μουσική.",
+        "Σεβαστείτε τους γείτονες στην κοινόχρηστη σκάλα.",
+        "Κλείνετε τη θέρμανση όταν φεύγετε."
+      ]
+    },
+    "transport": {
+      "title": "Μεταφορές",
+      "info": "Η παλιά πόλη είναι ιδανική για περπάτημα και τα ταξί σταματούν στην πλατεία δύο λεπτά μακριά."
+    },
+    "restaurants": {
+      "title": "Εστιατόρια & Καφέ",
+      "intro": "Δοκιμαστικές προτάσεις γύρω από το στούντιο της παλιάς πόλης."
+    },
+    "attractions": {
+      "title": "Τοπικά Αξιοθέατα",
+      "intro": "Προτεινόμενα σημεία ενδιαφέροντος γύρω από το τρίτο διαμέρισμα."
+    },
+    "emergency": {
+      "title": "Τηλέφωνα Έκτακτης Ανάγκης",
+      "contacts": [
+        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
+        {"label":"Αστυνομία","value":"100","priority":1},
+        {"label":"Πυροσβεστική","value":"199","priority":2},
+        {"label":"Νοσοκομείο","value":"166","priority":3}
+      ]
+    },
+    "contacts": {
+      "title": "Επικοινωνία",
+      "name": "Old Town Demo Host",
+      "whatsapp": "306900000003",
+      "messenger": "@oldtown.demo.host",
+      "viber": "00306900000003",
+      "phone": "+30 6900000003",
+      "email": "oldtown@example.com",
+      "whatsappLabel": "WhatsApp",
+      "messengerLabel": "Messenger",
+      "viberLabel": "Viber",
+      "phoneLabel": "Τηλέφωνο"
+    },
+    "neighborhood": {
+      "title": "Γειτονιά",
+      "supermarket": {"title": "Σούπερ Μάρκετ", "text": "Το μίνι μάρκετ της γωνίας απέχει 2 λεπτά με τα πόδια."},
+      "pharmacy": {"title": "Φαρμακείο", "text": "Το φαρμακείο βρίσκεται κοντά στην κεντρική πλατεία."},
+      "atm": {"title": "ATM", "text": "Το ATM βρίσκεται δίπλα στον φούρνο στον κεντρικό δρόμο."},
+      "bakery": {"title": "Φούρνος", "text": "Ο φούρνος ανοίγει νωρίς και είναι γνωστός για τις σησαμένιες πίτες."},
+      "gas": {"title": "Πρατήριο Καυσίμων", "text": "Το κοντινότερο πρατήριο βρίσκεται στον περιφερειακό δρόμο έξω από την πόλη."}
+    }
+  }
+}

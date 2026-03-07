@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Cozy City Apartment Hero</title>
+  <desc id="desc">Warm illustrated hero image for the first demo apartment.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2d2b6"/>
+      <stop offset="100%" stop-color="#c47a4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="1080" cy="140" r="90" fill="#fff1d6" opacity="0.8"/>
+  <rect x="220" y="250" width="520" height="270" rx="24" fill="#fff4ea" opacity="0.95"/>
+  <rect x="300" y="170" width="360" height="140" rx="24" fill="#8f5b3b"/>
+  <rect x="450" y="360" width="90" height="160" rx="12" fill="#8f5b3b"/>
+  <rect x="300" y="330" width="90" height="90" rx="12" fill="#d8b18d"/>
+  <rect x="570" y="330" width="90" height="90" rx="12" fill="#d8b18d"/>
+  <path d="M0 560 C180 500 320 640 520 600 C740 550 920 640 1280 560 V720 H0 Z" fill="#9db58f" opacity="0.8"/>
+  <text x="110" y="110" fill="#3c271b" font-size="52" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Cozy City Apartment</text>
+  <text x="112" y="164" fill="#4f382a" font-size="28" font-family="Segoe UI, Arial, sans-serif">Property-specific hero image stored in apt-1</text>
+</svg>

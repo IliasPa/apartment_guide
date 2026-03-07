@@ -1,0 +1,21 @@
+{
+  "id": "apt-3",
+  "name": "Old Town Studio",
+  "shortName": "Old Town",
+  "address": "Demo Old Town Alley 4, Lefkada, Greece",
+  "coordinates": {
+    "lat": 38.831,
+    "lon": 20.712
+  },
+  "host": {
+    "name": "Old Town Demo Host",
+    "phone": "+30 6900000003",
+    "whatsapp": "306900000003",
+    "messenger": "@oldtown.demo.host",
+    "viber": "00306900000003",
+    "email": "oldtown@example.com"
+  },
+  "heroImages": [
+    "data/properties/apt-3/images/hero.svg"
+  ]
+}

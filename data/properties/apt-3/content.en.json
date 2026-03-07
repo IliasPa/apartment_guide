@@ -1,0 +1,122 @@
+{
+  "site": {
+    "apartmentName": "Old Town Studio",
+    "welcomeTitle": "Welcome to Old Town!",
+    "welcomeText": "Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
+    "address": "Demo Old Town Alley 4, Lefkada, Greece",
+    "heroImage": "data/properties/apt-3/images/hero.svg",
+    "heroAlt": "Illustrated hero view for Old Town Studio"
+  },
+  "ui": {
+    "back": "← Back",
+    "lang_en": "Switch to English",
+    "lang_gr": "Switch to Greek",
+    "copyPassword": "Copy password",
+    "copied": "Copied",
+    "scanToJoin": "Scan to join Wi-Fi",
+    "searchPlaceholder": "Search",
+    "openInMaps": "Open in Maps",
+    "phoneLabel": "Phone",
+    "whatsappLabel": "WhatsApp",
+    "messengerLabel": "Messenger",
+    "viberLabel": "Viber",
+    "callAction": "Call",
+    "openWhatsApp": "Open WhatsApp",
+    "openMessenger": "Open Messenger",
+    "openViber": "Open Viber"
+  },
+  "accommodation_ui": {
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "lateCheckoutLabel": "Late Check-out",
+    "waterLabel": "Water",
+    "hotWaterLabel": "Hot Water",
+    "breakfastLabel": "Breakfast",
+    "consumablesLabel": "Consumables",
+    "houseRulesLabel": "House Rules",
+    "wifiLabel": "Wi-Fi",
+    "mapLabel": "Map"
+  },
+  "navCards": [
+    {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},
+    {"id":"transport","title":"Transportation","subtitle":"How to get around."},
+    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Local picks and quick bites."},
+    {"id":"attractions","title":"Local Attractions","subtitle":"Sights, parks and museums."},
+    {"id":"emergency","title":"Emergency Contacts","subtitle":"Important phone numbers and services."},
+    {"id":"beaches","title":"Beaches","subtitle":"Best beaches in Lefkada."},
+    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Phone."},
+    {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
+  ],
+  "pages": {
+    "wifi": {
+      "title": "WiFi Information",
+      "ssid": "OldTownGuest",
+      "password": "oldtown-demo-789",
+      "notes": "Demo Wi-Fi credentials for the third property."
+    },
+    "accommodation": {
+      "title": "Accommodation",
+      "arrival": "Check-in starts at 15:30. The studio entrance is beside the stone staircase.",
+      "keybox": "The backup keybox is next to the small wooden side door.",
+      "map": "Access the studio from the old-town alley and use the guide map for the easiest walking route.",
+      "checkout": "Check-out is at 11:00. Place the keys on the kitchen counter.",
+      "late_checkout": "Late check-out can be arranged only when the calendar is free.",
+      "air_condition": "Use eco mode overnight to reduce noise.",
+      "bbq": "No BBQ is available at this city property.",
+      "water": "Tap water is fine for washing but bottled water is recommended for drinking.",
+      "hot_water": "Turn the water heater on for 20 minutes before showering in winter.",
+      "breakfast": "Coffee capsules and biscuits are available in the studio.",
+      "consumables": "Please leave kitchen equipment and extension cables inside the studio."
+    },
+    "house_rules": {
+      "title": "House Rules",
+      "rules": [
+        "No parties or loud music.",
+        "Respect neighbors in the shared staircase.",
+        "Please switch off the heater when leaving."
+      ]
+    },
+    "transport": {
+      "title": "Transportation",
+      "info": "The old town is walkable and taxis can stop at the square two minutes away."
+    },
+    "restaurants": {
+      "title": "Restaurants & Cafes",
+      "intro": "Demo recommendations around the old town studio."
+    },
+    "attractions": {
+      "title": "Local Attractions",
+      "intro": "Suggested sights around the third property."
+    },
+    "emergency": {
+      "title": "Emergency Contacts",
+      "contacts": [
+        {"label":"Emergency services","value":"112","priority":0},
+        {"label":"Police","value":"100","priority":1},
+        {"label":"Firefighters","value":"199","priority":2},
+        {"label":"Hospital","value":"166","priority":3}
+      ]
+    },
+    "contacts": {
+      "title": "Contact Me",
+      "name": "Old Town Demo Host",
+      "whatsapp": "306900000003",
+      "messenger": "@oldtown.demo.host",
+      "viber": "00306900000003",
+      "phone": "+30 6900000003",
+      "email": "oldtown@example.com",
+      "whatsappLabel": "WhatsApp",
+      "messengerLabel": "Messenger",
+      "viberLabel": "Viber",
+      "phoneLabel": "Phone"
+    },
+    "neighborhood": {
+      "title": "Neighborhood",
+      "supermarket": {"title": "Supermarket", "text": "Corner market is 2 minutes away by foot."},
+      "pharmacy": {"title": "Pharmacy", "text": "Pharmacy is near the central square."},
+      "atm": {"title": "ATM", "text": "ATM is next to the bakery on the main street."},
+      "bakery": {"title": "Bakery", "text": "Bakery opens early and is famous for sesame pies."},
+      "gas": {"title": "Gas Station", "text": "Closest fuel station is on the ring road outside town."}
+    }
+  }
+}

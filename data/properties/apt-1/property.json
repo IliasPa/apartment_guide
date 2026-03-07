@@ -1,0 +1,21 @@
+{
+  "id": "apt-1",
+  "name": "Cozy City Apartment",
+  "shortName": "Cozy",
+  "address": "12 Demo Olive Grove Street, Lefkada, Greece",
+  "coordinates": {
+    "lat": 38.83,
+    "lon": 20.74
+  },
+  "host": {
+    "name": "Ilias Demo Host",
+    "phone": "+30 6980792814",
+    "whatsapp": "306980792814",
+    "messenger": "@ilias.paraskevas.13",
+    "viber": "00306980792814",
+    "email": "cozy@example.com"
+  },
+  "heroImages": [
+    "data/properties/apt-1/images/hero.svg"
+  ]
+}

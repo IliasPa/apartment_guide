@@ -9,8 +9,13 @@
 <body>
   <header class="site-header">
     <div class="header-left">
-      <img src="assets/images/logo.svg" alt="Apartment logo" class="logo">
-      <h1 class="apt-name" data-site-name>Cozy City Apartment</h1>
+      <div class="property-switch">
+        <button id="property-btn" class="property-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="property-label" data-site-name>Cozy City Apartment</span>
+          <span class="property-caret" aria-hidden="true">▾</span>
+        </button>
+        <ul id="property-list" class="property-list" role="listbox" hidden></ul>
+      </div>
     </div>
     <div class="lang-switch" role="group" aria-label="Language switch">
       <button type="button" class="lang-btn active" data-lang="en" aria-label="Switch language to English">

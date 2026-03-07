@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Old Town Studio Hero</title>
+  <desc id="desc">Warm old-town illustration for the third demo apartment.</desc>
+  <defs>
+    <linearGradient id="dusk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6dcc7"/>
+      <stop offset="100%" stop-color="#8f5a4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#dusk)"/>
+  <path d="M0 610 C180 540 390 630 570 580 C740 536 1010 640 1280 560 V720 H0 Z" fill="#6f8762" opacity="0.85"/>
+  <rect x="250" y="220" width="180" height="290" rx="18" fill="#d9895b"/>
+  <rect x="430" y="180" width="180" height="330" rx="18" fill="#f2bf7a"/>
+  <rect x="610" y="240" width="180" height="270" rx="18" fill="#c86c4d"/>
+  <rect x="308" y="300" width="64" height="90" rx="10" fill="#fff2d8"/>
+  <rect x="488" y="270" width="64" height="90" rx="10" fill="#fff2d8"/>
+  <rect x="668" y="320" width="64" height="90" rx="10" fill="#fff2d8"/>
+  <text x="110" y="110" fill="#4e2d24" font-size="52" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Old Town Studio</text>
+  <text x="112" y="164" fill="#6a4135" font-size="28" font-family="Segoe UI, Arial, sans-serif">Property-specific hero image stored in apt-3</text>
+</svg>

@@ -1,0 +1,122 @@
+{
+  "site": {
+    "apartmentName": "Seaside Family Apartment",
+    "welcomeTitle": "Welcome to Seaside!",
+    "welcomeText": "Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
+    "address": "Demo Coast Road 18, Lefkada, Greece",
+    "heroImage": "data/properties/apt-2/images/hero.svg",
+    "heroAlt": "Illustrated hero view for Seaside Family Apartment"
+  },
+  "ui": {
+    "back": "← Back",
+    "lang_en": "Switch to English",
+    "lang_gr": "Switch to Greek",
+    "copyPassword": "Copy password",
+    "copied": "Copied",
+    "scanToJoin": "Scan to join Wi-Fi",
+    "searchPlaceholder": "Search",
+    "openInMaps": "Open in Maps",
+    "phoneLabel": "Phone",
+    "whatsappLabel": "WhatsApp",
+    "messengerLabel": "Messenger",
+    "viberLabel": "Viber",
+    "callAction": "Call",
+    "openWhatsApp": "Open WhatsApp",
+    "openMessenger": "Open Messenger",
+    "openViber": "Open Viber"
+  },
+  "accommodation_ui": {
+    "checkinLabel": "Check-in",
+    "checkoutLabel": "Check-out",
+    "lateCheckoutLabel": "Late Check-out",
+    "waterLabel": "Water",
+    "hotWaterLabel": "Hot Water",
+    "breakfastLabel": "Breakfast",
+    "consumablesLabel": "Consumables",
+    "houseRulesLabel": "House Rules",
+    "wifiLabel": "Wi-Fi",
+    "mapLabel": "Map"
+  },
+  "navCards": [
+    {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},
+    {"id":"transport","title":"Transportation","subtitle":"How to get around."},
+    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Local picks and quick bites."},
+    {"id":"attractions","title":"Local Attractions","subtitle":"Sights, parks and museums."},
+    {"id":"emergency","title":"Emergency Contacts","subtitle":"Important phone numbers and services."},
+    {"id":"beaches","title":"Beaches","subtitle":"Best beaches in Lefkada."},
+    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Phone."},
+    {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
+  ],
+  "pages": {
+    "wifi": {
+      "title": "WiFi Information",
+      "ssid": "SeasideGuest",
+      "password": "seaside-demo-456",
+      "notes": "Demo Wi-Fi credentials for the second property."
+    },
+    "accommodation": {
+      "title": "Accommodation",
+      "arrival": "Self check-in after 16:00. Use the blue lockbox beside the gate.",
+      "keybox": "The blue keybox is mounted beside the garden entrance.",
+      "map": "Use the property address in your booking confirmation or the map section in this guide.",
+      "checkout": "Check-out is by 10:30. Lock the balcony door before you leave.",
+      "late_checkout": "Late check-out depends on the next booking. Message the host first.",
+      "air_condition": "Bedroom and living-room remotes are on the dining shelf.",
+      "bbq": "Portable grill available on request for stays longer than two nights.",
+      "water": "Use bottled water for drinking.",
+      "hot_water": "Solar water heating is strongest after midday.",
+      "breakfast": "Tea, rusks and jam are available for the first morning.",
+      "consumables": "Please leave beach towels and chargers inside the apartment."
+    },
+    "house_rules": {
+      "title": "House Rules",
+      "rules": [
+        "No smoking indoors.",
+        "Quiet hours are 23:00-08:00.",
+        "Shake sand off before entering from the beach."
+      ]
+    },
+    "transport": {
+      "title": "Transportation",
+      "info": "Parking is available opposite the apartment and local taxis know the address."
+    },
+    "restaurants": {
+      "title": "Restaurants & Cafes",
+      "intro": "Demo local recommendations for the seaside property."
+    },
+    "attractions": {
+      "title": "Local Attractions",
+      "intro": "Suggested sights around the second property."
+    },
+    "emergency": {
+      "title": "Emergency Contacts",
+      "contacts": [
+        {"label":"Emergency services","value":"112","priority":0},
+        {"label":"Police","value":"100","priority":1},
+        {"label":"Firefighters","value":"199","priority":2},
+        {"label":"Hospital","value":"166","priority":3}
+      ]
+    },
+    "contacts": {
+      "title": "Contact Me",
+      "name": "Seaside Demo Host",
+      "whatsapp": "306900000002",
+      "messenger": "@seaside.demo.host",
+      "viber": "00306900000002",
+      "phone": "+30 6900000002",
+      "email": "seaside@example.com",
+      "whatsappLabel": "WhatsApp",
+      "messengerLabel": "Messenger",
+      "viberLabel": "Viber",
+      "phoneLabel": "Phone"
+    },
+    "neighborhood": {
+      "title": "Neighborhood",
+      "supermarket": {"title": "Supermarket", "text": "Mini market is 3 minutes away by foot."},
+      "pharmacy": {"title": "Pharmacy", "text": "Nearest pharmacy is in Nidri center."},
+      "atm": {"title": "ATM", "text": "ATM available near the marina."},
+      "bakery": {"title": "Bakery", "text": "Fresh pastries are available from 07:00."},
+      "gas": {"title": "Gas Station", "text": "Gas station is on the main coastal road."}
+    }
+  }
+}

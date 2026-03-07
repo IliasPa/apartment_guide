@@ -1,0 +1,118 @@
+{
+  "site":{
+    "apartmentName":"Cozy City Apartment",
+    "welcomeTitle":"Καλώς ήρθατε!",
+    "welcomeText":"Ο ψηφιακός οδηγός φιλοξενίας — όλα όσα χρειάζεστε κατά τη διαμονή σας στη Λευκάδα!",
+    "address":"12 Demo Olive Grove Street, Λευκάδα, Ελλάδα",
+    "heroImage":"data/properties/apt-1/images/hero.svg",
+    "heroAlt":"Εικονογραφημένη κύρια φωτογραφία για το Cozy City Apartment"
+  },
+  "ui":{
+    "back":"← Πίσω",
+    "lang_en":"Switch to English",
+    "lang_gr":"Switch to Greek",
+    "copyPassword":"Αντιγραφή κωδικού",
+    "copied":"Αντιγράφηκε",
+    "scanToJoin":"Σαρώστε για σύνδεση Wi-Fi",
+    "searchPlaceholder":"Αναζήτηση",
+    "openInMaps":"Άνοιγμα σε Χάρτες",
+    "phoneLabel":"Τηλέφωνο",
+    "whatsappLabel":"WhatsApp",
+    "messengerLabel":"Messenger",
+    "viberLabel":"Viber",
+    "callAction":"Κλήση",
+    "openWhatsApp":"Άνοιγμα WhatsApp",
+    "openMessenger":"Άνοιγμα Messenger",
+    "openViber":"Άνοιγμα Viber"
+  },
+  "accommodation_ui":{
+    "checkinLabel":"Check-in",
+    "checkoutLabel":"Check-out",
+    "lateCheckoutLabel":"Late Check-out",
+    "waterLabel":"Νερό",
+    "hotWaterLabel":"Ζεστό Νερό",
+    "breakfastLabel":"Πρωινό",
+    "consumablesLabel":"Αναλώσιμα",
+    "houseRulesLabel":"Κανόνες Σπιτιού",
+    "wifiLabel":"Wi-Fi",
+    "mapLabel":"Χάρτης"
+  },
+  "navCards":[
+    {"id":"checkin","title":"Accommodation","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
+    {"id":"transport","title":"Transportation","subtitle":"Πώς να μετακινηθείτε."},
+    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
+    {"id":"attractions","title":"Local Attractions","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
+    {"id":"emergency","title":"Emergency Contacts","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
+    {"id":"beaches","title":"Beaches","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
+    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
+    {"id":"neighborhood","title":"Neighborhood","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
+  ],
+  "pages":{
+    "wifi":{
+      "title":"Πληροφορίες WiFi",
+      "ssid":"CozyGuest",
+      "password":"welcome2026",
+      "notes":"Το router βρίσκεται στο σαλόνι δίπλα στην τηλεόραση. Υπάρχει και NFC για σύνδεση. Κάντε επανεκκίνηση αν χρειαστεί."
+    },
+    "accommodation":{
+      "title":"Διαμονή",
+      "arrival":"Αυτόνομο check-in μετά τις 15:00. Κωδικός keybox: 1234.",
+      "keybox":"Το keybox βρίσκεται στην κύρια είσοδο δίπλα στο γραμματοκιβώτιο.",
+      "map":"Χρησιμοποιήστε τη διεύθυνση της κράτησής σας για πλοήγηση.",
+      "checkout":"Παρακαλώ κάντε check-out έως τις 11:00. Αφήστε τις χρησιμοποιημένες πετσέτες στο μπάνιο και τα κλειδιά στο keybox.",
+      "late_checkout":"Το late check-out μπορεί να είναι διαθέσιμο κατόπιν συνεννόησης και διαθεσιμότητας. Επικοινωνήστε με τον οικοδεσπότη εγκαίρως.",
+      "air_condition":"Το τηλεκοντρόλ του κλιματιστικού βρίσκεται στο συρτάρι του σαλονιού. Προτεινόμενη ρύθμιση: 24–26°C.",
+      "bbq":"Αν χρειάζεστε BBQ, ενημερώστε τον οικοδεσπότη εκ των προτέρων για να ετοιμαστεί.",
+      "water":"Το νερό της βρύσης δεν είναι πόσιμο. Χρησιμοποιήστε εμφιαλωμένο νερό για πόση.",
+      "hot_water":"Υπάρχει ζεστό νερό όλο το 24ωρο με υποστήριξη από ηλιακό θερμοσίφωνα. Σε συννεφιά η θέρμανση μπορεί να είναι περιορισμένη.",
+      "breakfast":"Βασικά είδη πρωινού όπως καφές, τσάι, ψωμί και μαρμελάδες είναι διαθέσιμα στην κουζίνα.",
+      "consumables":"Παρακαλώ μην απομακρύνετε αναλώσιμα εκτός από παντόφλες, σαμπουάν, πρωινά και σοκολατάκια."
+    },
+    "house_rules":{
+      "title":"Κανόνες Σπιτιού",
+      "rules":["Απαγορεύεται το κάπνισμα μέσα στο σπίτι.","Σεβαστείτε τις ώρες κοινής ησυχίας 22:00-08:00.","Απορρίψτε τα ανακυκλώσιμα στους ειδικούς κάδους."]
+    },
+    "transport":{
+      "title":"Μεταφορές",
+      "info":"Η κοντινότερη στάση λεωφορείου είναι 8 λεπτά με τα πόδια. Τα ταξί λειτουργούν αξιόπιστα στην περιοχή."
+    },
+    "restaurants":{
+      "title":"Εστιατόρια & Καφέ",
+      "intro":"Επιλεγμένα τοπικά εστιατόρια και καφέ σε κοντινή απόσταση."
+    },
+    "attractions":{
+      "title":"Τοπικά Αξιοθέατα",
+      "intro":"Μέρη για να επισκεφθείτε γύρω από τη Λευκάδα."
+    },
+    "emergency":{
+      "title":"Τηλέφωνα Έκτακτης Ανάγκης",
+      "contacts":[
+        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
+        {"label":"Αστυνομία","value":"100","priority":1},
+        {"label":"Πυροσβεστική","value":"199","priority":2},
+        {"label":"Νοσοκομείο","value":"166","priority":3}
+      ]
+    },
+    "contacts":{
+      "title":"Επικοινωνία",
+      "name":"Ilias Demo Host",
+      "whatsapp":"306980792814",
+      "messenger":"@ilias.paraskevas.13",
+      "viber":"00306980792814",
+      "phone":"+30 6980792814",
+      "email":"cozy@example.com",
+      "whatsappLabel":"WhatsApp",
+      "messengerLabel":"Messenger",
+      "viberLabel":"Viber",
+      "phoneLabel":"Τηλέφωνο"
+    },
+    "neighborhood":{
+      "title":"Γειτονιά",
+      "supermarket":{"title":"Σούπερ Μάρκετ","text":"Υπάρχουν αρκετά σούπερ μάρκετ σε 5–12 λεπτά με το αυτοκίνητο."},
+      "pharmacy":{"title":"Φαρμακείο","text":"Τα φαρμακεία έχουν μεταβαλλόμενο ωράριο. Αναζητήστε το κοντινότερο ανοιχτό στο χάρτη."},
+      "atm":{"title":"ATM","text":"ATM υπάρχουν στην πόλη της Λευκάδας και κοντά σε σούπερ μάρκετ."},
+      "bakery":{"title":"Φούρνος","text":"Οι τοπικοί φούρνοι προσφέρουν φρέσκο ψωμί και γλυκά το πρωί."},
+      "gas":{"title":"Πρατήριο Καυσίμων","text":"Πρατήρια καυσίμων βρίσκονται στους κεντρικούς δρόμους γύρω από τη Λευκάδα."}
+    }
+  }
+}
