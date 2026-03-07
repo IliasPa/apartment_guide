@@ -267,7 +267,7 @@
   function renderAccommodation(container, pageData, siteContent){    const rules = (siteContent.pages && siteContent.pages.house_rules && siteContent.pages.house_rules.rules) || pageData.rules || [];
     const wifiData = (siteContent.pages && siteContent.pages.wifi) || {};
     const emoji = {
-      checkin: '🔑', checkout: '🚪', late: '⏰', ac: '❄️', wifi: '📶', bbq: '🍖', water: '🚰', hot: '♨️', breakfast: '🥐', consumables: '🧴', rules: '📋'
+      checkin: '🔑', checkout: '🚪', late: '⏰', ac: '❄️', wifi: '📶', bbq: '🍖', water: '🚰', hot: '♨️', breakfast: '🥐', consumables: '🧴', baby: '👶', games: '🎲', beach: '🚿', transfer: '🚐', wellness: '💆', rules: '📋'
     };
     const ui = Object.assign({}, (siteContent && siteContent.ui) || {}, (siteContent && siteContent.accommodation_ui) || {});
     const sections = [
@@ -280,6 +280,11 @@
       {id:'hot', title: ui.hotWaterLabel || 'Hot Water', content: pageData.hot_water || ui.hotWaterDefault || 'Hot water is available 24h with solar assistance. On cloudy days heating may be limited.'},
       {id:'breakfast', title: ui.breakfastLabel || 'Breakfast', content: pageData.breakfast || ui.breakfastDefault || 'Some breakfast items are available in the kitchen — help yourself.'},
       {id:'consumables', title: ui.consumablesLabel || 'Consumables', content: pageData.consumables || ui.consumablesDefault || "Please do not take anything except slippers, shampoos, breakfasts, chocolates."},
+      {id:'baby', title: ui.babyChairLabel || 'Baby Chair', content: pageData.baby_chair || ui.babyChairDefault || 'A baby chair can be provided if requested in advance.'},
+      {id:'games', title: ui.boardGamesLabel || 'Board Games', content: pageData.board_games || ui.boardGamesDefault || 'Board games are below the TV. Please tidy them up after use and do not lose any pieces.'},
+      {id:'beach', title: ui.beachFaucetLabel || 'Beach Faucet', content: pageData.beach_faucet || ui.beachFaucetDefault || 'There is an outdoor faucet to rinse your legs after the beach.'},
+      {id:'transfer', title: ui.transferLabel || 'Transfers', content: pageData.transfer || ui.transferDefault || 'We can bring guests to the apartment from KTEL for free or from the airport for a 20 EUR fee.'},
+      {id:'wellness', title: ui.wellnessLabel || 'Wellness', content: pageData.wellness || ui.wellnessDefault || 'We partner with a massage therapist who can come to the apartment for a wellness session.'},
       // wifi section to be rendered specially
       {id:'wifi', title: ui.wifiLabel || 'Wi-Fi', content: `Network: ${siteContent.pages?.wifi?.ssid||''}\nPassword: ${siteContent.pages?.wifi?.password||''}\n${siteContent.pages?.wifi?.notes||''}`}
     ];
