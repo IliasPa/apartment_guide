@@ -38,14 +38,14 @@
     "mapLabel": "Χάρτης"
   },
   "navCards": [
-    {"id":"checkin","title":"Accommodation","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
-    {"id":"transport","title":"Transportation","subtitle":"Πώς να μετακινηθείτε."},
-    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
-    {"id":"attractions","title":"Local Attractions","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
-    {"id":"emergency","title":"Emergency Contacts","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
-    {"id":"beaches","title":"Beaches","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
-    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
-    {"id":"neighborhood","title":"Neighborhood","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
+    {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
+    {"id":"transport","title":"Μεταφορές","subtitle":"Πώς να μετακινηθείτε."},
+    {"id":"restaurants","title":"Εστιατόρια & Καφέ","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
+    {"id":"attractions","title":"Τοπικά Αξιοθέατα","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
+    {"id":"emergency","title":"Τηλέφωνα Έκτακτης Ανάγκης","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
+    {"id":"beaches","title":"Παραλίες","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
+    {"id":"contacts","title":"Επικοινωνία","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
+    {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
   ],
   "pages": {
     "wifi": {
@@ -57,7 +57,7 @@
     "accommodation": {
       "title": "Διαμονή",
       "arrival": "Το check-in ξεκινά στις 15:30. Η είσοδος του στούντιο είναι δίπλα στη πέτρινη σκάλα.",
-      "keybox": "Το εφεδρικό keybox βρίσκεται δίπλα στη μικρή ξύλινη πόρτα.",
+      "keybox": "Το keybox βρίσκεται δίπλα στη μικρή ξύλινη πόρτα.",
       "map": "Η πρόσβαση γίνεται από το στενό της παλιάς πόλης. Χρησιμοποιήστε τον χάρτη του οδηγού για ευκολότερη άφιξη.",
       "checkout": "Το check-out είναι στις 11:00. Αφήστε τα κλειδιά στον πάγκο της κουζίνας.",
       "late_checkout": "Late check-out μπορεί να γίνει μόνο αν το ημερολόγιο είναι ελεύθερο.",
