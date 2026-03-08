@@ -387,6 +387,17 @@
     container.innerHTML = html;
   }
 
+  function getLocalizedValue(item, key, lang){
+    if(!item) return '';
+    if(lang === 'gr') return item[key + '_gr'] || item[key] || '';
+    return item[key] || item[key + '_gr'] || '';
+  }
+
+  function getLocalizedArray(item, key, lang){
+    const value = getLocalizedValue(item, key, lang);
+    return Array.isArray(value) ? value : [];
+  }
+
   function renderWifi(container, data, siteContent){
     const ssid = escapeHtml(data.ssid || '');
     const password = escapeHtml(data.password || '');
@@ -527,6 +538,7 @@
       ds = await fetchJson(dsUrl) || {items:[]};
     }
     const items = ds.items || [];
+    const lang = getLang();
     const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder) || 'Search';
     container.innerHTML = `
       <div class="list-controls">
@@ -539,20 +551,28 @@
 
     function renderList(filter){
       const q = (filter||'').toLowerCase();
-      listEl.innerHTML = items.filter(it=>!q || (it.name && it.name.toLowerCase().includes(q)) || (it.short && it.short.toLowerCase().includes(q))).map(it=>{
+      listEl.innerHTML = items.filter(it=>{
+        const localizedName = String(getLocalizedValue(it, 'name', lang)).toLowerCase();
+        const localizedShort = String(getLocalizedValue(it, 'short', lang)).toLowerCase();
+        const localizedArea = String(getLocalizedValue(it, 'area', lang)).toLowerCase();
+        return !q || localizedName.includes(q) || localizedShort.includes(q) || localizedArea.includes(q);
+      }).map(it=>{
         // create a directions link (prefer destination by name/address) using apartment origin coords
         const origin = `${WEATHER_COORDS.lat},${WEATHER_COORDS.lon}`;
         const destQuery = encodeURIComponent((it.name || '') + (it.area? ' ' + it.area : ''));
         const directions = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destQuery}&travelmode=driving`;
         const href = it.mapLink ? it.mapLink : directions;
+        const localizedName = getLocalizedValue(it, 'name', lang);
+        const localizedArea = getLocalizedValue(it, 'area', lang);
+        const localizedShort = getLocalizedValue(it, 'short', lang);
         return `
             <a class="ds-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
               <article class="ds-card">
-                <img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(it.name)}">
+                <img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(localizedName)}">
                 <div class="ds-body">
-                  <h3>${escapeHtml(it.name)}</h3>
-                  <p class="muted">${escapeHtml(it.area || '')} ${it.price? ' • '+escapeHtml(it.price):''}</p>
-                  <p>${escapeHtml(it.short || '')}</p>
+                  <h3>${escapeHtml(localizedName)}</h3>
+                  <p class="muted">${escapeHtml(localizedArea || '')} ${it.price? ' • '+escapeHtml(it.price):''}</p>
+                  <p>${escapeHtml(localizedShort || '')}</p>
                 </div>
               </article>
             </a>`;
@@ -568,11 +588,17 @@
     const dsUrl = SITE_ROOT + datasetPath;
     const ds = await fetchJson(dsUrl) || {items:[]};
     const items = ds.items || [];
+    const lang = getLang();
+    const regionLabels = lang === 'gr'
+      ? {'All':'Όλες','West Coast':'Δυτική Ακτή','East Coast':'Ανατολική Ακτή','South Coast':'Νότια Ακτή'}
+      : {'All':'All','West Coast':'West Coast','East Coast':'East Coast','South Coast':'South Coast'};
     const regions = ['All','West Coast','East Coast','South Coast'];
-    const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder) ? (siteContent.ui.searchPlaceholder + ' beaches') : 'Search beaches';
+    const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder)
+      ? (lang === 'gr' ? siteContent.ui.searchPlaceholder + ' παραλιών' : siteContent.ui.searchPlaceholder + ' beaches')
+      : (lang === 'gr' ? 'Αναζήτηση παραλιών' : 'Search beaches');
     container.innerHTML = `
       <div class="beaches-controls">
-        ${regions.map(r=>`<button class="filter-btn" data-region="${r}">${r}</button>`).join('')}
+        ${regions.map(r=>`<button class="filter-btn" data-region="${r}">${regionLabels[r]}</button>`).join('')}
         <input type="search" id="beach-search" placeholder="${escapeHtml(searchPlaceholder)}">
       </div>
       <div id="beaches-grid" class="beaches-grid"></div>`;
@@ -593,23 +619,29 @@
       const qq = (q||'').toLowerCase();
       const filtered = items.filter(it=>{
         const okRegion = region==='All' || (it.region||'').toLowerCase().includes(region.toLowerCase());
-        const okQuery = !qq || (it.name && it.name.toLowerCase().includes(qq)) || (it.short && it.short.toLowerCase().includes(qq));
+        const localizedName = String(getLocalizedValue(it, 'name', lang)).toLowerCase();
+        const localizedShort = String(getLocalizedValue(it, 'short', lang)).toLowerCase();
+        const localizedArea = String(getLocalizedValue(it, 'area', lang)).toLowerCase();
+        const okQuery = !qq || localizedName.includes(qq) || localizedShort.includes(qq) || localizedArea.includes(qq);
         return okRegion && okQuery;
       });
       grid.innerHTML = filtered.map(it=>{
         // estimate drive time by region since precise coords may be missing in dataset
         const region = (it.region||'').toLowerCase();
         const regionMinutes = region.includes('west') ? 40 : region.includes('east') ? 20 : region.includes('south') ? 35 : 25;
-        const timeText = `${regionMinutes} min by car (approx.)`;
+        const timeText = lang === 'gr' ? `${regionMinutes} λεπτά με αυτοκίνητο (περίπου)` : `${regionMinutes} min by car (approx.)`;
         const origin = `${WEATHER_COORDS.lat},${WEATHER_COORDS.lon}`;
         const destQuery = encodeURIComponent((it.name || '') + (it.area? ' ' + it.area : ''));
         const directions = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destQuery}&travelmode=driving`;
         const href = it.mapLink ? it.mapLink : directions;
+        const localizedName = getLocalizedValue(it, 'name', lang);
+        const localizedArea = getLocalizedValue(it, 'area', lang);
+        const localizedShort = getLocalizedValue(it, 'short', lang);
         return `
         <a class="ds-link beach-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
           <article class="beach-card">
-            <div class="beach-media"><img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(it.name)}"><div class="beach-overlay"><h3>${escapeHtml(it.name)}</h3></div></div>
-            <div class="beach-body"><p class="muted">${escapeHtml(it.area||'')}</p><p>${escapeHtml(it.short||'')}</p>
+            <div class="beach-media"><img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(localizedName)}"><div class="beach-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+            <div class="beach-body"><p class="muted">${escapeHtml(localizedArea||'')}</p><p>${escapeHtml(localizedShort||'')}</p>
               <p class="muted time-estimate">${escapeHtml(timeText)}</p>
             </div>
           </article>
