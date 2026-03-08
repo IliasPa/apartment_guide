@@ -3,6 +3,8 @@
   "name": "Old Town Studio",
   "shortName": "Old Town",
   "address": "Demo Old Town Alley 4, Lefkada, Greece",
+  "mapLink": "https://www.google.com/maps?q=38.831,20.712",
+  "rateUsUrl": "https://maps.google.com/?q=REPLACE_ME_REVIEW_URL_APT_3",
   "coordinates": {
     "lat": 38.831,
     "lon": 20.712
@@ -15,6 +17,7 @@
     "viber": "00306900000003",
     "email": "oldtown@example.com"
   },
+  "heroImage": "data/properties/apt-3/images/hero.svg",
   "heroImages": [
     "data/properties/apt-3/images/hero.svg"
   ]

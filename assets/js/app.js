@@ -16,6 +16,8 @@
   // Properties configuration (loaded from data/properties.json when available)
   let PROPERTIES = [{id:'apt-1', name:'Apartment 1'}];
   let PROPERTIES_MAP = { 'apt-1': { id:'apt-1', name:'Apartment 1' } };
+  let CURRENT_PROPERTY_META = null;
+  let BEACH_DISTANCE_MATRIX = null;
 
   function withPropertyParam(url){
     try{
@@ -150,26 +152,41 @@
     }
   }
 
+  function deepMerge(base, override){
+    if(Array.isArray(base) || Array.isArray(override)) return override != null ? override : base;
+    if(!base || typeof base !== 'object') return override != null ? override : base;
+    if(!override || typeof override !== 'object') return override != null ? override : base;
+    const merged = Object.assign({}, base);
+    Object.keys(override).forEach(key=>{
+      merged[key] = key in base ? deepMerge(base[key], override[key]) : override[key];
+    });
+    return merged;
+  }
+
+  async function loadBeachDistanceMatrix(){
+    if(BEACH_DISTANCE_MATRIX) return BEACH_DISTANCE_MATRIX;
+    BEACH_DISTANCE_MATRIX = await fetchJson(SITE_ROOT + 'data/beach_distance_matrix.json') || {};
+    return BEACH_DISTANCE_MATRIX;
+  }
+
   async function loadContentAndRender(lang){
     const property = getCurrentProperty();
-    // try property-specific content first
+    const sharedContent = await fetchJson(SITE_ROOT + 'data/content.' + lang + '.json') || {};
+    let propertyContent = null;
     let content = null;
     let propMeta = null;
     if(property){
       const propContentUrl = SITE_ROOT + 'data/properties/' + property + '/content.' + lang + '.json';
-      content = await fetchJson(propContentUrl);
+      propertyContent = await fetchJson(propContentUrl);
       // try to load property metadata for coordinates etc.
       propMeta = await fetchJson(SITE_ROOT + 'data/properties/' + property + '/property.json');
       if(propMeta && propMeta.coordinates){
         try{ WEATHER_COORDS.lat = Number(propMeta.coordinates.lat) || WEATHER_COORDS.lat; WEATHER_COORDS.lon = Number(propMeta.coordinates.lon) || WEATHER_COORDS.lon; }catch(e){}
       }
     }
-    // fallback to site-wide content if not present
-    if(!content){
-      const contentUrl = SITE_ROOT + 'data/content.' + lang + '.json';
-      content = await fetchJson(contentUrl);
-    }
-    if(!content){
+    content = deepMerge(sharedContent, propertyContent || {});
+    CURRENT_PROPERTY_META = propMeta || null;
+    if(!content || !Object.keys(content).length){
       // fallback: basic English shell
       content = { site:{apartmentName:'Cozy City Apartment', welcomeTitle:'Welcome!', welcomeText:'Your digital guest guide — everything you need during your stay.'}, navCards:[], pages:{} };
     }
@@ -182,7 +199,7 @@
     const welcomeText = document.querySelector('[data-welcome-text]');
     if(welcomeText && content.site && content.site.welcomeText) welcomeText.textContent = content.site.welcomeText;
     const heroImg = document.querySelector('.hero-img');
-    const heroImagePath = (content.site && content.site.heroImage) || (propMeta && propMeta.heroImages && propMeta.heroImages[0]) || null;
+    const heroImagePath = (content.site && content.site.heroImage) || (propMeta && (propMeta.heroImage || (propMeta.heroImages && propMeta.heroImages[0]))) || null;
     if(heroImg && heroImagePath){
       heroImg.src = SITE_ROOT + heroImagePath;
       heroImg.alt = (content.site && content.site.heroAlt) || (content.site && content.site.apartmentName) || 'Apartment';
@@ -274,16 +291,16 @@
       {id:'checkin', title: ui.checkinLabel || 'Check-in', content: pageData.arrival || ui.checkinDefault || 'Self-check-in after 15:00. Please follow host instructions.'},
       {id:'checkout', title: ui.checkoutLabel || 'Check-out', content: pageData.checkout || ui.checkoutDefault || 'Please check-out by 11:00. Leave keys in the keybox.'},
       {id:'late', title: ui.lateCheckoutLabel || 'Late Check-out', content: pageData.late_checkout || ui.lateCheckoutDefault || 'Late Check-out may be available upon request. Contact host in advance.'},
+      {id:'transfer', title: ui.transferLabel || 'Transfers', content: pageData.transfer || ui.transferDefault || 'We can bring guests to the apartment from KTEL for free or from the airport for a 20 EUR fee.'},
       {id:'ac', title: ui.airConditionLabel || 'Air Condition', content: pageData.air_condition || ui.airConditionDefault || 'Remote is in the living room. Recommended setting: 24–26°C for comfort and efficiency.'},
-      {id:'bbq', title: ui.bbqLabel || 'BBQ', content: pageData.bbq || ui.bbqDefault || 'If you need a BBQ, contact host in advance so it can be provided.'},
       {id:'water', title: ui.waterLabel || 'Water', content: pageData.water || ui.waterDefault || 'Tap water is not drinkable. Please use bottled water for drinking.'},
       {id:'hot', title: ui.hotWaterLabel || 'Hot Water', content: pageData.hot_water || ui.hotWaterDefault || 'Hot water is available 24h with solar assistance. On cloudy days heating may be limited.'},
+      {id:'beach', title: ui.beachFaucetLabel || 'Beach Faucet', content: pageData.beach_faucet || ui.beachFaucetDefault || 'There is an outdoor faucet to rinse your legs after the beach.'},
       {id:'breakfast', title: ui.breakfastLabel || 'Breakfast', content: pageData.breakfast || ui.breakfastDefault || 'Some breakfast items are available in the kitchen — help yourself.'},
+      {id:'bbq', title: ui.bbqLabel || 'BBQ', content: pageData.bbq || ui.bbqDefault || 'If you need a BBQ, contact host in advance so it can be provided.'},
       {id:'consumables', title: ui.consumablesLabel || 'Consumables', content: pageData.consumables || ui.consumablesDefault || "Please do not take anything except slippers, shampoos, breakfasts, chocolates."},
       {id:'baby', title: ui.babyChairLabel || 'Baby Chair', content: pageData.baby_chair || ui.babyChairDefault || 'A baby chair can be provided if requested in advance.'},
       {id:'games', title: ui.boardGamesLabel || 'Board Games', content: pageData.board_games || ui.boardGamesDefault || 'Board games are below the TV. Please tidy them up after use and do not lose any pieces.'},
-      {id:'beach', title: ui.beachFaucetLabel || 'Beach Faucet', content: pageData.beach_faucet || ui.beachFaucetDefault || 'There is an outdoor faucet to rinse your legs after the beach.'},
-      {id:'transfer', title: ui.transferLabel || 'Transfers', content: pageData.transfer || ui.transferDefault || 'We can bring guests to the apartment from KTEL for free or from the airport for a 20 EUR fee.'},
       {id:'wellness', title: ui.wellnessLabel || 'Wellness', content: pageData.wellness || ui.wellnessDefault || 'We partner with a massage therapist who can come to the apartment for a wellness session.'},
       // wifi section to be rendered specially
       {id:'wifi', title: ui.wifiLabel || 'Wi-Fi', content: `Network: ${siteContent.pages?.wifi?.ssid||''}\nPassword: ${siteContent.pages?.wifi?.password||''}\n${siteContent.pages?.wifi?.notes||''}`}
@@ -377,6 +394,7 @@
       {key:'supermarket', emoji:'🛒'},
       {key:'pharmacy', emoji:'💊'},
       {key:'atm', emoji:'🏧'},
+      {key:'cafes', emoji:'☕'},
       {key:'bakery', emoji:'🥖'},
       {key:'gas', emoji:'⛽'}
     ];
@@ -455,11 +473,15 @@
     // expose UI labels for use in this function
     window.siteUi = (siteContent && siteContent.ui) || {};
     const c = data || {};
-    const phoneRaw = String(c.phone || '');
+    const host = (CURRENT_PROPERTY_META && CURRENT_PROPERTY_META.host) || {};
+    const lang = getLang();
+    const propertyId = getCurrentProperty();
+    const phoneRaw = String(c.phone || host.phone || '');
     const digits = phoneRaw.replace(/[^0-9]/g,'');
     const waNumber = digits.replace(/^00/, '');
     const viberNumber = '+' + digits.replace(/^00/, '');
-    const messengerPath = (c.messenger && (c.messenger.indexOf('m.me')>-1 || c.messenger.indexOf('http')===0)) ? c.messenger : (c.messenger? `https://m.me/${c.messenger.replace(/^@/,'')}` : null);
+    const messengerValue = c.messenger || host.messenger || '';
+    const messengerPath = (messengerValue && (messengerValue.indexOf('m.me')>-1 || messengerValue.indexOf('http')===0)) ? messengerValue : (messengerValue? `https://m.me/${messengerValue.replace(/^@/,'')}` : null);
 
     const labels = (window.siteUi || {});
     const phoneLabel = (labels.phoneLabel) || 'Phone';
@@ -470,6 +492,22 @@
     const openWhatsAppText = (labels.openWhatsApp) || 'Open WhatsApp';
     const openMessengerText = (labels.openMessenger) || 'Open Messenger';
     const openViberText = (labels.openViber) || 'Open Viber';
+    const rateStayTitle = labels.rateStayTitle || 'Rate your stay';
+    const rateStaySubtitle = labels.rateStaySubtitle || 'Leave a review on Google';
+    const rateStayAction = labels.rateStayAction || 'Open Google';
+    const suggestTitle = labels.suggestImprovementsTitle || 'Suggest improvements';
+    const suggestSubtitle = labels.suggestImprovementsSubtitle || 'Share your ideas directly with us';
+    const suggestAction = labels.suggestImprovementsAction || 'Open form';
+    const suggestionModalTitle = labels.suggestionModalTitle || suggestTitle;
+    const suggestionTextareaLabel = labels.suggestionTextareaLabel || suggestTitle;
+    const suggestionPlaceholder = labels.suggestionPlaceholder || 'Write your suggestion here...';
+    const suggestionSubmit = labels.suggestionSubmit || 'Submit';
+    const suggestionSending = labels.suggestionSending || 'Sending...';
+    const suggestionSuccess = labels.suggestionSuccess || 'Thank you for your suggestion';
+    const suggestionError = labels.suggestionError || 'Unable to send right now. Please try again later.';
+    const suggestionClose = labels.suggestionClose || 'Close';
+    const reviewUrl = (CURRENT_PROPERTY_META && CURRENT_PROPERTY_META.rateUsUrl) || c.reviewUrl || 'https://maps.google.com/?q=REPLACE_ME_REVIEW_URL';
+    const suggestionEndpoint = c.suggestionEndpoint || 'https://formspree.io/f/meeronor';
 
     const phoneHref = phoneRaw? `tel:${phoneRaw}` : null;
     const waHref = waNumber? `https://wa.me/${waNumber}` : null;
@@ -478,10 +516,21 @@
     const html = `
       <div class="contact-panel">
         <div class="contact-card">
+          <div class="contact-icon contact-icon-phone"><img src="${SITE_ROOT}assets/images/phone.svg" alt="phone"></div>
+          <div class="contact-body">
+            <div><strong>${escapeHtml(phoneLabel)}</strong></div>
+            <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
+          </div>
+          <div class="contact-actions">
+            ${phoneHref? `<a class="btn" href="${phoneHref}">${escapeHtml(callText)}</a>` : ''}
+          </div>
+        </div>
+
+        <div class="contact-card">
           <div class="contact-icon"><img src="${SITE_ROOT}assets/images/whatsapp.svg" alt="whatsapp"></div>
           <div class="contact-body">
             <div><strong>${escapeHtml(whatsappLabel)}</strong></div>
-            <div>${escapeHtml(phoneRaw)}</div>
+            <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
           </div>
           <div class="contact-actions">
             ${waHref? `<a class="btn" href="${waHref}" target="_blank" rel="noopener">${escapeHtml(openWhatsAppText)}</a>` : ''}
@@ -492,7 +541,7 @@
           <div class="contact-icon"><img src="${SITE_ROOT}assets/images/messenger.svg" alt="messenger"></div>
           <div class="contact-body">
             <div><strong>${escapeHtml(messengerLabel)}</strong></div>
-            <div>${escapeHtml(c.messenger || '')}</div>
+            <div class="contact-copy">${escapeHtml(messengerValue)}</div>
           </div>
           <div class="contact-actions">
             ${messengerPath? `<a class="btn" href="${messengerPath}" target="_blank" rel="noopener">${escapeHtml(openMessengerText)}</a>` : ''}
@@ -503,25 +552,163 @@
           <div class="contact-icon"><img src="${SITE_ROOT}assets/images/viber.svg" alt="viber"></div>
           <div class="contact-body">
             <div><strong>${escapeHtml(viberLabel)}</strong></div>
-            <div>${escapeHtml(phoneRaw)}</div>
+            <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
           </div>
           <div class="contact-actions">
             ${viberHref? `<a class="btn" href="${viberHref}">${escapeHtml(openViberText)}</a>` : ''}
           </div>
         </div>
-        <div class="contact-card">
-          <div class="contact-icon" style="background:#857a49"><img src="${SITE_ROOT}assets/images/phone.svg" alt="phone"></div>
+
+        <div class="contact-card contact-card-action">
+          <div class="contact-icon contact-icon-action" aria-hidden="true">⭐</div>
           <div class="contact-body">
-            <div><strong>${escapeHtml(phoneLabel)}</strong></div>
-            <div>${escapeHtml(phoneRaw)}</div>
+            <div><strong>${escapeHtml(rateStayTitle)}</strong></div>
+            <div class="contact-copy muted">${escapeHtml(rateStaySubtitle)}</div>
           </div>
           <div class="contact-actions">
-            ${phoneHref? `<a class="btn" href="${phoneHref}">${escapeHtml(callText)}</a>` : ''}
+            <a class="btn" href="${escapeHtml(reviewUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(rateStayAction)}</a>
           </div>
+        </div>
+
+        <div class="contact-card contact-card-action">
+          <div class="contact-icon contact-icon-action" aria-hidden="true">💡</div>
+          <div class="contact-body">
+            <div><strong>${escapeHtml(suggestTitle)}</strong></div>
+            <div class="contact-copy muted">${escapeHtml(suggestSubtitle)}</div>
+          </div>
+          <div class="contact-actions">
+            <button type="button" class="btn" data-open-suggestion-modal>${escapeHtml(suggestAction)}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-modal" id="suggestion-modal" hidden aria-hidden="true">
+        <div class="contact-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="suggestion-modal-title">
+          <div class="contact-modal-header">
+            <div>
+              <h2 id="suggestion-modal-title">${escapeHtml(suggestionModalTitle)}</h2>
+              <p class="muted">${escapeHtml(suggestSubtitle)}</p>
+            </div>
+            <button type="button" class="contact-modal-close" aria-label="${escapeHtml(suggestionClose)}" data-close-suggestion-modal>×</button>
+          </div>
+          <form class="contact-form" action="${escapeHtml(suggestionEndpoint)}" method="POST" novalidate>
+            <input type="hidden" name="propertyId" value="${escapeHtml(propertyId)}">
+            <input type="hidden" name="propertyName" value="${escapeHtml((siteContent.site && siteContent.site.apartmentName) || '')}">
+            <div class="contact-form-fields">
+              <label class="sr-only" for="suggestion-message">${escapeHtml(suggestionTextareaLabel)}</label>
+              <textarea id="suggestion-message" name="message" placeholder="${escapeHtml(suggestionPlaceholder)}" required></textarea>
+            </div>
+            <div class="contact-form-footer">
+              <button type="submit" class="btn btn-primary">${escapeHtml(suggestionSubmit)}</button>
+            </div>
+            <p class="contact-form-status" data-form-status aria-live="polite"></p>
+          </form>
         </div>
       </div>`;
 
     container.innerHTML = html;
+
+    const modal = container.querySelector('#suggestion-modal');
+    const openModalBtn = container.querySelector('[data-open-suggestion-modal]');
+    const closeModalBtn = modal && modal.querySelector('[data-close-suggestion-modal]');
+    const form = modal && modal.querySelector('.contact-form');
+    const textarea = form && form.querySelector('#suggestion-message');
+    const status = form && form.querySelector('[data-form-status]');
+    const submitButton = form && form.querySelector('button[type="submit"]');
+    let lastFocusedElement = null;
+
+    function getFocusableElements(){
+      if(!modal) return [];
+      return Array.from(modal.querySelectorAll('button, [href], textarea, input, select, [tabindex]:not([tabindex="-1"])')).filter(el=>!el.disabled && !el.hidden);
+    }
+
+    function openModal(){
+      if(!modal || !textarea) return;
+      lastFocusedElement = document.activeElement;
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      textarea.focus();
+    }
+
+    function closeModal(){
+      if(!modal) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if(status){
+        status.textContent = '';
+        status.className = 'contact-form-status';
+      }
+      if(submitButton){
+        submitButton.disabled = false;
+        submitButton.textContent = suggestionSubmit;
+      }
+      if(lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+    }
+
+    if(openModalBtn) openModalBtn.addEventListener('click', openModal);
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if(modal){
+      modal.addEventListener('click', (ev)=>{
+        if(ev.target === modal) closeModal();
+      });
+      modal.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'Escape'){
+          ev.preventDefault();
+          closeModal();
+          return;
+        }
+        if(ev.key !== 'Tab') return;
+        const focusable = getFocusableElements();
+        if(!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if(ev.shiftKey && document.activeElement === first){
+          ev.preventDefault();
+          last.focus();
+        } else if(!ev.shiftKey && document.activeElement === last){
+          ev.preventDefault();
+          first.focus();
+        }
+      });
+    }
+
+    if(form){
+      form.addEventListener('submit', async (ev)=>{
+        ev.preventDefault();
+        if(!textarea || !submitButton || !status) return;
+        const message = textarea.value.trim();
+        if(!message){
+          textarea.focus();
+          return;
+        }
+        submitButton.disabled = true;
+        submitButton.textContent = suggestionSending;
+        status.textContent = '';
+        status.className = 'contact-form-status';
+
+        try{
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if(!response.ok) throw new Error('Submission failed');
+          form.reset();
+          form.querySelector('input[name="propertyId"]').value = propertyId;
+          status.textContent = suggestionSuccess;
+          status.className = 'contact-form-status is-success';
+        }catch(e){
+          status.textContent = suggestionError;
+          status.className = 'contact-form-status is-error';
+        }finally{
+          submitButton.disabled = false;
+          submitButton.textContent = suggestionSubmit;
+        }
+      });
+    }
   }
 
   // Generic dataset list renderer for restaurants/attractions
@@ -587,8 +774,11 @@
   async function renderBeaches(container, datasetPath, siteContent){
     const dsUrl = SITE_ROOT + datasetPath;
     const ds = await fetchJson(dsUrl) || {items:[]};
+    const distanceMatrix = await loadBeachDistanceMatrix();
     const items = ds.items || [];
     const lang = getLang();
+    const propertyId = getCurrentProperty();
+    const propertyDistances = distanceMatrix[propertyId] || {};
     const regionLabels = lang === 'gr'
       ? {'All':'Όλες','West Coast':'Δυτική Ακτή','East Coast':'Ανατολική Ακτή','South Coast':'Νότια Ακτή'}
       : {'All':'All','West Coast':'West Coast','East Coast':'East Coast','South Coast':'South Coast'};
@@ -615,6 +805,20 @@
       renderBeachesGrid(active, search.value);
     });
 
+    function formatBeachRouteText(routeData){
+      if(!routeData) return lang === 'gr' ? 'Η απόσταση δεν είναι διαθέσιμη' : 'Distance unavailable';
+      const driveTimeMin = Number(routeData.drive_time_min);
+      const distanceKm = Number(routeData.distance_km);
+      const parts = [];
+      if(Number.isFinite(driveTimeMin)) parts.push(lang === 'gr' ? `🚗 ${driveTimeMin} λεπτά με αυτοκίνητο` : `🚗 ${driveTimeMin} min by car`);
+      if(Number.isFinite(distanceKm)){
+        const locale = lang === 'gr' ? 'el-GR' : 'en-GB';
+        const unit = lang === 'gr' ? 'χλμ' : 'km';
+        parts.push(`${distanceKm.toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}`);
+      }
+      return parts.length ? parts.join(' • ') : (lang === 'gr' ? 'Η απόσταση δεν είναι διαθέσιμη' : 'Distance unavailable');
+    }
+
     function renderBeachesGrid(region, q){
       const qq = (q||'').toLowerCase();
       const filtered = items.filter(it=>{
@@ -626,17 +830,18 @@
         return okRegion && okQuery;
       });
       grid.innerHTML = filtered.map(it=>{
-        // estimate drive time by region since precise coords may be missing in dataset
-        const region = (it.region||'').toLowerCase();
-        const regionMinutes = region.includes('west') ? 40 : region.includes('east') ? 20 : region.includes('south') ? 35 : 25;
-        const timeText = lang === 'gr' ? `${regionMinutes} λεπτά με αυτοκίνητο (περίπου)` : `${regionMinutes} min by car (approx.)`;
         const origin = `${WEATHER_COORDS.lat},${WEATHER_COORDS.lon}`;
-        const destQuery = encodeURIComponent((it.name || '') + (it.area? ' ' + it.area : ''));
+        const beachCoords = it.coordinates && Number.isFinite(Number(it.coordinates.lat)) && Number.isFinite(Number(it.coordinates.lon))
+          ? `${Number(it.coordinates.lat)},${Number(it.coordinates.lon)}`
+          : null;
+        const destQuery = encodeURIComponent(beachCoords || ((it.name || '') + (it.area? ' ' + it.area : '')));
         const directions = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destQuery}&travelmode=driving`;
         const href = it.mapLink ? it.mapLink : directions;
         const localizedName = getLocalizedValue(it, 'name', lang);
         const localizedArea = getLocalizedValue(it, 'area', lang);
         const localizedShort = getLocalizedValue(it, 'short', lang);
+        const routeData = propertyDistances[it.id] || null;
+        const timeText = formatBeachRouteText(routeData);
         return `
         <a class="ds-link beach-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
           <article class="beach-card">

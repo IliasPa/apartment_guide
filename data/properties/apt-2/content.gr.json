@@ -7,51 +7,6 @@
     "heroImage": "data/properties/apt-2/images/hero.svg",
     "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Seaside Family Apartment"
   },
-  "ui": {
-    "back": "← Πίσω",
-    "lang_en": "Switch to English",
-    "lang_gr": "Switch to Greek",
-    "copyPassword": "Αντιγραφή κωδικού",
-    "copied": "Αντιγράφηκε",
-    "scanToJoin": "Σαρώστε για σύνδεση Wi-Fi",
-    "searchPlaceholder": "Αναζήτηση",
-    "openInMaps": "Άνοιγμα σε Χάρτες",
-    "phoneLabel": "Τηλέφωνο",
-    "whatsappLabel": "WhatsApp",
-    "messengerLabel": "Messenger",
-    "viberLabel": "Viber",
-    "callAction": "Κλήση",
-    "openWhatsApp": "Άνοιγμα WhatsApp",
-    "openMessenger": "Άνοιγμα Messenger",
-    "openViber": "Άνοιγμα Viber"
-  },
-  "accommodation_ui": {
-    "checkinLabel": "Άφιξη",
-    "checkoutLabel": "Αναχώρηση",
-    "lateCheckoutLabel": "Καθυστερημένη Αναχώρηση",
-    "waterLabel": "Νερό",
-    "hotWaterLabel": "Ζεστό Νερό",
-    "breakfastLabel": "Πρωινό",
-    "consumablesLabel": "Αναλώσιμα",
-    "babyChairLabel": "Καρεκλάκι Μωρού",
-    "boardGamesLabel": "Επιτραπέζια Παιχνίδια",
-    "beachFaucetLabel": "Βρύση Παραλίας",
-    "transferLabel": "Μεταφορά από/προς το αεροδρόμιο",
-    "wellnessLabel": "Ευεξία & Σπα",
-    "houseRulesLabel": "Κανόνες Σπιτιού",
-    "wifiLabel": "Wi-Fi",
-    "mapLabel": "Χάρτης"
-  },
-  "navCards": [
-    {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
-    {"id":"transport","title":"Μεταφορές","subtitle":"Πώς να μετακινηθείτε."},
-    {"id":"restaurants","title":"Εστιατόρια & Καφέ","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
-    {"id":"attractions","title":"Τοπικά Αξιοθέατα","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
-    {"id":"emergency","title":"Τηλέφωνα Έκτακτης Ανάγκης","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
-    {"id":"beaches","title":"Παραλίες","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
-    {"id":"contacts","title":"Επικοινωνία","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
-    {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
-  ],
   "pages": {
     "wifi": {
       "title": "Πληροφορίες WiFi",
@@ -98,15 +53,6 @@
       "title": "Τοπικά Αξιοθέατα",
       "intro": "Προτεινόμενα σημεία ενδιαφέροντος γύρω από το δεύτερο διαμέρισμα."
     },
-    "emergency": {
-      "title": "Τηλέφωνα Έκτακτης Ανάγκης",
-      "contacts": [
-        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
-        {"label":"Αστυνομία","value":"100","priority":1},
-        {"label":"Πυροσβεστική","value":"199","priority":2},
-        {"label":"Νοσοκομείο","value":"166","priority":3}
-      ]
-    },
     "contacts": {
       "title": "Επικοινωνία",
       "name": "Seaside Demo Host",
@@ -125,6 +71,7 @@
       "supermarket": {"title": "Σούπερ Μάρκετ", "text": "Το mini market απέχει 3 λεπτά με τα πόδια."},
       "pharmacy": {"title": "Φαρμακείο", "text": "Το κοντινότερο φαρμακείο βρίσκεται στο κέντρο του Νυδριού."},
       "atm": {"title": "ATM", "text": "ATM υπάρχει κοντά στη μαρίνα."},
+      "cafes": {"title": "Καφέ", "text": "Παραλιακά καφέ βρίσκονται σε πολύ μικρή απόσταση με τα πόδια από το διαμέρισμα."},
       "bakery": {"title": "Φούρνος", "text": "Φρέσκα αρτοσκευάσματα διατίθενται από τις 07:00."},
       "gas": {"title": "Πρατήριο Καυσίμων", "text": "Το πρατήριο καυσίμων βρίσκεται στον κεντρικό παραλιακό δρόμο."}
     }

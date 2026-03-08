@@ -3,6 +3,8 @@
   "name": "Seaside Family Apartment",
   "shortName": "Seaside",
   "address": "Demo Coast Road 18, Lefkada, Greece",
+  "mapLink": "https://www.google.com/maps?q=38.831791,20.696838",
+  "rateUsUrl": "https://maps.google.com/?q=REPLACE_ME_REVIEW_URL_APT_2",
   "coordinates": {
     "lat": 38.831791,
     "lon": 20.696838
@@ -15,6 +17,7 @@
     "viber": "00306900000002",
     "email": "seaside@example.com"
   },
+  "heroImage": "data/properties/apt-2/images/hero.svg",
   "heroImages": [
     "data/properties/apt-2/images/hero.svg"
   ]

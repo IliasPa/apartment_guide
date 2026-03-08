@@ -7,46 +7,6 @@
     "heroImage":"data/properties/apt-1/images/hero.svg",
     "heroAlt":"Illustrated hero view for Cozy City Apartment"
   },
-  "ui":{
-    "back":"← Back",
-    "lang_en":"Switch to English",
-    "lang_gr":"Switch to Greek",
-    "copyPassword":"Copy password",
-    "copied":"Copied",
-    "scanToJoin":"Scan to join Wi-Fi",
-    "searchPlaceholder":"Search",
-    "openInMaps":"Open in Maps",
-    "phoneLabel":"Phone",
-    "whatsappLabel":"WhatsApp",
-    "messengerLabel":"Messenger",
-    "viberLabel":"Viber",
-    "callAction":"Call",
-    "openWhatsApp":"Open WhatsApp",
-    "openMessenger":"Open Messenger",
-    "openViber":"Open Viber"
-  },
-  "accommodation_ui":{
-    "checkinLabel":"Check-in",
-    "checkoutLabel":"Check-out",
-    "lateCheckoutLabel":"Late Check-out",
-    "waterLabel":"Water",
-    "hotWaterLabel":"Hot Water",
-    "breakfastLabel":"Breakfast",
-    "consumablesLabel":"Consumables",
-    "houseRulesLabel":"House Rules",
-    "wifiLabel":"Wi-Fi",
-    "mapLabel":"Map"
-  },
-  "navCards":[
-    {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},
-    {"id":"transport","title":"Transportation","subtitle":"How to get around."},
-    {"id":"restaurants","title":"Restaurants & Cafes","subtitle":"Local picks and quick bites."},
-    {"id":"attractions","title":"Local Attractions","subtitle":"Sights, parks and museums."},
-    {"id":"emergency","title":"Emergency Contacts","subtitle":"Important phone numbers and services."},
-    {"id":"beaches","title":"Beaches","subtitle":"Best beaches in Lefkada."},
-    {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Phone."},
-    {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
-  ],
   "pages":{
     "wifi":{
       "title":"WiFi Information",
@@ -84,15 +44,6 @@
       "title":"Local Attractions",
       "intro":"Places to visit around Lefkada." 
     },
-    "emergency":{
-      "title":"Emergency Contacts",
-      "contacts":[
-        {"label":"Emergency services","value":"112","priority":0},
-        {"label":"Police","value":"100","priority":1},
-        {"label":"Firefighters","value":"199","priority":2},
-        {"label":"Hospital","value":"166","priority":3}
-      ]
-    },
     "contacts":{
       "title":"Contact Me",
       "name":"Ilias Demo Host",
@@ -111,6 +62,7 @@
       "supermarket":{"title":"Supermarket","text":"Several supermarkets are within 5–12 minutes by car. Use the map to find the closest one."},
       "pharmacy":{"title":"Pharmacy","text":"Pharmacies have variable opening hours; search on the map for the nearest open one."},
       "atm":{"title":"ATM","text":"ATMs are available in Lefkada Town and near supermarkets."},
+      "cafes":{"title":"Cafes","text":"Coffee spots around the marina and town center are 5-10 minutes away by car."},
       "bakery":{"title":"Bakery","text":"Local bakeries offer fresh bread and pastries in the mornings."},
       "gas":{"title":"Gas Station","text":"Fuel stations are located on main roads around Lefkada."}
     }

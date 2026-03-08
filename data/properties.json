@@ -1,17 +1,14 @@
 [
   {
     "id": "apt-1",
-    "name": "Cozy City Apartment",
-    "shortName": "Cozy City"
+    "name": "Cozy City Apartment"
   },
   {
     "id": "apt-2",
-    "name": "Seaside Family Apartment",
-    "shortName": "Seaside"
+    "name": "Seaside Family Apartment"
   },
   {
     "id": "apt-3",
-    "name": "Old Town Studio",
-    "shortName": "Old Town"
+    "name": "Old Town Studio"
   }
 ]

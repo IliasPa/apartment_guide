@@ -1,9 +1,4 @@
 {
-  "site":{
-    "apartmentName":"Cozy City Apartment",
-    "welcomeTitle":"Welcome!",
-    "welcomeText":"Your digital guest guide — everything you need during your stay in the beautiful Lefkada!"
-  },
   "ui":{
     "back":"← Back",
     "lang_en":"Switch to English",
@@ -20,7 +15,21 @@
     "callAction":"Call",
     "openWhatsApp":"Open WhatsApp",
     "openMessenger":"Open Messenger",
-    "openViber":"Open Viber"
+    "openViber":"Open Viber",
+    "rateStayTitle":"Rate your stay",
+    "rateStaySubtitle":"Leave a review on Google",
+    "rateStayAction":"Open Google",
+    "suggestImprovementsTitle":"Suggest improvements",
+    "suggestImprovementsSubtitle":"Share your ideas directly with us",
+    "suggestImprovementsAction":"Open form",
+    "suggestionModalTitle":"Suggest improvements",
+    "suggestionTextareaLabel":"Your suggestion",
+    "suggestionPlaceholder":"Write your suggestion here...",
+    "suggestionSubmit":"Submit",
+    "suggestionSending":"Sending...",
+    "suggestionSuccess":"Thank you for your suggestion",
+    "suggestionError":"Unable to send right now. Please try again later.",
+    "suggestionClose":"Close"
   },
   "accommodation_ui":{
     "checkinLabel":"Check-in",
@@ -45,42 +54,6 @@
     {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
   ],
   "pages":{
-    "wifi":{
-      "title":"Πληροφορίες WiFi",
-      "ssid":"CozyGuest",
-      "password":"welcome2026",
-      "notes":"The router is in the living room next to the TV. There is also an NFC option to connect. Restart if needed."
-    },
-    "accommodation":{
-      "title":"Accommodation",
-      "arrival":"Self-check-in after 15:00. Keybox code: 1234",
-      "keybox":"Keybox located by the main entrance next to the mailbox.",
-      "map":"Use the address in your booking confirmation for navigation.",
-      "checkout":"Please check-out by 11:00. Leave used towels in the bathroom and place keys in the keybox.",
-      "late_checkout":"Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
-      "air_condition":"The AC remote is in the living room drawer. Recommended setting: 24–26°C for comfort and energy savings.",
-      "bbq":"If you need a BBQ setup, contact the host in advance so it can be provided and prepared.",
-      "water":"Tap water is not drinkable. Please use bottled water for drinking.",
-      "hot_water":"Hot water is available 24h assisted by solar heating. On cloudy days heating may be reduced.",
-      "breakfast":"Some basic breakfast items (coffee, tea, bread, jams) are available in the kitchen.",
-      "consumables":"Please do not remove consumables except slippers, shampoos, breakfasts, chocolates."
-    },
-    "house_rules":{
-      "title":"📋 House Rules",
-      "rules":["No smoking inside.","Please respect quiet hours 22:00-08:00.","Dispose of recycling in labelled bins."]
-    },
-    "transport":{
-      "title":"Transportation",
-      "info":"Nearest bus stop is 8 minutes walk. Taxis and ride-hailing apps work reliably in the area."
-    },
-    "restaurants":{
-      "title":"Restaurants & Cafes",
-      "intro":"Selected local restaurants and cafes nearby."
-    },
-    "attractions":{
-      "title":"Local Attractions",
-      "intro":"Places to visit around Lefkada." 
-    },
     "emergency":{
       "title":"Emergency Contacts",
       "contacts":[
@@ -91,24 +64,7 @@
       ]
     },
     "contacts":{
-      "title":"Contact Me",
-      "whatsapp":"306980792814",
-      "messenger":"@ilias.paraskevas.13",
-      "viber":"00306980792814",
-      "phone":"+30 6980792814",
-      "whatsappLabel":"WhatsApp",
-      "messengerLabel":"Messenger",
-      "viberLabel":"Viber",
-      "phoneLabel":"Phone"
-    }
-  ,
-    "neighborhood":{
-      "title":"Neighborhood",
-      "supermarket":{"title":"Supermarket","text":"Several supermarkets are within 5–12 minutes by car. Use the map to find the closest one."},
-      "pharmacy":{"title":"Pharmacy","text":"Pharmacies have variable opening hours; search on the map for the nearest open one."},
-      "atm":{"title":"ATM","text":"ATMs are available in Lefkada Town and near supermarkets."},
-      "bakery":{"title":"Bakery","text":"Local bakeries offer fresh bread and pastries in the mornings."},
-      "gas":{"title":"Gas Station","text":"Fuel stations are located on main roads around Lefkada."}
+      "suggestionEndpoint":"https://formspree.io/f/meeronor"
     }
   }
 }

@@ -7,51 +7,6 @@
     "heroImage": "data/properties/apt-3/images/hero.svg",
     "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Old Town Studio"
   },
-  "ui": {
-    "back": "← Πίσω",
-    "lang_en": "Switch to English",
-    "lang_gr": "Switch to Greek",
-    "copyPassword": "Αντιγραφή κωδικού",
-    "copied": "Αντιγράφηκε",
-    "scanToJoin": "Σαρώστε για σύνδεση Wi-Fi",
-    "searchPlaceholder": "Αναζήτηση",
-    "openInMaps": "Άνοιγμα σε Χάρτες",
-    "phoneLabel": "Τηλέφωνο",
-    "whatsappLabel": "WhatsApp",
-    "messengerLabel": "Messenger",
-    "viberLabel": "Viber",
-    "callAction": "Κλήση",
-    "openWhatsApp": "Άνοιγμα WhatsApp",
-    "openMessenger": "Άνοιγμα Messenger",
-    "openViber": "Άνοιγμα Viber"
-  },
-  "accommodation_ui": {
-    "checkinLabel": "Άφιξη",
-    "checkoutLabel": "Αναχώρηση",
-    "lateCheckoutLabel": "Καθυστερημένη Αναχώρηση",
-    "waterLabel": "Νερό",
-    "hotWaterLabel": "Ζεστό Νερό",
-    "breakfastLabel": "Πρωινό",
-    "consumablesLabel": "Αναλώσιμα",
-    "babyChairLabel": "Καρεκλάκι Μωρού",
-    "boardGamesLabel": "Επιτραπέζια Παιχνίδια",
-    "beachFaucetLabel": "Βρύση Παραλίας",
-    "transferLabel": "Μεταφορά από/προς το αεροδρόμιο",
-    "wellnessLabel": "Ευεξία & Σπα",
-    "houseRulesLabel": "Κανόνες Σπιτιού",
-    "wifiLabel": "Wi-Fi",
-    "mapLabel": "Χάρτης"
-  },
-  "navCards": [
-    {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
-    {"id":"transport","title":"Μεταφορές","subtitle":"Πώς να μετακινηθείτε."},
-    {"id":"restaurants","title":"Εστιατόρια & Καφέ","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
-    {"id":"attractions","title":"Τοπικά Αξιοθέατα","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
-    {"id":"emergency","title":"Τηλέφωνα Έκτακτης Ανάγκης","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
-    {"id":"beaches","title":"Παραλίες","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
-    {"id":"contacts","title":"Επικοινωνία","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
-    {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
-  ],
   "pages": {
     "wifi": {
       "title": "Πληροφορίες WiFi",
@@ -98,15 +53,6 @@
       "title": "Τοπικά Αξιοθέατα",
       "intro": "Προτεινόμενα σημεία ενδιαφέροντος γύρω από το τρίτο διαμέρισμα."
     },
-    "emergency": {
-      "title": "Τηλέφωνα Έκτακτης Ανάγκης",
-      "contacts": [
-        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
-        {"label":"Αστυνομία","value":"100","priority":1},
-        {"label":"Πυροσβεστική","value":"199","priority":2},
-        {"label":"Νοσοκομείο","value":"166","priority":3}
-      ]
-    },
     "contacts": {
       "title": "Επικοινωνία",
       "name": "Old Town Demo Host",
@@ -125,6 +71,7 @@
       "supermarket": {"title": "Σούπερ Μάρκετ", "text": "Το μίνι μάρκετ της γωνίας απέχει 2 λεπτά με τα πόδια."},
       "pharmacy": {"title": "Φαρμακείο", "text": "Το φαρμακείο βρίσκεται κοντά στην κεντρική πλατεία."},
       "atm": {"title": "ATM", "text": "Το ATM βρίσκεται δίπλα στον φούρνο στον κεντρικό δρόμο."},
+      "cafes": {"title": "Καφέ", "text": "Καφέ γύρω από την πλατεία ανοίγουν νωρίς και μένουν ανοιχτά μέχρι αργά."},
       "bakery": {"title": "Φούρνος", "text": "Ο φούρνος ανοίγει νωρίς και είναι γνωστός για τις σησαμένιες πίτες."},
       "gas": {"title": "Πρατήριο Καυσίμων", "text": "Το κοντινότερο πρατήριο βρίσκεται στον περιφερειακό δρόμο έξω από την πόλη."}
     }

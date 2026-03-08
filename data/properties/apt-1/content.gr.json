@@ -7,51 +7,6 @@
     "heroImage":"data/properties/apt-1/images/hero.svg",
     "heroAlt":"Εικονογραφημένη κύρια φωτογραφία για το Cozy City Apartment"
   },
-  "ui":{
-    "back":"← Πίσω",
-    "lang_en":"Switch to English",
-    "lang_gr":"Switch to Greek",
-    "copyPassword":"Αντιγραφή κωδικού",
-    "copied":"Αντιγράφηκε",
-    "scanToJoin":"Σαρώστε για σύνδεση Wi-Fi",
-    "searchPlaceholder":"Αναζήτηση",
-    "openInMaps":"Άνοιγμα σε Χάρτες",
-    "phoneLabel":"Τηλέφωνο",
-    "whatsappLabel":"WhatsApp",
-    "messengerLabel":"Messenger",
-    "viberLabel":"Viber",
-    "callAction":"Κλήση",
-    "openWhatsApp":"Άνοιγμα WhatsApp",
-    "openMessenger":"Άνοιγμα Messenger",
-    "openViber":"Άνοιγμα Viber"
-  },
-  "accommodation_ui":{
-    "checkinLabel":"Άφιξη",
-    "checkoutLabel":"Αναχώρηση",
-    "lateCheckoutLabel":"Καθυστερημένη Αναχώρηση",
-    "waterLabel":"Νερό",
-    "hotWaterLabel":"Ζεστό Νερό",
-    "breakfastLabel":"Πρωινό",
-    "consumablesLabel":"Αναλώσιμα",
-    "babyChairLabel":"Καρεκλάκι Μωρού",
-    "boardGamesLabel":"Επιτραπέζια Παιχνίδια",
-    "beachFaucetLabel":"Βρύση Παραλίας",
-    "transferLabel":"Μεταφορά από/προς το αεροδρόμιο",
-    "wellnessLabel":"Ευεξία & Σπα",
-    "houseRulesLabel":"Κανόνες Σπιτιού",
-    "wifiLabel":"Wi-Fi",
-    "mapLabel":"Χάρτης"
-  },
-  "navCards":[
-    {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, keybox και λεπτομέρειες αναχώρησης."},
-    {"id":"transport","title":"Μεταφορές","subtitle":"Πώς να μετακινηθείτε."},
-    {"id":"restaurants","title":"Εστιατόρια & Καφέ","subtitle":"Τοπικές επιλογές και γρήγορα γεύματα."},
-    {"id":"attractions","title":"Τοπικά Αξιοθέατα","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
-    {"id":"emergency","title":"Τηλέφωνα Έκτακτης Ανάγκης","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
-    {"id":"beaches","title":"Παραλίες","subtitle":"Οι καλύτερες παραλίες στη Λευκάδα."},
-    {"id":"contacts","title":"Επικοινωνία","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
-    {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, φούρνος και καύσιμα."}
-  ],
   "pages":{
     "wifi":{
       "title":"Πληροφορίες WiFi",
@@ -94,15 +49,6 @@
       "title":"Τοπικά Αξιοθέατα",
       "intro":"Μέρη για να επισκεφθείτε γύρω από τη Λευκάδα."
     },
-    "emergency":{
-      "title":"Τηλέφωνα Έκτακτης Ανάγκης",
-      "contacts":[
-        {"label":"Υπηρεσίες έκτακτης ανάγκης","value":"112","priority":0},
-        {"label":"Αστυνομία","value":"100","priority":1},
-        {"label":"Πυροσβεστική","value":"199","priority":2},
-        {"label":"Νοσοκομείο","value":"166","priority":3}
-      ]
-    },
     "contacts":{
       "title":"Επικοινωνία",
       "name":"Ilias Demo Host",
@@ -121,6 +67,7 @@
       "supermarket":{"title":"Σούπερ Μάρκετ","text":"Υπάρχουν αρκετά σούπερ μάρκετ σε 5–12 λεπτά με το αυτοκίνητο."},
       "pharmacy":{"title":"Φαρμακείο","text":"Τα φαρμακεία έχουν μεταβαλλόμενο ωράριο. Αναζητήστε το κοντινότερο ανοιχτό στο χάρτη."},
       "atm":{"title":"ATM","text":"ATM υπάρχουν στην πόλη της Λευκάδας και κοντά σε σούπερ μάρκετ."},
+      "cafes":{"title":"Καφέ","text":"Καφέ και coffee spots γύρω από τη μαρίνα και το κέντρο απέχουν 5-10 λεπτά με το αυτοκίνητο."},
       "bakery":{"title":"Φούρνος","text":"Οι τοπικοί φούρνοι προσφέρουν φρέσκο ψωμί και γλυκά το πρωί."},
       "gas":{"title":"Πρατήριο Καυσίμων","text":"Πρατήρια καυσίμων βρίσκονται στους κεντρικούς δρόμους γύρω από τη Λευκάδα."}
     }
