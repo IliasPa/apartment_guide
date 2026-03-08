@@ -59,6 +59,13 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 .ds-card img{width:100%;height:auto;display:block;border-radius:8px 8px 0 0}
 .ds-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);margin-bottom:12px}
 .ds-body{padding:12px}
+.beach-body p{
+  margin: 15px 0;
+}
+
+.beach-body p:first-child{
+  margin-top: -10px;
+}
 
 .ds-link{display:block;text-decoration:none;color:inherit}
 .ds-link .ds-card:hover{transform:translateY(-4px)}
@@ -68,7 +75,7 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 
 /* beaches card image overlay */
 .beach-media img{width:100%;height:auto;display:block}
-.beach-overlay{position:relative;margin-top:-56px;padding:12px;color:#fff}
+.beach-overlay{position:relative;margin-top:-56px;padding:8px;color:#fff}
 
 /* emergency */
 .emergency-grid{display:flex;flex-direction:column;gap:10px}

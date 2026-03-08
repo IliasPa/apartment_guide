@@ -314,7 +314,7 @@
     const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${mapLat},${mapLon}`;
     html += `<div class="section map-section"><h3>📍 ${(ui.mapLabel||'Map')}</h3><div style="height:180px;">`;
     html += `<iframe src="${mapUrl}" style="border:0;width:100%;height:100%;border-radius:8px" loading="lazy"></iframe>`;
-    const mapsLink = `https://www.openstreetmap.org/?mlat=${mapLat}&mlon=${mapLon}#map=14/${mapLat}/${mapLon}`;
+    const mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${mapLat},${mapLon}`;
     html += `</div><p class="muted"><a href="${mapsLink}" target="_blank" rel="noopener">${escapeHtml(ui.openInMaps || 'Open in Maps')}</a></p></div>`;
     sections.forEach(s=>{
       const em = emoji[s.id] || '';
@@ -515,8 +515,9 @@
 
     const html = `
       <div class="contact-panel">
+        
         <div class="contact-card">
-          <div class="contact-icon contact-icon-phone"><img src="${SITE_ROOT}assets/images/phone.svg" alt="phone"></div>
+          <div class="contact-icon contact-icon-action" aria-hidden="true"><img src="${SITE_ROOT}assets/images/phone.svg" alt="phone"></div>
           <div class="contact-body">
             <div><strong>${escapeHtml(phoneLabel)}</strong></div>
             <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
@@ -558,7 +559,7 @@
             ${viberHref? `<a class="btn" href="${viberHref}">${escapeHtml(openViberText)}</a>` : ''}
           </div>
         </div>
-
+        <a> </a><a> </a><a> </a><a> </a>
         <div class="contact-card contact-card-action">
           <div class="contact-icon contact-icon-action" aria-hidden="true">⭐</div>
           <div class="contact-body">
@@ -807,14 +808,14 @@
 
     function formatBeachRouteText(routeData){
       if(!routeData) return lang === 'gr' ? 'Η απόσταση δεν είναι διαθέσιμη' : 'Distance unavailable';
-      const driveTimeMin = Number(routeData.drive_time_min);
-      const distanceKm = Number(routeData.distance_km);
+      const driveTimeMin = Math.round(Number(routeData.drive_time_min) / 5) * 5;
+      const distanceKm = Math.round(Number(routeData.distance_km));
       const parts = [];
       if(Number.isFinite(driveTimeMin)) parts.push(lang === 'gr' ? `🚗 ${driveTimeMin} λεπτά με αυτοκίνητο` : `🚗 ${driveTimeMin} min by car`);
       if(Number.isFinite(distanceKm)){
         const locale = lang === 'gr' ? 'el-GR' : 'en-GB';
         const unit = lang === 'gr' ? 'χλμ' : 'km';
-        parts.push(`${distanceKm.toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} ${unit}`);
+        parts.push(`${distanceKm.toLocaleString(locale)} ${unit}`);
       }
       return parts.length ? parts.join(' • ') : (lang === 'gr' ? 'Η απόσταση δεν είναι διαθέσιμη' : 'Distance unavailable');
     }
