@@ -47,6 +47,12 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 .section{background:var(--card);padding:12px;border-radius:16px;margin-bottom:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
 .section h3{margin-top:0}
 
+/* Shop buttons */
+.shop-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.shop-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 12px;border-radius:8px;border:1px solid rgba(196,122,74,0.22);background:#f8efe8;color:#8b5530;text-decoration:none;font-size:.85rem;font-weight:500;white-space:nowrap;transition:background .2s ease,border-color .2s ease}
+.shop-btn:hover{background:#f4e5d9;border-color:rgba(196,122,74,0.38)}
+.shop-btn:focus{outline:3px solid rgba(196,122,74,0.2);outline-offset:2px}
+
 /* WiFi page */
 .wifi-card{display:block;max-width:760px;margin:0 auto}
 .wifi-info{padding:8px}

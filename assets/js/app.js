@@ -248,7 +248,7 @@
     if(container){
       const pageKey = container.getAttribute('data-page');
       const pageData = (content.pages && content.pages[pageKey]) || {};
-      renderPage(container, pageKey, pageData, content);
+      await renderPage(container, pageKey, pageData, content);
     }
   }
 
@@ -277,14 +277,14 @@
     }catch(e){/* ignore */}
   }
 
-  function renderPage(container, pageKey, pageData, siteContent){
+  async function renderPage(container, pageKey, pageData, siteContent){
     // common header updates
     const pageTitle = document.querySelector('header.page-header h1');
     if(pageTitle && pageData.title) pageTitle.textContent = pageData.title;
 
     if(pageKey==='wifi') renderWifi(container, pageData, siteContent);
     else if(pageKey==='contacts') renderContacts(container, pageData, siteContent);
-    else if(pageKey==='neighborhood') renderNeighborhood(container, pageData, siteContent);
+    else if(pageKey==='neighborhood') await renderNeighborhood(container, pageData, siteContent);
     else if(pageKey==='restaurants') renderDatasetList(container, 'restaurants', 'dataset/restaurants.json', pageData, siteContent);
     else if(pageKey==='attractions') renderDatasetList(container, 'attractions', 'dataset/attractions.json', pageData, siteContent);
     else if(pageKey==='beaches') renderBeaches(container, 'dataset/beaches.json', siteContent);
@@ -405,20 +405,47 @@
     return html;
   }
 
-  function renderNeighborhood(container, pageData, siteContent){
+  async function renderNeighborhood(container, pageData, siteContent){
     const p = pageData || {};
+    const property = getCurrentProperty();
+    const lang = getLang();
+
+    // Load shops data
+    let shopsData = {};
+    try {
+      const shopsUrl = SITE_ROOT + 'data/properties/' + property + '/shops.json';
+      shopsData = await fetchJson(shopsUrl) || {};
+    } catch(e) {
+      console.warn('Could not load shops data:', e);
+    }
+
     let html = '';
     const items = [
-      {key:'supermarket', emoji:'🛒'},
-      {key:'pharmacy', emoji:'💊'},
-      {key:'atm', emoji:'🏧'},
-      {key:'cafes', emoji:'☕'},
-      {key:'bakery', emoji:'🥖'},
-      {key:'gas', emoji:'⛽'}
+      {key:'supermarket', emoji:'🛒', shopsKey:'supermarkets'},
+      {key:'pharmacy', emoji:'💊', shopsKey:'pharmacies'},
+      {key:'atm', emoji:'🏧', shopsKey:'atms'},
+      {key:'cafes', emoji:'☕', shopsKey:'cafes'},
+      {key:'bakery', emoji:'🥖', shopsKey:'bakeries'},
+      {key:'gas', emoji:'⛽', shopsKey:'gas_stations'}
     ];
+
     items.forEach(it=>{
       const node = p[it.key] || {};
-      html += `<div class="section"><h3>${it.emoji} ${escapeHtml(node.title||'')}</h3><p class="muted">${escapeHtml(node.text||'')}</p></div>`;
+      const shops = shopsData[it.shopsKey] || [];
+
+      html += `<div class="section"><h3>${it.emoji} ${escapeHtml(node.title||'')}</h3><p class="muted">${escapeHtml(node.text||'')}</p>`;
+
+      if(shops.length > 0){
+        html += '<div class="shop-buttons">';
+        shops.forEach(shop=>{
+          const name = lang === 'gr' ? shop.name_gr : shop.name_en;
+          const mapsUrl = shop.maps;
+          html += `<a href="${escapeHtml(mapsUrl)}" target="_blank" rel="noopener noreferrer" class="shop-btn">📍 ${escapeHtml(name)}</a>`;
+        });
+        html += '</div>';
+      }
+
+      html += '</div>';
     });
     container.innerHTML = html;
   }

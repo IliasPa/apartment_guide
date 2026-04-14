@@ -1,0 +1,32 @@
+{
+  "supermarkets": [
+    { "name_en": "My Market", "name_gr": "My Market", "maps": "https://maps.google.com/?q=My+Market+Lefkada"},
+    { "name_en": "Carrefour Express", "name_gr": "Carrefour Express", "maps": "https://maps.google.com/?q=Carrefour+Express+Lefkada"},
+    { "name_en": "Spar Market", "name_gr": "Spar Market", "maps": "https://maps.google.com/?q=Spar+Market+Lefkada"}
+  ],
+  "pharmacies": [
+    { "name_en": "Health Pharmacy", "name_gr": "Φαρμακείο Υγείας", "maps": "https://maps.google.com/?q=health+pharmacy+Lefkada"},
+    { "name_en": "Marina Pharmacy", "name_gr": "Φαρμακείο Μαρίνας", "maps": "https://maps.google.com/?q=marina+pharmacy+Lefkada"},
+    { "name_en": "Night Pharmacy", "name_gr": "Νυχτερινό Φαρμακείο", "maps": "https://maps.google.com/?q=night+pharmacy+Lefkada"}
+  ],
+  "atms": [
+    { "name_en": "Piraeus Bank ATM", "name_gr": "ΑΤΜ Τράπεζας Πειραιώς", "maps": "https://maps.google.com/?q=Piraeus+Bank+ATM+Lefkada"},
+    { "name_en": "Bank of Greece ATM", "name_gr": "ΑΤΜ Τράπεζας Ελλάδος", "maps": "https://maps.google.com/?q=Bank+of+Greece+ATM+Lefkada"},
+    { "name_en": "HSBC ATM", "name_gr": "ΑΤΜ HSBC", "maps": "https://maps.google.com/?q=HSBC+ATM+Lefkada"}
+  ],
+  "cafes": [
+    { "name_en": "Nescafe", "name_gr": "Nescafe", "maps": "https://maps.google.com/?q=Nescafe+Lefkada"},
+    { "name_en": "Tim Hortons", "name_gr": "Tim Hortons", "maps": "https://maps.google.com/?q=Tim+Hortons+Lefkada"},
+    { "name_en": "Beach Cafe", "name_gr": "Καφέ Παραλίας", "maps": "https://maps.google.com/?q=beach+cafe+Lefkada"}
+  ],
+  "bakeries": [
+    { "name_en": "City Bakery", "name_gr": "Φούρνος Πόλης", "maps": "https://maps.google.com/?q=city+bakery+Lefkada"},
+    { "name_en": "Morning Bakery", "name_gr": "Φούρνος Πρωινού", "maps": "https://maps.google.com/?q=morning+bakery+Lefkada"},
+    { "name_en": "Greek Bakery", "name_gr": "Ελληνικός Φούρνος", "maps": "https://maps.google.com/?q=greek+bakery+Lefkada"}
+  ],
+  "gas_stations": [
+    { "name_en": "Avin Gas Station", "name_gr": "Πρατήριο Avin", "maps": "https://maps.google.com/?q=Avin+gas+station+Lefkada"},
+    { "name_en": "Cyclon Gas Station", "name_gr": "Πρατήριο Cyclon", "maps": "https://maps.google.com/?q=Cyclon+gas+station+Lefkada"},
+    { "name_en": "Revoil Gas Station", "name_gr": "Πρατήριο Revoil", "maps": "https://maps.google.com/?q=Revoil+gas+station+Lefkada"}
+  ]
+}

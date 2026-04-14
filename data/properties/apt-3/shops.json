@@ -1,0 +1,32 @@
+{
+  "supermarkets": [
+    { "name_en": "Kaufland", "name_gr": "Kaufland", "maps": "https://maps.google.com/?q=Kaufland+Lefkada"},
+    { "name_en": "Market In", "name_gr": "Market In", "maps": "https://maps.google.com/?q=Market+In+Lefkada"},
+    { "name_en": "Continente", "name_gr": "Continente", "maps": "https://maps.google.com/?q=Continente+Lefkada"}
+  ],
+  "pharmacies": [
+    { "name_en": "Wellness Pharmacy", "name_gr": "Φαρμακείο Ευεξίας", "maps": "https://maps.google.com/?q=wellness+pharmacy+Lefkada"},
+    { "name_en": "Town Pharmacy", "name_gr": "Φαρμακείο Πόλης", "maps": "https://maps.google.com/?q=town+pharmacy+Lefkada"},
+    { "name_en": "Express Pharmacy", "name_gr": "Φαρμακείο Express", "maps": "https://maps.google.com/?q=express+pharmacy+Lefkada"}
+  ],
+  "atms": [
+    { "name_en": "Attica Bank ATM", "name_gr": "ΑΤΜ Attica Bank", "maps": "https://maps.google.com/?q=Attica+Bank+ATM+Lefkada"},
+    { "name_en": "Bank of Cyprus ATM", "name_gr": "ΑΤΜ Τράπεζας Κύπρου", "maps": "https://maps.google.com/?q=Bank+of+Cyprus+ATM+Lefkada"},
+    { "name_en": "Millennium BCP ATM", "name_gr": "ΑΤΜ Millennium BCP", "maps": "https://maps.google.com/?q=Millennium+BCP+ATM+Lefkada"}
+  ],
+  "cafes": [
+    { "name_en": "Gloria Jeans", "name_gr": "Gloria Jeans", "maps": "https://maps.google.com/?q=Gloria+Jeans+Lefkada"},
+    { "name_en": "Segafredo", "name_gr": "Segafredo", "maps": "https://maps.google.com/?q=Segafredo+Lefkada"},
+    { "name_en": "Harbor Cafe", "name_gr": "Καφέ Λιμένα", "maps": "https://maps.google.com/?q=harbor+cafe+Lefkada"}
+  ],
+  "bakeries": [
+    { "name_en": "Island Bakery", "name_gr": "Φούρνος Νησιού", "maps": "https://maps.google.com/?q=island+bakery+Lefkada"},
+    { "name_en": "Sunrise Bakery", "name_gr": "Φούρνος Ανατολής", "maps": "https://maps.google.com/?q=sunrise+bakery+Lefkada"},
+    { "name_en": "Mediterranean Bakery", "name_gr": "Μεσογειακός Φούρνος", "maps": "https://maps.google.com/?q=mediterranean+bakery+Lefkada"}
+  ],
+  "gas_stations": [
+    { "name_en": "Jetoil Gas Station", "name_gr": "Πρατήριο Jetoil", "maps": "https://maps.google.com/?q=Jetoil+gas+station+Lefkada"},
+    { "name_en": "Elin Gas Station", "name_gr": "Πρατήριο Elin", "maps": "https://maps.google.com/?q=Elin+gas+station+Lefkada"},
+    { "name_en": "Aegean Gas Station", "name_gr": "Πρατήριο Aegean", "maps": "https://maps.google.com/?q=Aegean+gas+station+Lefkada"}
+  ]
+}
