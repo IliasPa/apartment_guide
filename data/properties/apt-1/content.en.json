@@ -1,11 +1,10 @@
 {
   "site":{
-    "apartmentName":"Cozy City Apartment",
+    "apartmentName":"Vardania Comfort Stay",
     "welcomeTitle":"Welcome!",
     "welcomeText":"Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
-    "address":"12 Demo Olive Grove Street, Lefkada, Greece",
     "heroImage":"data/properties/apt-1/images/hero.svg",
-    "heroAlt":"Illustrated hero view for Cozy City Apartment"
+    "heroAlt":"Illustrated hero view for Vardania Comfort Stay"
   },
   "pages":{
     "wifi":{
@@ -16,10 +15,9 @@
     },
     "accommodation":{
       "title":"Accommodation",
-      "arrival":"Self-check-in after 16:00. Use the blue lockbox beside the gate. The keybox code will be sent to you privately before your arrival. Please check your booking messages.",
-      "keybox":"Keybox located by the main entrance next to the mailbox.",
+      "arrival":"Check-in after 15:00.",
       "map":"Use the address in your booking confirmation for navigation.",
-      "checkout":"Please check-out by 11:00. Leave used towels in the bathroom and place keys in the keybox.",
+      "checkout":"Please check-out by 11:00.",
       "late_checkout":"Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
       "air_condition":"The AC remote is in the living room drawer. Recommended setting: 24–26°C for comfort and energy savings.",
       "bbq":"If you need a BBQ setup, contact the host in advance so it can be provided and prepared.",
@@ -30,7 +28,12 @@
     },
     "house_rules":{
       "title":"📋 House Rules",
-      "rules":["No smoking inside.","Please respect quiet hours 22:00-08:00.","Dispose of recycling in labelled bins."]
+      "rules":[
+        "No smoking inside.",
+        "Please respect quiet hours 22:00-08:00.",
+        "Place any board games back in their boxes with all the pieces.",
+        "Shake sand off before entering from the beach."
+      ]
     },
     "transport":{
       "title":"Transportation",
@@ -46,12 +49,6 @@
     },
     "contacts":{
       "title":"Contact Me",
-      "name":"Ilias Demo Host",
-      "whatsapp":"306980792814",
-      "messenger":"@ilias.paraskevas.13",
-      "viber":"00306980792814",
-      "phone":"+30 6980792814",
-      "email":"cozy@example.com",
       "whatsappLabel":"WhatsApp",
       "messengerLabel":"Messenger",
       "viberLabel":"Viber",
@@ -59,9 +56,9 @@
     },
     "neighborhood":{
       "title":"Neighborhood",
-      "supermarket":{"title":"Supermarket","text":"Several supermarkets are within 5–12 minutes by car. Use the map to find the closest one."},
-      "pharmacy":{"title":"Pharmacy","text":"Pharmacies have variable opening hours; search on the map for the nearest open one."},
-      "atm":{"title":"ATM","text":"ATMs are available in Lefkada Town and near supermarkets."},
+      "supermarket":{"title":"Supermarket","text":"Supermarket is within 5 minutes by foot."},
+      "pharmacy":{"title":"Pharmacy","text":"The nearest Pharmacy is within 7 minutes by foot."},
+      "atm":{"title":"ATM","text":"ATMs are available in Lefkada Town."},
       "cafes":{"title":"Cafes","text":"Coffee spots around the marina and town center are 5-10 minutes away by car."},
       "bakery":{"title":"Bakery","text":"Local bakeries offer fresh bread and pastries in the mornings."},
       "gas":{"title":"Gas Station","text":"Fuel stations are located on main roads around Lefkada."}

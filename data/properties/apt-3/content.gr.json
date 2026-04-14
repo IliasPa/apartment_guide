@@ -1,11 +1,11 @@
 {
   "site": {
-    "apartmentName": "Old Town Studio",
+    "apartmentName": "The Quiet Hideout",
     "welcomeTitle": "Καλώς ήρθατε στο Old Town!",
     "welcomeText": "Ο ψηφιακός οδηγός φιλοξενίας — όλα όσα χρειάζεστε κατά τη διαμονή σας στη Λευκάδα!",
     "address": "Demo Old Town Alley 4, Λευκάδα, Ελλάδα",
     "heroImage": "data/properties/apt-3/images/hero.svg",
-    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Old Town Studio"
+    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το The Quiet Hideout"
   },
   "pages": {
     "wifi": {

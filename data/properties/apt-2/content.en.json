@@ -1,11 +1,10 @@
 {
   "site": {
-    "apartmentName": "Seaside Family Apartment",
-    "welcomeTitle": "Welcome to Seaside!",
+    "apartmentName": "Vardania Smart Stay",
+    "welcomeTitle": "Welcome to Vardania Smart Stay!",
     "welcomeText": "Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
-    "address": "Demo Coast Road 18, Lefkada, Greece",
     "heroImage": "data/properties/apt-2/images/hero.svg",
-    "heroAlt": "Illustrated hero view for Seaside Family Apartment"
+    "heroAlt": "Illustrated hero view for Vardania Smart Stay"
   },
   "pages": {
     "wifi": {
@@ -50,12 +49,6 @@
     },
     "contacts": {
       "title": "Contact Me",
-      "name": "Seaside Demo Host",
-      "whatsapp": "306900000002",
-      "messenger": "@seaside.demo.host",
-      "viber": "00306900000002",
-      "phone": "+30 6900000002",
-      "email": "seaside@example.com",
       "whatsappLabel": "WhatsApp",
       "messengerLabel": "Messenger",
       "viberLabel": "Viber",

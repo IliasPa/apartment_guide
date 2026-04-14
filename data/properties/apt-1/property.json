@@ -1,21 +1,21 @@
 {
   "id": "apt-1",
-  "name": "Cozy City Apartment",
-  "shortName": "Cozy",
-  "address": "12 Demo Olive Grove Street, Lefkada, Greece",
-  "mapLink": "https://www.google.com/maps?q=38.83,20.74",
+  "name": "Vardania Comfort Stay",
+  "shortName": "front",
+  "address": "Agiou Panteleimonos 1, Lefkada, Greece",
+  "mapLink": "https://www.google.com/maps?q=38.831821,20.696911",
   "rateUsUrl": "https://maps.google.com/?q=REPLACE_ME_REVIEW_URL_APT_1",
   "coordinates": {
-    "lat": 38.83,
-    "lon": 20.74
+    "lat": 38.831821,
+    "lon": 20.696911
   },
   "host": {
-    "name": "Ilias Demo Host",
+    "name": "Ilias",
     "phone": "+30 6980792814",
     "whatsapp": "306980792814",
     "messenger": "@ilias.paraskevas.13",
     "viber": "00306980792814",
-    "email": "cozy@example.com"
+    "email": "iliasparaskevas3@gmail.com"
   },
   "heroImage": "data/properties/apt-1/images/hero.svg",
   "heroImages": [

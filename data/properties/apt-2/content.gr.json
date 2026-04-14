@@ -1,11 +1,10 @@
 {
   "site": {
-    "apartmentName": "Seaside Family Apartment",
-    "welcomeTitle": "Καλώς ήρθατε στο Seaside!",
+    "apartmentName": "Vardania Smart Stay",
+    "welcomeTitle": "Καλώς ήρθατε στο Vardania Smart Stay!",
     "welcomeText": "Ο ψηφιακός οδηγός φιλοξενίας — όλα όσα χρειάζεστε κατά τη διαμονή σας στη Λευκάδα!",
-    "address": "Demo Coast Road 18, Λευκάδα, Ελλάδα",
     "heroImage": "data/properties/apt-2/images/hero.svg",
-    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Seaside Family Apartment"
+    "heroAlt": "Εικονογραφημένη κύρια φωτογραφία για το Vardania Smart Stay"
   },
   "pages": {
     "wifi": {
@@ -38,7 +37,8 @@
       "rules": [
         "Απαγορεύεται το κάπνισμα σε εσωτερικούς χώρους.",
         "Ώρες κοινής ησυχίας: 23:00-08:00.",
-        "Τινάζετε την άμμο πριν μπείτε από την παραλία."
+        "Τινάζετε την άμμο πριν μπείτε από την παραλία.",
+        "Tοποθετήστε τα επιτραπέζια παιχνίδια πίσω στα κουτιά τους, με όλα τα κομμάτια."
       ]
     },
     "transport": {
@@ -55,12 +55,6 @@
     },
     "contacts": {
       "title": "Επικοινωνία",
-      "name": "Seaside Demo Host",
-      "whatsapp": "306900000002",
-      "messenger": "@seaside.demo.host",
-      "viber": "00306900000002",
-      "phone": "+30 6900000002",
-      "email": "seaside@example.com",
       "whatsappLabel": "WhatsApp",
       "messengerLabel": "Messenger",
       "viberLabel": "Viber",

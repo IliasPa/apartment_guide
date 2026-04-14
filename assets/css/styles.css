@@ -33,7 +33,7 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 .hero-text p{margin:4px 0 0;color:var(--muted)}
 
 .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px}
-.card{display:block;background:var(--card);padding:12px;border-radius:var(--radius);text-decoration:none;color:inherit;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform .12s ease,box-shadow .12s ease}
+.card{display:block;background:var(--card);padding:12px;border-radius:16px;text-decoration:none;color:inherit;box-shadow:0 6px 18px rgba(0,0,0,0.06);transition:transform .12s ease,box-shadow .12s ease}
 .card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.09)}
 .card:active{transform:translateY(-1px)}
 .card-icon{font-size:40px;display:block;margin-bottom:8px}
@@ -44,7 +44,7 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 .page-header{display:flex;align-items:center;gap:12px;padding:12px 16px;background:transparent;flex-wrap:wrap}
 .back{background:transparent;border:none;color:var(--accent);font-size:1rem;padding:8px;border-radius:8px}
 .page-content{padding:12px 16px}
-.section{background:var(--card);padding:12px;border-radius:12px;margin-bottom:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
+.section{background:var(--card);padding:12px;border-radius:16px;margin-bottom:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
 .section h3{margin-top:0}
 
 /* WiFi page */
@@ -57,7 +57,7 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 
 /* dataset cards images full-width inside card */
 .ds-card img{width:100%;height:auto;display:block;border-radius:8px 8px 0 0}
-.ds-card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);margin-bottom:12px}
+.ds-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);margin-bottom:12px}
 .ds-body{padding:12px}
 .beach-body p{
   margin: 15px 0;
@@ -74,8 +74,59 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 .time-estimate{font-weight:600}
 
 /* beaches card image overlay */
-.beach-media img{width:100%;height:auto;display:block}
-.beach-overlay{position:relative;margin-top:-56px;padding:8px;color:#fff}
+.beach-media{position:relative}
+
+/* Beaches page */
+.beaches-controls{display:flex;gap:12px;padding:12px 16px;flex-wrap:wrap;align-items:center;justify-content: center;}
+.beaches-controls input[type="search"]{width:780px;padding:12px 16px;border:1px solid rgba(196,122,74,0.22);border-radius:12px;background:#fff;font:inherit;color:inherit;outline:none;transition:border-color .2s ease}
+.beaches-controls input[type="search"]:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(196,122,74,0.12)}
+.filter-btn{background:#f8efe8;border:1px solid rgba(196,122,74,0.22);color:#8b5530;padding:10px 14px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.filter-btn:hover{background:#f4e5d9}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.beaches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:12px 16px}
+.beach-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);transition:transform .12s ease,box-shadow .12s ease;height:320px;display:flex;flex-direction:column}
+.beach-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+.beach-media{height:200px;overflow:hidden}
+.beach-media img{width:100%;height:100%;display:block;object-fit:cover}
+.beach-overlay{position:absolute;bottom:0;left:0;right:0;padding:8px;color:#fff}
+.beach-overlay h3{margin:0;font-size:1.8rem;-webkit-text-stroke:1px rgba(0,0,0,0.4);text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
+.beach-body{flex:1;padding:12px;display:flex;flex-direction:column;justify-content:space-between}
+.beach-body p{margin:0;color:var(--muted);font-size:.9rem}
+.beach-body p:first-child{margin-bottom:8px}
+.beach-body .time-estimate{margin-top:auto;font-weight:600}
+
+/* responsive beaches controls */
+@media(max-width:640px){
+  .beaches-controls{flex-direction:column;gap:8px}
+  .beaches-controls input[type="search"]{width:100%;max-width:400px;margin:0 auto}
+}
+
+/* Restaurants page */
+.ds-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:12px 16px}
+.restaurant-link .restaurant-card{transition:transform .12s ease,box-shadow .12s ease}
+.restaurant-link:hover .restaurant-card{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+.restaurant-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);transition:transform .12s ease,box-shadow .12s ease;height:320px;display:flex;flex-direction:column}
+.restaurant-media{height:200px;overflow:hidden;position:relative}
+.restaurant-media img{width:100%;height:100%;display:block;object-fit:cover}
+.restaurant-overlay{position:absolute;bottom:0;left:0;padding:8px;color:#fff}
+.restaurant-overlay h3{margin:0;font-size:1.8rem;-webkit-text-stroke:1px rgba(0,0,0,0.4);text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
+.restaurant-body{flex:1;padding:12px;display:flex;flex-direction:column}
+.restaurant-body p{margin:0;color:var(--muted);font-size:.9rem}
+.restaurant-body p:first-child{margin-bottom:8px}
+.restaurant-body .time-estimate{margin-top:auto;font-weight:600}
+
+/* Attractions page */
+.attraction-link .attraction-card{transition:transform .12s ease,box-shadow .12s ease}
+.attraction-link:hover .attraction-card{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+.attraction-card{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,0.04);transition:transform .12s ease,box-shadow .12s ease;height:320px;display:flex;flex-direction:column}
+.attraction-media{height:200px;overflow:hidden;position:relative}
+.attraction-media img{width:100%;height:100%;display:block;object-fit:cover}
+.attraction-overlay{position:absolute;bottom:0;left:0;padding:8px;color:#fff}
+.attraction-overlay h3{margin:0;font-size:1.8rem;-webkit-text-stroke:1px rgba(0,0,0,0.4);text-shadow:1px 1px 2px rgba(0,0,0,0.4)}
+.attraction-body{flex:1;padding:12px;display:flex;flex-direction:column}
+.attraction-body p{margin:0;color:var(--muted);font-size:.9rem}
+.attraction-body p:first-child{margin-bottom:8px}
+.attraction-body .time-estimate{margin-top:auto;font-weight:600}
 
 /* emergency */
 .emergency-grid{display:flex;flex-direction:column;gap:10px}
@@ -96,10 +147,16 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 
 /* Contacts panel */
 .contact-panel{display:flex;flex-direction:column;gap:12px}
-.contact-card{display:flex;align-items:center;gap:12px;padding:12px;background:var(--card);border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,0.04)}
-.contact-icon{width:48px;height:48px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;}
-.contact-icon img{width:60px;height:60px;display:block}
-.contact-icon-phone{background:#857a49}
+.contact-card{display:flex;align-items:center;gap:12px;padding:12px;background:var(--card);border-radius:16px;box-shadow:0 6px 14px rgba(0,0,0,0.04);transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.contact-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.08);cursor:pointer}
+.contact-card:hover .btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.contact-card:focus-visible{outline:3px solid rgba(196,122,74,0.18);outline-offset:4px}
+.contact-icon{width:48px;height:48px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;color:currentColor;background:rgba(0,0,0,0.04)}
+.contact-icon i{font-size:1.8rem}
+.contact-icon-phone{background:#857a49;color:#fff}
+.contact-icon-whatsapp{background:#e6f7eb;color:#25d366}
+.contact-icon-messenger{background:#e8f1ff;color:#0084ff}
+.contact-icon-viber{background:#f5e7ff;color:#665cac}
 .contact-icon-action{background:#fff1de;color:#8b5530;font-size:1.4rem;line-height:1}
 .contact-body{flex:1}
 .contact-copy{margin-top:4px;word-break:break-word}
@@ -124,20 +181,21 @@ body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvet
 body.modal-open{overflow:hidden}
 
 /* Weather section */
-.weather-section{background:var(--card);margin:12px;padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.05);display:block;text-decoration:none;color:inherit}
+.weather-section{background:var(--card);margin:12px;padding:12px;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.05);display:block;text-decoration:none;color:inherit}
 .weather-section:hover{box-shadow:0 12px 36px rgba(0,0,0,0.08)}
 .weather-section:focus{outline:3px solid rgba(196,122,74,0.12);outline-offset:4px}
 .weather-top{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #f1f1f1}
-.weather-location{font-weight:700}
-.weather-current-icon{width:64px;height:64px;flex-shrink:0}
-.weather-right{display:flex;flex-direction:column;align-items:flex-end;margin-left:auto}
+.weather-location{font-size:2.5rem;font-weight:700}
+.weather-current-icon{width:70px;}
+.weather-right{display:flex;align-items:flex-end;margin-left:auto;}
 .weather-current-temp{font-size:2rem;font-weight:700;line-height:1}
 .weather-desc{color:var(--muted);font-size:.95rem;margin-top:4px}
+.weather-current-main {display:flex;flex-direction: column;}
 .forecast-row{display:flex;gap:8px;flex-wrap:wrap;padding-top:12px;justify-content:center}
 .forecast-item{flex:0 0 72px;width:72px;padding:8px;text-align:center;background:transparent;border-radius:8px}
-.forecast-item .day{font-size:.85rem;color:var(--muted)}
+.forecast-item .day{font-size:1rem;color:var(--muted);font-weight: bold;color: grey;}
 .forecast-item .icon{width:32px;height:32px;margin:6px auto}
-.forecast-item .temps{font-size:.85rem;color:var(--muted)}
+.forecast-item .temps{font-size:.85rem;color:var(--muted);font-weight: bold;color: rgb(51, 51, 51);}
 
 /* ensure no horizontal overflow */
 img,video,svg{max-width:100%;height:auto;display:block}

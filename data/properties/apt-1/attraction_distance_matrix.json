@@ -1,0 +1,30 @@
+{
+  "arch-museum": {
+    "distance_km": 2.0,
+    "drive_time_min": 4
+  },
+  "folklore-karya": {
+    "distance_km": 18.0,
+    "drive_time_min": 25
+  },
+  "sikelianos-museum": {
+    "distance_km": 2.2,
+    "drive_time_min": 5
+  },
+  "melissa-gorge": {
+    "distance_km": 22.0,
+    "drive_time_min": 28
+  },
+  "papanikolis-cave": {
+    "distance_km": 35.0,
+    "drive_time_min": 45
+  },
+  "cape-lefkatas": {
+    "distance_km": 48.0,
+    "drive_time_min": 60
+  },
+  "profitis-ilias": {
+    "distance_km": 32.0,
+    "drive_time_min": 40
+  }
+}

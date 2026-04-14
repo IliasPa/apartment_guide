@@ -1,21 +1,21 @@
 {
   "id": "apt-2",
-  "name": "Seaside Family Apartment",
-  "shortName": "Seaside",
-  "address": "Demo Coast Road 18, Lefkada, Greece",
-  "mapLink": "https://www.google.com/maps?q=38.831791,20.696838",
+  "name": "Vardania Smart Stay",
+  "shortName": "back",
+  "address": "Agiou Panteleimonos 1, Lefkada, Greece",
+  "mapLink": "https://www.google.com/maps?q=38.831821,20.696911",
   "rateUsUrl": "https://maps.google.com/?q=REPLACE_ME_REVIEW_URL_APT_2",
   "coordinates": {
-    "lat": 38.831791,
-    "lon": 20.696838
+    "lat": 38.831821,
+    "lon": 20.696911
   },
   "host": {
-    "name": "Seaside Demo Host",
-    "phone": "+30 6900000002",
-    "whatsapp": "306900000002",
-    "messenger": "@seaside.demo.host",
-    "viber": "00306900000002",
-    "email": "seaside@example.com"
+    "name": "Ilias",
+    "phone": "+30 6980792814",
+    "whatsapp": "306980792814",
+    "messenger": "@ilias.paraskevas.13",
+    "viber": "00306980792814",
+    "email": "iliasparaskevas3@gmail.com"
   },
   "heroImage": "data/properties/apt-2/images/hero.svg",
   "heroImages": [

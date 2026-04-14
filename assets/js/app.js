@@ -18,6 +18,8 @@
   let PROPERTIES_MAP = { 'apt-1': { id:'apt-1', name:'Apartment 1' } };
   let CURRENT_PROPERTY_META = null;
   let BEACH_DISTANCE_MATRIX = null;
+  let RESTAURANT_DISTANCE_MATRIX = null;
+  let ATTRACTION_DISTANCE_MATRIX = null;
 
   function withPropertyParam(url){
     try{
@@ -167,6 +169,22 @@
     if(BEACH_DISTANCE_MATRIX) return BEACH_DISTANCE_MATRIX;
     BEACH_DISTANCE_MATRIX = await fetchJson(SITE_ROOT + 'data/beach_distance_matrix.json') || {};
     return BEACH_DISTANCE_MATRIX;
+  }
+
+  async function loadRestaurantDistanceMatrix(property){
+    const key = `restaurant_${property}`;
+    if(!RESTAURANT_DISTANCE_MATRIX) RESTAURANT_DISTANCE_MATRIX = {};
+    if(RESTAURANT_DISTANCE_MATRIX[key]) return RESTAURANT_DISTANCE_MATRIX[key];
+    RESTAURANT_DISTANCE_MATRIX[key] = await fetchJson(SITE_ROOT + 'data/properties/' + property + '/restaurant_distance_matrix.json') || {};
+    return RESTAURANT_DISTANCE_MATRIX[key];
+  }
+
+  async function loadAttractionDistanceMatrix(property){
+    const key = `attraction_${property}`;
+    if(!ATTRACTION_DISTANCE_MATRIX) ATTRACTION_DISTANCE_MATRIX = {};
+    if(ATTRACTION_DISTANCE_MATRIX[key]) return ATTRACTION_DISTANCE_MATRIX[key];
+    ATTRACTION_DISTANCE_MATRIX[key] = await fetchJson(SITE_ROOT + 'data/properties/' + property + '/attraction_distance_matrix.json') || {};
+    return ATTRACTION_DISTANCE_MATRIX[key];
   }
 
   async function loadContentAndRender(lang){
@@ -517,7 +535,7 @@
       <div class="contact-panel">
         
         <div class="contact-card">
-          <div class="contact-icon contact-icon-action" aria-hidden="true"><img src="${SITE_ROOT}assets/images/phone.svg" alt="phone"></div>
+          <div class="contact-icon contact-icon-action" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
           <div class="contact-body">
             <div><strong>${escapeHtml(phoneLabel)}</strong></div>
             <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
@@ -528,7 +546,9 @@
         </div>
 
         <div class="contact-card">
-          <div class="contact-icon"><img src="${SITE_ROOT}assets/images/whatsapp.svg" alt="whatsapp"></div>
+          <div class="contact-icon contact-icon-whatsapp" aria-hidden="true">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
           <div class="contact-body">
             <div><strong>${escapeHtml(whatsappLabel)}</strong></div>
             <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
@@ -539,7 +559,9 @@
         </div>
 
         <div class="contact-card">
-          <div class="contact-icon"><img src="${SITE_ROOT}assets/images/messenger.svg" alt="messenger"></div>
+          <div class="contact-icon contact-icon-messenger" aria-hidden="true">
+            <i class="fa-brands fa-facebook-messenger"></i>
+          </div>
           <div class="contact-body">
             <div><strong>${escapeHtml(messengerLabel)}</strong></div>
             <div class="contact-copy">${escapeHtml(messengerValue)}</div>
@@ -550,7 +572,9 @@
         </div>
 
         <div class="contact-card">
-          <div class="contact-icon"><img src="${SITE_ROOT}assets/images/viber.svg" alt="viber"></div>
+          <div class="contact-icon contact-icon-viber" aria-hidden="true">
+            <i class="fa-brands fa-viber"></i>
+          </div>
           <div class="contact-body">
             <div><strong>${escapeHtml(viberLabel)}</strong></div>
             <div class="contact-copy">${escapeHtml(phoneRaw)}</div>
@@ -675,6 +699,25 @@
       });
     }
 
+    Array.from(container.querySelectorAll('.contact-card')).forEach((card)=>{
+      const actionLink = card.querySelector('.contact-actions a');
+      const actionButton = card.querySelector('.contact-actions button');
+      if(!actionLink && !actionButton) return;
+
+      card.tabIndex = 0;
+      card.addEventListener('click', (ev)=>{
+        if(ev.target.closest('.btn')) return;
+        if(actionLink) actionLink.click();
+        else if(actionButton) actionButton.click();
+      });
+      card.addEventListener('keydown', (ev)=>{
+        if(ev.key !== 'Enter' && ev.key !== ' ') return;
+        ev.preventDefault();
+        if(actionLink) actionLink.click();
+        else if(actionButton) actionButton.click();
+      });
+    });
+
     if(form){
       form.addEventListener('submit', async (ev)=>{
         ev.preventDefault();
@@ -728,22 +771,86 @@
     const items = ds.items || [];
     const lang = getLang();
     const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder) || 'Search';
-    container.innerHTML = `
-      <div class="list-controls">
-        <input type="search" id="ds-search" placeholder="${escapeHtml(searchPlaceholder)}" aria-label="Search">
-      </div>
-      <div id="ds-list" class="ds-list"></div>`;
+
+    let distanceMatrix = {};
+    if(type === 'restaurants'){
+      distanceMatrix = await loadRestaurantDistanceMatrix(property);
+    } else if(type === 'attractions'){
+      distanceMatrix = await loadAttractionDistanceMatrix(property);
+    }
+    const propertyDistances = distanceMatrix;
+
+    let controlsHtml = '';
+    let filterCategories = [];
+    if(type === 'restaurants'){
+      const categories = {'All':'All','Restaurant':'Restaurants/Taverns','Cafe':'Cafes','Bar':'Bar/Clubs','Patisserie':'Patisseries'};
+      filterCategories = ['All','Restaurant','Cafe','Bar','Patisserie'];
+      controlsHtml = `
+        <div class="beaches-controls">
+          ${filterCategories.map(c=>`<button class="filter-btn" data-category="${c}">${categories[c]}</button>`).join('')}
+          <input type="search" id="ds-search" placeholder="${escapeHtml(searchPlaceholder)}" aria-label="Search">
+        </div>`;
+    } else if(type === 'attractions'){
+      const categories = {'All':'All','Nature':'Nature','Monasteries':'Monasteries','Landmarks':'Landmarks','History':'History','Museums':'Museums'};
+      filterCategories = ['All','Nature','Monasteries','Landmarks','History','Museums'];
+      controlsHtml = `
+        <div class="beaches-controls">
+          ${filterCategories.map(c=>`<button class="filter-btn" data-category="${c}">${categories[c]}</button>`).join('')}
+          <input type="search" id="ds-search" placeholder="${escapeHtml(searchPlaceholder)}" aria-label="Search">
+        </div>`;
+    } else {
+      controlsHtml = `
+        <div class="list-controls">
+          <input type="search" id="ds-search" placeholder="${escapeHtml(searchPlaceholder)}" aria-label="Search">
+        </div>`;
+    }
+
+    container.innerHTML = controlsHtml + '<div id="ds-list" class="ds-list"></div>';
 
     const listEl = container.querySelector('#ds-list');
     const search = container.querySelector('#ds-search');
 
-    function renderList(filter){
+    let activeCategory = 'All';
+
+    if(type === 'restaurants'){
+      container.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click', ()=>{
+        container.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active', x===b));
+        activeCategory = b.getAttribute('data-category');
+        renderList(search ? search.value : '', activeCategory);
+      }));
+      container.querySelector('.filter-btn[data-category="All"]').classList.add('active');
+    } else if(type === 'attractions'){
+      container.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click', ()=>{
+        container.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active', x===b));
+        activeCategory = b.getAttribute('data-category');
+        renderList(search ? search.value : '', activeCategory);
+      }));
+      container.querySelector('.filter-btn[data-category="All"]').classList.add('active');
+    }
+
+    function formatDistanceText(routeData){
+      if(!routeData) return '';
+      const driveTimeMin = Math.round(Number(routeData.drive_time_min) / 5) * 5;
+      const distanceKm = Math.round(Number(routeData.distance_km));
+      const parts = [];
+      if(Number.isFinite(driveTimeMin)) parts.push(lang === 'gr' ? `🚗 ~${driveTimeMin} λεπτά` : `🚗 ~${driveTimeMin} min`);
+      if(Number.isFinite(distanceKm)){
+        const locale = lang === 'gr' ? 'el-GR' : 'en-GB';
+        const unit = lang === 'gr' ? 'χλμ' : 'km';
+        parts.push(`${distanceKm.toLocaleString(locale)} ${unit}`);
+      }
+      return parts.length ? parts.join(' • ') : '';
+    }
+
+    function renderList(filter, category = 'All'){
       const q = (filter||'').toLowerCase();
       listEl.innerHTML = items.filter(it=>{
+        const okCategory = category === 'All' || (type === 'attractions' ? (it.type === category) : (it.type && it.type.toLowerCase().includes(category.toLowerCase())));
         const localizedName = String(getLocalizedValue(it, 'name', lang)).toLowerCase();
         const localizedShort = String(getLocalizedValue(it, 'short', lang)).toLowerCase();
         const localizedArea = String(getLocalizedValue(it, 'area', lang)).toLowerCase();
-        return !q || localizedName.includes(q) || localizedShort.includes(q) || localizedArea.includes(q);
+        const okQuery = !q || localizedName.includes(q) || localizedShort.includes(q) || localizedArea.includes(q);
+        return okCategory && okQuery;
       }).map(it=>{
         // create a directions link (prefer destination by name/address) using apartment origin coords
         const origin = `${WEATHER_COORDS.lat},${WEATHER_COORDS.lon}`;
@@ -753,7 +860,30 @@
         const localizedName = getLocalizedValue(it, 'name', lang);
         const localizedArea = getLocalizedValue(it, 'area', lang);
         const localizedShort = getLocalizedValue(it, 'short', lang);
-        return `
+        const routeData = propertyDistances[it.id] || null;
+        const timeText = (type === 'restaurants' || type === 'attractions') ? formatDistanceText(routeData) : '';
+        if(type === 'restaurants'){
+          return `
+            <a class="ds-link restaurant-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
+              <article class="restaurant-card">
+                <div class="restaurant-media"><img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(localizedName)}"><div class="restaurant-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+                <div class="restaurant-body"><p class="muted">${escapeHtml(localizedArea || '')} ${it.price? ' • '+escapeHtml(it.price):''}</p><p>${escapeHtml(localizedShort || '')}</p>
+                  ${timeText ? `<p class="muted time-estimate">${escapeHtml(timeText)}</p>` : ''}
+                </div>
+              </article>
+            </a>`;
+        } else if(type === 'attractions'){
+          return `
+            <a class="ds-link attraction-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
+              <article class="attraction-card">
+                <div class="attraction-media"><img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(localizedName)}"><div class="attraction-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+                <div class="attraction-body"><p class="muted">${escapeHtml(localizedArea || '')}</p><p>${escapeHtml(localizedShort || '')}</p>
+                  ${timeText ? `<p class="muted time-estimate">${escapeHtml(timeText)}</p>` : ''}
+                </div>
+              </article>
+            </a>`;
+        } else {
+          return `
             <a class="ds-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
               <article class="ds-card">
                 <img src="${SITE_ROOT + (it.image||'dataset/images/placeholder.svg')}" alt="${escapeHtml(localizedName)}">
@@ -764,11 +894,12 @@
                 </div>
               </article>
             </a>`;
+        }
       }).join('');
     }
 
     renderList();
-    search.addEventListener('input', ()=> renderList(search.value));
+    if(search) search.addEventListener('input', ()=> renderList(search.value, activeCategory));
   }
 
   // Beaches renderer with simple region filters
@@ -785,8 +916,8 @@
       : {'All':'All','West Coast':'West Coast','East Coast':'East Coast','South Coast':'South Coast'};
     const regions = ['All','West Coast','East Coast','South Coast'];
     const searchPlaceholder = (siteContent && siteContent.ui && siteContent.ui.searchPlaceholder)
-      ? (lang === 'gr' ? siteContent.ui.searchPlaceholder + ' παραλιών' : siteContent.ui.searchPlaceholder + ' beaches')
-      : (lang === 'gr' ? 'Αναζήτηση παραλιών' : 'Search beaches');
+      ? (lang === 'gr' ? siteContent.ui.searchPlaceholder + '...' : siteContent.ui.searchPlaceholder + '...')
+      : (lang === 'gr' ? 'Αναζήτηση' : 'Search');
     container.innerHTML = `
       <div class="beaches-controls">
         ${regions.map(r=>`<button class="filter-btn" data-region="${r}">${regionLabels[r]}</button>`).join('')}
@@ -811,7 +942,7 @@
       const driveTimeMin = Math.round(Number(routeData.drive_time_min) / 5) * 5;
       const distanceKm = Math.round(Number(routeData.distance_km));
       const parts = [];
-      if(Number.isFinite(driveTimeMin)) parts.push(lang === 'gr' ? `🚗 ${driveTimeMin} λεπτά με αυτοκίνητο` : `🚗 ${driveTimeMin} min by car`);
+      if(Number.isFinite(driveTimeMin)) parts.push(lang === 'gr' ? `🚗 ~${driveTimeMin} λεπτά` : `🚗 ~${driveTimeMin} min`);
       if(Number.isFinite(distanceKm)){
         const locale = lang === 'gr' ? 'el-GR' : 'en-GB';
         const unit = lang === 'gr' ? 'χλμ' : 'km';
@@ -1252,7 +1383,7 @@
       const daily = w.daily || {};
       const days = (daily.time||[]).map((d,i)=>({
         date: d,
-        code: (daily.weathercode && daily.weathercode[i]) || 0,
+        code: (daily.weather_code && daily.weather_code[i]) || 0,
         max: (daily.temperature_2m_max && daily.temperature_2m_max[i])||null,
         min: (daily.temperature_2m_min && daily.temperature_2m_min[i])||null
       }));
@@ -1262,9 +1393,13 @@
       const tempEl = document.getElementById('weather-current-temp');
       const descEl = document.getElementById('weather-desc');
       if(locEl) locEl.textContent = getWeatherLocationName(lang);
-      if(iconEl) iconEl.innerHTML = weatherIconSVG(curr.weathercode||0,64);
+      if(iconEl) {
+        iconEl.innerHTML = weatherIconSVG(curr.weather_code||0, 64);
+        const svg = iconEl.querySelector('svg');
+        if(svg) { svg.setAttribute('width','100%'); svg.setAttribute('height','100%'); }
+      }
       if (tempEl) tempEl.textContent = `${Math.round(curr.temperature_2m)}°C`;
-      if(descEl) descEl.textContent = getWeatherDescription(curr.weathercode, lang);
+      if(descEl) descEl.textContent = getWeatherDescription(curr.weather_code, lang);
 
       const row = document.getElementById('forecast-row');
       if(row){
