@@ -32,16 +32,20 @@
     "suggestionClose":"Close"
   },
   "accommodation_ui":{
-    "checkinLabel":"Check-in",
+    "mapLabel":"Map",
     "checkoutLabel":"Check-out",
     "lateCheckoutLabel":"Late Check-out",
+    "transferLabel":"Transfer from/to Airport",
     "waterLabel":"Water",
     "hotWaterLabel":"Hot Water",
+    "beachFaucetLabel":"Beach Faucet",
     "breakfastLabel":"Breakfast",
     "consumablesLabel":"Consumables",
-    "houseRulesLabel":"House Rules",
+    "babyChairLabel":"Baby Chair",
+    "boardGamesLabel":"Board Games",
+    "wellnessLabel":"Wellness & Spa",
     "wifiLabel":"Wi-Fi",
-    "mapLabel":"Map"
+    "houseRulesLabel":"House Rules"
   },
   "navCards":[
     {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},

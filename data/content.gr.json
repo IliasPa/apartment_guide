@@ -32,21 +32,21 @@
     "suggestionClose":"Κλείσιμο"
   },
   "accommodation_ui":{
+    "mapLabel":"Χάρτης",
     "checkinLabel":"Άφιξη",
     "checkoutLabel":"Αναχώρηση",
     "lateCheckoutLabel":"Καθυστερημένη Αναχώρηση",
+    "transferLabel":"Μεταφορά από/προς το αεροδρόμιο",
     "waterLabel":"Νερό",
     "hotWaterLabel":"Ζεστό Nερό",
+    "beachFaucetLabel":"Βρύση Παραλίας",
     "breakfastLabel":"Πρωινό",
     "consumablesLabel":"Αναλώσιμα",
     "babyChairLabel":"Καρεκλάκι Μωρού",
     "boardGamesLabel":"Επιτραπέζια Παιχνίδια",
-    "beachFaucetLabel":"Βρύση Παραλίας",
-    "transferLabel":"Μεταφορά από/προς το αεροδρόμιο",
     "wellnessLabel":"Ευεξία & Σπα",
-    "houseRulesLabel":"Κανόνες Σπιτιού",
     "wifiLabel":"Wi-Fi",
-    "mapLabel":"Χάρτης"
+    "houseRulesLabel":"Κανόνες Σπιτιού"
   },
   "navCards":[
     {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, θήκη κλειδιών και αναχώρηση."},

@@ -49,6 +49,51 @@
     return SITE_ROOT + 'data/properties/' + propertyId + '/dataset/' + datasetFilename;
   }
 
+  function showToast(message, type = 'success'){
+    let toastContainer = document.getElementById('toast-container');
+    if(!toastContainer){
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'toast-container';
+      toastContainer.style.cssText = `
+        position: fixed;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10000;
+        pointer-events: none;
+      `;
+      document.body.appendChild(toastContainer);
+    }
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      background: ${type === 'success' ? '#28a745' : '#dc3545'};
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s, transform 0.3s;
+    `;
+    toast.textContent = message;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    }, 10);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        if(toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 300);
+    }, 3000);
+  }
+
+
   async function loadPropertiesIndex(){
     const p = await fetchJson(SITE_ROOT + 'data/properties.json');
     if(p && Array.isArray(p) && p.length){
@@ -165,10 +210,12 @@
     return merged;
   }
 
-  async function loadBeachDistanceMatrix(){
-    if(BEACH_DISTANCE_MATRIX) return BEACH_DISTANCE_MATRIX;
-    BEACH_DISTANCE_MATRIX = await fetchJson(SITE_ROOT + 'data/beach_distance_matrix.json') || {};
-    return BEACH_DISTANCE_MATRIX;
+  async function loadBeachDistanceMatrix(property){
+    if(!BEACH_DISTANCE_MATRIX) BEACH_DISTANCE_MATRIX = {};
+    const key = `beach_${property}`;
+    if(BEACH_DISTANCE_MATRIX[key]) return BEACH_DISTANCE_MATRIX[key];
+    BEACH_DISTANCE_MATRIX[key] = await fetchJson(SITE_ROOT + 'data/properties/' + property + '/beach_distance_matrix.json') || {};
+    return BEACH_DISTANCE_MATRIX[key];
   }
 
   async function loadRestaurantDistanceMatrix(property){
@@ -306,23 +353,24 @@
     };
     const ui = Object.assign({}, (siteContent && siteContent.ui) || {}, (siteContent && siteContent.accommodation_ui) || {});
     const sections = [
-      {id:'checkin', title: ui.checkinLabel || 'Check-in', content: pageData.arrival || ui.checkinDefault || 'Self-check-in after 15:00. Please follow host instructions.'},
-      {id:'checkout', title: ui.checkoutLabel || 'Check-out', content: pageData.checkout || ui.checkoutDefault || 'Please check-out by 11:00. Leave keys in the keybox.'},
-      {id:'late', title: ui.lateCheckoutLabel || 'Late Check-out', content: pageData.late_checkout || ui.lateCheckoutDefault || 'Late Check-out may be available upon request. Contact host in advance.'},
-      {id:'transfer', title: ui.transferLabel || 'Transfers', content: pageData.transfer || ui.transferDefault || 'We can bring guests to the apartment from KTEL for free or from the airport for a 20 EUR fee.'},
-      {id:'ac', title: ui.airConditionLabel || 'Air Condition', content: pageData.air_condition || ui.airConditionDefault || 'Remote is in the living room. Recommended setting: 24–26°C for comfort and efficiency.'},
-      {id:'water', title: ui.waterLabel || 'Water', content: pageData.water || ui.waterDefault || 'Tap water is not drinkable. Please use bottled water for drinking.'},
-      {id:'hot', title: ui.hotWaterLabel || 'Hot Water', content: pageData.hot_water || ui.hotWaterDefault || 'Hot water is available 24h with solar assistance. On cloudy days heating may be limited.'},
-      {id:'beach', title: ui.beachFaucetLabel || 'Beach Faucet', content: pageData.beach_faucet || ui.beachFaucetDefault || 'There is an outdoor faucet to rinse your legs after the beach.'},
-      {id:'breakfast', title: ui.breakfastLabel || 'Breakfast', content: pageData.breakfast || ui.breakfastDefault || 'Some breakfast items are available in the kitchen — help yourself.'},
-      {id:'bbq', title: ui.bbqLabel || 'BBQ', content: pageData.bbq || ui.bbqDefault || 'If you need a BBQ, contact host in advance so it can be provided.'},
-      {id:'consumables', title: ui.consumablesLabel || 'Consumables', content: pageData.consumables || ui.consumablesDefault || "Please do not take anything except slippers, shampoos, breakfasts, chocolates."},
-      {id:'baby', title: ui.babyChairLabel || 'Baby Chair', content: pageData.baby_chair || ui.babyChairDefault || 'A baby chair can be provided if requested in advance.'},
-      {id:'games', title: ui.boardGamesLabel || 'Board Games', content: pageData.board_games || ui.boardGamesDefault || 'Board games are below the TV. Please tidy them up after use and do not lose any pieces.'},
-      {id:'wellness', title: ui.wellnessLabel || 'Wellness', content: pageData.wellness || ui.wellnessDefault || 'We partner with a massage therapist who can come to the apartment for a wellness session.'},
+      {id:'checkin', title: ui.checkinLabel || 'Check-in', content: pageData.arrival},
+      {id:'checkout', title: ui.checkoutLabel || 'Check-out', content: pageData.checkout},
+      {id:'late', title: ui.lateCheckoutLabel || 'Late Check-out', content: pageData.late_checkout},
+      {id:'transfer', title: ui.transferLabel || 'Transfers', content: pageData.transfer},
+      {id:'ac', title: ui.airConditionLabel || 'Air Condition', content: pageData.air_condition},
+      {id:'water', title: ui.waterLabel || 'Water', content: pageData.water},
+      {id:'hot', title: ui.hotWaterLabel || 'Hot Water', content: pageData.hot_water},
+      {id:'beach', title: ui.beachFaucetLabel || 'Beach Faucet', content: pageData.beach_faucet},
+      {id:'breakfast', title: ui.breakfastLabel || 'Breakfast', content: pageData.breakfast},
+      {id:'bbq', title: ui.bbqLabel || 'BBQ', content: pageData.bbq},
+      {id:'consumables', title: ui.consumablesLabel || 'Consumables', content: pageData.consumables},
+      {id:'baby', title: ui.babyChairLabel || 'Baby Chair', content: pageData.baby_chair},
+      {id:'games', title: ui.boardGamesLabel || 'Board Games', content: pageData.board_games},
+      {id:'wellness', title: ui.wellnessLabel || 'Wellness', content: pageData.wellness},
       // wifi section to be rendered specially
-      {id:'wifi', title: ui.wifiLabel || 'Wi-Fi', content: `Network: ${siteContent.pages?.wifi?.ssid||''}\nPassword: ${siteContent.pages?.wifi?.password||''}\n${siteContent.pages?.wifi?.notes||''}`}
+      {id:'wifi', title: ui.wifiLabel || 'Wi-Fi', content: wifiData.ssid || wifiData.password || wifiData.notes ? `Network: ${wifiData.ssid||''}\nPassword: ${wifiData.password||''}\n${wifiData.notes||''}` : ''}
     ];
+    const visibleSections = sections.filter(s => s.content && String(s.content).trim());
 
     // add a small map section at the top (OpenStreetMap embed for the apartment area)
     let html = '';
@@ -334,7 +382,7 @@
     html += `<iframe src="${mapUrl}" style="border:0;width:100%;height:100%;border-radius:8px" loading="lazy"></iframe>`;
     const mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${mapLat},${mapLon}`;
     html += `</div><p class="muted"><a href="${mapsLink}" target="_blank" rel="noopener">${escapeHtml(ui.openInMaps || 'Open in Maps')}</a></p></div>`;
-    sections.forEach(s=>{
+    visibleSections.forEach(s=>{
       const em = emoji[s.id] || '';
         const titleText = s.title || '';      if(s.id === 'wifi'){
         // wifi special block with copy button
@@ -413,7 +461,7 @@
     // Load shops data
     let shopsData = {};
     try {
-      const shopsUrl = SITE_ROOT + 'data/properties/' + property + '/shops.json';
+      const shopsUrl = SITE_ROOT + 'data/properties/' + property + '/neighborhood.json';
       shopsData = await fetchJson(shopsUrl) || {};
     } catch(e) {
       console.warn('Could not load shops data:', e);
@@ -769,8 +817,8 @@
           if(!response.ok) throw new Error('Submission failed');
           form.reset();
           form.querySelector('input[name="propertyId"]').value = propertyId;
-          status.textContent = suggestionSuccess;
-          status.className = 'contact-form-status is-success';
+          closeModal();
+          showToast(suggestionSuccess, 'success');
         }catch(e){
           status.textContent = suggestionError;
           status.className = 'contact-form-status is-error';
@@ -933,10 +981,10 @@
   async function renderBeaches(container, datasetPath, siteContent){
     const dsUrl = SITE_ROOT + datasetPath;
     const ds = await fetchJson(dsUrl) || {items:[]};
-    const distanceMatrix = await loadBeachDistanceMatrix();
+    const propertyId = getCurrentProperty();
+    const distanceMatrix = await loadBeachDistanceMatrix(propertyId);
     const items = ds.items || [];
     const lang = getLang();
-    const propertyId = getCurrentProperty();
     const propertyDistances = distanceMatrix[propertyId] || {};
     const regionLabels = lang === 'gr'
       ? {'All':'Όλες','West Coast':'Δυτική Ακτή','East Coast':'Ανατολική Ακτή','South Coast':'Νότια Ακτή'}

@@ -1,67 +1,70 @@
 {
-  "site": {
-    "apartmentName": "Vardania Smart Stay",
-    "welcomeTitle": "Welcome to Vardania Smart Stay!",
-    "welcomeText": "Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
-    "heroImage": "data/properties/apt-2/images/hero.svg",
-    "heroAlt": "Illustrated hero view for Vardania Smart Stay"
+  "site":{
+    "apartmentName":"Vardania Comfort Stay",
+    "welcomeTitle":"Welcome!",
+    "welcomeText":"Your digital guest guide — everything you need during your stay in the beautiful Lefkada!",
+    "heroAlt":"Illustrated hero view for Vardania Comfort Stay"
   },
-  "pages": {
-    "wifi": {
-      "title": "WiFi Information",
-      "ssid": "SeasideGuest",
-      "password": "seaside-demo-456",
-      "notes": "Demo Wi-Fi credentials for the second property."
+  "pages":{
+    "wifi":{
+      "title":"WiFi Information",
+      "ssid":"VardaniaConfortStay",
+      "password":"welcome2026",
+      "notes":"The router is in the living room next to the TV. There is also an NFC option to connect. Restart if needed."
     },
-    "accommodation": {
-      "title": "Accommodation",
-      "arrival":"Self-check-in after 16:00. Use the blue lockbox beside the gate. The keybox code will be sent to you privately before your arrival. Please check your booking messages.",
-      "keybox": "The blue keybox is mounted beside the garden entrance.",
-      "map": "Use the property address in your booking confirmation or the map section in this guide.",
-      "checkout": "Check-out is by 10:30. Lock the balcony door before you leave.",
-      "late_checkout": "Late check-out depends on the next booking. Message the host first.",
-      "air_condition": "Bedroom and living-room remotes are on the dining shelf.",
-      "bbq": "Portable grill available on request for stays longer than two nights.",
-      "water": "Use bottled water for drinking.",
-      "hot_water": "Solar water heating is strongest after midday.",
-      "breakfast": "Tea, rusks and jam are available for the first morning.",
-      "consumables": "Please leave beach towels and chargers inside the apartment."
+    "accommodation":{
+      "title":"Accommodation",
+      "map":"Use the address in your booking confirmation for navigation.",
+      "arrival":"Check-in after 15:00. Please contact the host in advance to arrange your arrival.",
+      "checkout":"Please check-out by 11:00.",
+      "late_checkout":"Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
+      "transfer":"Free transfer is available from the KTEL bus station to the apartment, or transfer from the airport is available for a €20 fee.",
+      "air_condition":"The AC remote is in the living room, next to the TV remote. Recommended setting: 24–26°C for comfort and energy savings.",
+      "water":"Tap water is not drinkable. Please use bottled water for drinking.",
+      "hot_water":"Hot water is available 24h assisted by solar heating. In winter, on cloudy days, heating may be reduced.",
+      "beach_faucet":"There is a faucet outside the apartment to rinse your feet after the beach.",
+      "breakfast":"Some basic breakfast items (coffee, tea, bread, jams) are available in the kitchen.",
+      "bbq":"If you need a BBQ setup, contact the host in advance so it can be provided and prepared.",
+      "consumables":"Please do not remove consumables except slippers, essentials, breakfasts, chocolates.",
+      "baby_chair":"A baby chair is available if you request it in advance.",
+      "board_games":"There are board games under the TV. Please tidy them up after use and make sure no pieces are lost."
     },
-    "house_rules": {
-      "title": "House Rules",
-      "rules": [
-        "No smoking indoors.",
-        "Quiet hours are 23:00-08:00.",
+    "house_rules":{
+      "title":"📋 House Rules",
+      "rules":[
+        "No smoking inside.",
+        "Please respect quiet hours 22:00-08:00.",
+        "Place any board games back in their boxes with all the pieces.",
         "Shake sand off before entering from the beach."
       ]
     },
-    "transport": {
-      "title": "Transportation",
-      "info": "Parking is available opposite the apartment and local taxis know the address."
+    "transport":{
+      "title":"Transportation",
+      "info":"Nearest bus stop is 8 minutes walk. Taxis and ride-hailing apps work reliably in the area."
     },
-    "restaurants": {
-      "title": "Restaurants & Cafes",
-      "intro": "Demo local recommendations for the seaside property."
+    "restaurants":{
+      "title":"Restaurants & Cafes",
+      "intro":"Selected local restaurants and cafes nearby."
     },
-    "attractions": {
-      "title": "Local Attractions",
-      "intro": "Suggested sights around the second property."
+    "attractions":{
+      "title":"Local Attractions",
+      "intro":"Places to visit around Lefkada." 
     },
-    "contacts": {
-      "title": "Contact Me",
-      "whatsappLabel": "WhatsApp",
-      "messengerLabel": "Messenger",
-      "viberLabel": "Viber",
-      "phoneLabel": "Phone"
+    "contacts":{
+      "title":"Contact Me",
+      "whatsappLabel":"WhatsApp",
+      "messengerLabel":"Messenger",
+      "viberLabel":"Viber",
+      "phoneLabel":"Phone"
     },
-    "neighborhood": {
-      "title": "Neighborhood",
-      "supermarket": {"title": "Supermarket", "text": "Mini market is 3 minutes away by foot."},
-      "pharmacy": {"title": "Pharmacy", "text": "Nearest pharmacy is in Nidri center."},
-      "atm": {"title": "ATM", "text": "ATM available near the marina."},
-      "cafes": {"title": "Cafes", "text": "Seafront coffee bars are a short walk from the apartment."},
-      "bakery": {"title": "Bakery", "text": "Fresh pastries are available from 07:00."},
-      "gas": {"title": "Gas Station", "text": "Gas station is on the main coastal road."}
+    "neighborhood":{
+      "title":"Neighborhood",
+      "supermarket":{"title":"Supermarket","text":"Supermarket is within 5 minutes by foot."},
+      "pharmacy":{"title":"Pharmacy","text":"The nearest Pharmacy is within 7 minutes by foot."},
+      "atm":{"title":"ATM","text":"ATMs are available in Lefkada Town."},
+      "cafes":{"title":"Cafes","text":"Coffee spots around the marina and town center are 5-10 minutes away by car."},
+      "bakery":{"title":"Bakery","text":"Local bakeries offer fresh bread and pastries in the mornings."},
+      "gas":{"title":"Gas Station","text":"Fuel stations are located on main roads around Lefkada."}
     }
   }
 }
