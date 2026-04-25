@@ -15,6 +15,7 @@
     "accommodation":{
       "title":"Accommodation",
       "map":"Use the address in your booking confirmation for navigation.",
+      "arrival":"Check-in after 15:00. Please contact the host in advance to arrange your arrival.",
       "checkout":"Please check-out by 11:00.",
       "late_checkout":"Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
       "transfer":"Free transfer is available from the KTEL bus station to the apartment, or transfer from the airport is available for a €20 fee.",
