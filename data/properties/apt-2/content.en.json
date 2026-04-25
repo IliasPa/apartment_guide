@@ -16,15 +16,15 @@
       "title": "Accommodation",
       "map": "Use the address in your booking confirmation for navigation.",
       "arrival": "Check-in after 15:00. Please contact the host in advance to arrange your arrival.",
-      "checkout": "Please check-out by 11:00.",
+      "checkout": "Please check-out by 11:00. Leave the keys on the living room table and send a photo.",
       "late_checkout": "Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
-      "transfer": "Free transfer is available from the KTEL bus station to the apartment, or transfer from the airport is available for a €20 fee.",
-      "air_condition": "The AC remote is in the living room, next to the TV remote. Recommended setting: 24–26°C for comfort and energy savings.",
-      "water": "Tap water is not drinkable. Please use bottled water for drinking.",
+      "transfer": "Free transfer is available from the KTEL bus station to the apartment, or transfer from the airport is available for a €35 fee, after prior notice.",
+      "air_condition": "The AC remote is in the living room, next to the TV remote. Recommended setting: 24–26°C for comfort and energy savings. The property also features underfloor heating/cooling for more consistent temperature control. When using the underfloor cooling, keep the AC running to help dehumidify the space.",
+      "water": "Tap water is not drinkable. Please use the bottled water in the refrigerator for drinking.",
       "hot_water": "Hot water is available 24h assisted by solar heating. In winter, on cloudy days, heating may be reduced.",
       "beach_faucet": "There is a faucet outside the apartment to rinse your feet after the beach.",
-      "bbq": "If you need a BBQ setup, contact the host in advance so it can be provided and prepared.",
-      "consumables": "Please do not remove consumables except slippers, essentials, breakfasts, chocolates.",
+      "bbq": "If you need a BBQ setup, contact the host in advance.",
+      "consumables": "You can use all the consumables (slippers, essentials, water, breakfasts, chocolates).",
       "baby_chair": "A baby chair is available if you request it in advance.",
       "board_games": "There are board games under the TV. Please tidy them up after use and make sure no pieces are lost."
     },
@@ -36,10 +36,6 @@
         "Place any board games back in their boxes with all the pieces.",
         "Shake sand off before entering from the beach."
       ]
-    },
-    "transport": {
-      "title": "Transportation",
-      "info": "Nearest bus stop is 8 minutes walk. Taxis and ride-hailing apps work reliably in the area."
     },
     "restaurants": {
       "title": "Restaurants & Cafes",
