@@ -1,0 +1,100 @@
+{
+  "categories": [
+    {
+      "key": "greetings",
+      "name": "🙋 Greetings",
+      "phrases": [
+        {"english": "Hello", "greek": "Γεια σας", "phonetic": "Ya sas"},
+        {"english": "Hi (informal)", "greek": "Γεια σου", "phonetic": "Ya su"},
+        {"english": "Good morning", "greek": "Καλημέρα", "phonetic": "Kaliméra"},
+        {"english": "Good afternoon", "greek": "Καλησπέρα", "phonetic": "Kalispéra"},
+        {"english": "Good night", "greek": "Καληνύχτα", "phonetic": "Kalinihta"},
+        {"english": "Goodbye", "greek": "Αντίο", "phonetic": "Antío"},
+        {"english": "Thank you", "greek": "Ευχαριστώ", "phonetic": "Efharisto"},
+        {"english": "Thank you very much", "greek": "Ευχαριστώ πολύ", "phonetic": "Efharisto poli"},
+        {"english": "You're welcome", "greek": "Παρακαλώ", "phonetic": "Parakaló"}
+      ]
+    },
+    {
+      "key": "dining",
+      "name": "🍽️ Dining & Ordering",
+      "phrases": [
+        {"english": "A table for two", "greek": "Ένα τραπέζι για δύο", "phonetic": "Éna trapézi ya dío"},
+        {"english": "Menu, please", "greek": "Το μενού, παρακαλώ", "phonetic": "To menoú, parakaló"},
+        {"english": "What do you recommend?", "greek": "Τι συστήνετε;", "phonetic": "Ti sistínete?"},
+        {"english": "The bill, please", "greek": "Το λογαριασμό, παρακαλώ", "phonetic": "To logariiasmó, parakaló"},
+        {"english": "I'm vegetarian", "greek": "Είμαι χορτοφάγος", "phonetic": "Íme hortofágos"},
+        {"english": "I'm allergic to...", "greek": "Είμαι αλλεργικός σε...", "phonetic": "Íme allergikós se..."},
+        {"english": "Cheers!", "greek": "Στην υγεία μας!", "phonetic": "Stin iyía mas!"},
+        {"english": "It's delicious", "greek": "Είναι νόστιμο", "phonetic": "Íne nóstimo"}
+      ]
+    },
+    {
+      "key": "shopping",
+      "name": "🛍️ Shopping & Numbers",
+      "phrases": [
+        {"english": "How much?", "greek": "Πόσο κοστίζει;", "phonetic": "Póso kostízi?"},
+        {"english": "It's expensive", "greek": "Είναι ακριβό", "phonetic": "Íne akrivó"},
+        {"english": "Do you have...?", "greek": "Έχετε...;", "phonetic": "Éhete...?"},
+        {"english": "I'll take this", "greek": "Θα πάρω αυτό", "phonetic": "Tha páro aftó"},
+        {"english": "One", "greek": "Ένα", "phonetic": "Éna"},
+        {"english": "Two", "greek": "Δύο", "phonetic": "Dío"},
+        {"english": "Three", "greek": "Τρία", "phonetic": "Tría"},
+        {"english": "Four", "greek": "Τέσσερα", "phonetic": "Tésera"},
+        {"english": "Five", "greek": "Πέντε", "phonetic": "Pénte"}
+      ]
+    },
+    {
+      "key": "transport",
+      "name": "🚕 Getting Around",
+      "phrases": [
+        {"english": "Where is...?", "greek": "Πού είναι...;", "phonetic": "Poú íne...?"},
+        {"english": "How far?", "greek": "Πόσο μακριά;", "phonetic": "Póso makriá?"},
+        {"english": "Left", "greek": "Αριστερά", "phonetic": "Aristará"},
+        {"english": "Right", "greek": "Δεξιά", "phonetic": "Dexiá"},
+        {"english": "Straight ahead", "greek": "Ευθεία μπροστά", "phonetic": "Evtheía mprostá"},
+        {"english": "I'm lost", "greek": "Έχω χαθεί", "phonetic": "Ého hathí"},
+        {"english": "Taxi!", "greek": "Ταξί!", "phonetic": "Taxí!"},
+        {"english": "To the airport, please", "greek": "Στο αεροδρόμιο, παρακαλώ", "phonetic": "Sto aerodrómiο, parakaló"}
+      ]
+    },
+    {
+      "key": "emergency",
+      "name": "🆘 Emergency & Help",
+      "phrases": [
+        {"english": "Help!", "greek": "Βοήθεια!", "phonetic": "Voíthia!"},
+        {"english": "I need help", "greek": "Χρειάζομαι βοήθεια", "phonetic": "Hreiázome voíthia"},
+        {"english": "Call the police", "greek": "Καλέστε την αστυνομία", "phonetic": "Kaléste tin astinomía"},
+        {"english": "Call an ambulance", "greek": "Καλέστε ένα ασθενοφόρο", "phonetic": "Kaléste éna asthenofóro"},
+        {"english": "I'm sick", "greek": "Είμαι άρρωστος", "phonetic": "Íme árrostos"},
+        {"english": "I need a doctor", "greek": "Χρειάζομαι γιατρό", "phonetic": "Hreiázome giatró"},
+        {"english": "Fire!", "greek": "Φωτιά!", "phonetic": "Fotiá!"},
+        {"english": "I lost my wallet", "greek": "Έχασα το πορτοφόλι μου", "phonetic": "Éhasa to portofóli mu"},
+        {"english": "I don't understand", "greek": "Δεν καταλαβαίνω", "phonetic": "Den katalavaíno"},
+        {"english": "Do you speak English?", "greek": "Μιλάτε αγγλικά;", "phonetic": "Miláte angliká?"},
+        {"english": "Slowly, please", "greek": "Αργά, παρακαλώ", "phonetic": "Argá, parakaló"},
+        {"english": "Can you help me?", "greek": "Μπορείτε να με βοηθήσετε;", "phonetic": "Boríte na me voithísete?"}
+      ]
+    },
+    {
+      "key": "useful",
+      "name": "✌️ Useful Phrases",
+      "phrases": [
+        {"english": "Yes", "greek": "Ναι", "phonetic": "Ne"},
+        {"english": "No", "greek": "Όχι", "phonetic": "Óhi"},
+        {"english": "Okay/Alright", "greek": "Εντάξει", "phonetic": "Entáxi"},
+        {"english": "Good", "greek": "Καλό", "phonetic": "Kaló"},
+        {"english": "Beautiful", "greek": "Όμορφο", "phonetic": "Ómorfо"},
+        {"english": "I like it", "greek": "Μου αρέσει", "phonetic": "Mu arési"},
+        {"english": "I don't like it", "greek": "Δεν μου αρέσει", "phonetic": "Den mu arési"},
+        {"english": "Excuse me", "greek": "Συγγνώμη", "phonetic": "Signómi"},
+        {"english": "Sorry", "greek": "Συγγνώμη", "phonetic": "Signómi"},
+        {"english": "Please", "greek": "Παρακαλώ", "phonetic": "Parakaló"},
+        {"english": "I don't know", "greek": "Δεν ξέρω", "phonetic": "Den xéro"},
+        {"english": "Can you repeat?", "greek": "Μπορείτε να επαναλάβετε;", "phonetic": "Boríte na epanalávete?"},
+        {"english": "Where is the bathroom?", "greek": "Πού είναι η τουαλέτα;", "phonetic": "Poú íne i toualéta?"},
+        {"english": "How are you?", "greek": "Τι κάνεις;", "phonetic": "Ti kánis?"}
+      ]
+    }
+  ]
+}

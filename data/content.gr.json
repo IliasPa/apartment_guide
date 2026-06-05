@@ -55,6 +55,7 @@
     {"id":"attractions","title":"Τοπικά Αξιοθέατα","subtitle":"Αξιοθέατα, πάρκα και μουσεία."},
     {"id":"emergency","title":"Επείγοντα","subtitle":"Σημαντικά τηλέφωνα και υπηρεσίες."},
     {"id":"beaches","title":"Παραλίες","subtitle":"Καλύτερες παραλίες στη Λευκάδα."},
+    {"id":"phrases","title":"Ελληνικές Φράσεις","subtitle":"Βασικές λέξεις και φράσεις για τη διαμονή σας."},
     {"id":"contacts","title":"Επικοινωνία","subtitle":"WhatsApp, Messenger, Viber, Τηλέφωνο."},
     {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, αρτοποιείο, πρατήριο καυσίμων."}
   ],
@@ -70,6 +71,17 @@
     },
     "contacts":{
       "suggestionEndpoint":"https://formspree.io/f/meeronor"
+    },
+    "phrases":{
+      "title":"Ελληνικές Φράσεις",
+      "categories":{
+        "greetings":{"name":"🙋 Χαιρετισμοί","subtitle":"Γεια σας, ευχαριστώ, αντίο"},
+        "dining":{"name":"🍽️ Φαγητό & Παραγγελία","subtitle":"Εστιατόρια και τρόφιμα"},
+        "shopping":{"name":"🛍️ Αγορές & Αριθμοί","subtitle":"Τιμές, ποσότητες και βασικά"},
+        "transport":{"name":"🚕 Μετακίνηση","subtitle":"Κατευθύνσεις και πλοήγηση"},
+        "emergency":{"name":"🆘 Έκτακτη Ανάγκη & Βοήθεια","subtitle":"Σημαντικές φράσεις για ασφάλεια"},
+        "useful":{"name":"✌️ Χρήσιμες Φράσεις","subtitle":"Κοινές καθημερινές εκφράσεις"}
+      }
     }
   }
 }

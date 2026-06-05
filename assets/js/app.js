@@ -466,6 +466,8 @@
       container.innerHTML = renderSimpleSections(pageData);
     } else if (pageKey === "emergency") {
       renderEmergency(container, pageData);
+    } else if (pageKey === "phrases") {
+      await renderPhrases(container, pageData);
     } else {
       container.innerHTML = '<p class="muted">Content coming soon.</p>';
     }
@@ -694,6 +696,54 @@
     });
     html += "</div></div>";
     container.innerHTML = html;
+  }
+
+  async function renderPhrases(container, pageData) {
+    const phrasesData = await fetchJson(SITE_ROOT + 'data/phrases.json');
+    const categories = (phrasesData && phrasesData.categories) || [];
+    const categoryInfo = (pageData && pageData.categories) || {};
+    if (!categories.length) {
+      container.innerHTML = '<p class="muted">No phrases available.</p>';
+      return;
+    }
+    let html = '';
+    categories.forEach((cat) => {
+      const info = categoryInfo[cat.key] || {};
+      const catName = info.name || cat.name;
+      const catSubtitle = info.subtitle || '';
+      html += `<div class="section phrases-category">
+        <h3>${escapeHtml(catName)}</h3>`;
+      if (catSubtitle) html += `<p class="phrases-subtitle">${escapeHtml(catSubtitle)}</p>`;
+      html += `<div class="phrases-list">`;
+      (cat.phrases || []).forEach((phrase) => {
+        const greekText = escapeHtml(phrase.greek || '');
+        const englishText = escapeHtml(phrase.english || '');
+        const phoneticText = escapeHtml(phrase.phonetic || '');
+        html += `
+          <div class="phrase-card" role="button" tabindex="0" data-copy-text="${greekText}" aria-label="Click to copy: ${greekText}">
+            <div class="phrase-greek">${greekText}</div>
+            <div class="phrase-phonetic">${phoneticText}</div>
+            <div class="phrase-english">${englishText}</div>
+          </div>`;
+      });
+      html += '</div></div>';
+    });
+    container.innerHTML = html;
+    container.querySelectorAll('.phrase-card').forEach((card) => {
+      const clickHandler = () => {
+        const text = card.getAttribute('data-copy-text');
+        copyToClipboard(text).then(() => {
+          showToast('Copied', 'success');
+        });
+      };
+      card.addEventListener('click', clickHandler);
+      card.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          clickHandler();
+        }
+      });
+    });
   }
 
   function renderSimpleSections(data) {

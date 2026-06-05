@@ -1056,6 +1056,77 @@ footer {
   }
 }
 
+/* Phrases section */
+.phrases-category {
+  margin-bottom: 20px;
+}
+.phrases-category h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+.phrases-subtitle {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.phrases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.phrase-card {
+  background: #fff;
+  border: 1px solid rgba(196, 122, 74, 0.12);
+  border-radius: 12px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.phrase-card:hover,
+.phrase-card:focus {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  border-color: rgba(196, 122, 74, 0.22);
+  background: #faf7f3;
+  outline: none;
+}
+.phrase-greek {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  word-break: break-word;
+}
+.phrase-phonetic {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+.phrase-english {
+  font-size: 0.95rem;
+  color: #222;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .phrase-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  .phrase-phonetic {
+    text-align: left;
+  }
+  .phrase-english {
+    text-align: left;
+  }
+}
+
 /* accessible focus */
 .card:focus,
 .back:focus {

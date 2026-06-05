@@ -54,6 +54,7 @@
     {"id":"attractions","title":"Local Attractions","subtitle":"Sights, parks and museums."},
     {"id":"emergency","title":"Emergency Contacts","subtitle":"Important phone numbers and services."},
     {"id":"beaches","title":"Beaches","subtitle":"Best beaches in Lefkada."},
+    {"id":"phrases","title":"Greek Phrases","subtitle":"Essential words and phrases for your stay."},
     {"id":"contacts","title":"Contact Me","subtitle":"WhatsApp, Messenger, Viber, Phone."},
     {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
   ],
@@ -69,6 +70,17 @@
     },
     "contacts":{
       "suggestionEndpoint":"https://formspree.io/f/meeronor"
+    },
+    "phrases":{
+      "title":"Greek Phrases",
+      "categories":{
+        "greetings":{"name":"🙋 Greetings","subtitle":"Hello, thank you, goodbye"},
+        "dining":{"name":"🍽️ Dining & Ordering","subtitle":"Restaurant and food related"},
+        "shopping":{"name":"🛍️ Shopping & Numbers","subtitle":"Prices, quantities, and basics"},
+        "transport":{"name":"🚕 Getting Around","subtitle":"Directions and navigation"},
+        "emergency":{"name":"🆘 Emergency & Help","subtitle":"Important phrases for safety"},
+        "useful":{"name":"✌️ Useful Phrases","subtitle":"Common everyday expressions"}
+      }
     }
   }
 }
