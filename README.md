@@ -1,6 +1,11 @@
-Apartment Guide — Multi-property support
+Apartment Guide — Multi-property support (v2.3)
 
-This repository contains a guest guide website for short-term rentals. Changes in this branch add multi-property support using one shared UI and one codebase. Properties are selected by the `property` URL query parameter (for example `?property=apt-1`).
+This repository contains a guest guide website for short-term rentals with multi-property support using one shared UI and one codebase. Properties are selected by the `property` URL query parameter (for example `?property=apt-1`).
+
+**v2.3 Updates:**
+- Enhanced property content with new multimedia and data features
+- Improved neighborhood and distance calculations
+- New phrases management system for multi-language content
 
 Quick start
 
