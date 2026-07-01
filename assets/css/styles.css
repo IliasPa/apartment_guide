@@ -33,67 +33,13 @@ body {
   font-size: 1rem;
   margin: 0;
 }
-.property-switch {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.property-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--card);
-  border: 1px solid rgba(196, 122, 74, 0.18);
-  padding: 10px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
-}
-.property-label {
+.site-name {
   font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 240px;
-}
-.property-caret {
-  font-size: 1.5rem;
-  color: var(--muted);
-}
-.property-list {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 8px);
-  background: var(--card);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  list-style: none;
-  padding: 8px;
-  margin: 0;
-  min-width: 220px;
-  z-index: 80;
-  border: 1px solid rgba(196, 122, 74, 0.12);
-}
-.property-list.hidden,
-.property-list[hidden] {
-  display: none;
-}
-.property-list.open {
-  display: block;
-}
-.property-list .property-item {
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.property-list .property-item:hover {
-  background: #f6f0eb;
-}
-.property-list .property-item[aria-selected="true"] {
-  background: #f6f0eb;
-  font-weight: 600;
 }
 .lang-switch {
   margin-left: auto;
@@ -1028,7 +974,7 @@ footer {
   .page-header {
     align-items: flex-start;
   }
-  .property-label {
+  .site-name {
     max-width: 180px;
   }
 }

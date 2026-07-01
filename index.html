@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Apartment Guide</title>
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="manifest" href="manifest.json" id="app-manifest">
+  <meta name="theme-color" content="#c47a4a">
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="header-left">
-      <div class="property-switch">
-        <button id="property-btn" class="property-btn" aria-haspopup="listbox" aria-expanded="false">
-          <span class="property-label" data-site-name>Cozy City Apartment</span>
-          <span class="property-caret" aria-hidden="true">▾</span>
-        </button>
-        <ul id="property-list" class="property-list" role="listbox" hidden></ul>
-      </div>
+      <span class="site-name" data-site-name>Cozy City Apartment</span>
     </div>
     <div class="lang-switch" role="group" aria-label="Language switch">
       <button type="button" class="lang-btn active" data-lang="en" aria-label="Switch language to English">
@@ -30,7 +29,7 @@
 
   <main>
     <section class="hero">
-      <img src="assets/images/house.png" alt="Apartment" class="hero-img">
+      <img src="assets/images/hero.svg" alt="Apartment" class="hero-img" width="150" height="100">
       <div class="hero-text">
         <h2 data-welcome-title>Welcome!</h2>
         <p data-welcome-text>Your digital guest guide — everything you need during your stay.</p>

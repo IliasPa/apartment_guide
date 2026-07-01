@@ -14,6 +14,61 @@
     (document.currentScript && document.currentScript.src) || "";
   const SITE_ROOT = scriptSrc.replace(/\/assets\/js\/app\.js$/, "/") || "./";
 
+  function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+    if (location.protocol !== "http:" && location.protocol !== "https:")
+      return; // SW unsupported on file://, harmless no-op there
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register(SITE_ROOT + "sw.js").catch(() => {});
+    });
+  }
+  registerServiceWorker();
+
+  // Rebuild the manifest per property so "Add to Home Screen" installs an
+  // icon with the guest's own apartment name and opens straight to it.
+  function updateDynamicManifest(content, propMeta) {
+    try {
+      const link = document.getElementById("app-manifest");
+      if (!link) return;
+      const name =
+        (content && content.site && content.site.apartmentName) ||
+        (propMeta && propMeta.name) ||
+        "Apartment Guide";
+      const manifest = {
+        name: name,
+        short_name: name.length > 15 ? name.slice(0, 15) : name,
+        description:
+          (content && content.site && content.site.welcomeText) ||
+          "Your digital guest guide.",
+        start_url: (() => {
+          const u = new URL(SITE_ROOT + "index.html");
+          u.searchParams.set("property", getCurrentProperty());
+          return u.href;
+        })(),
+        scope: SITE_ROOT,
+        display: "standalone",
+        background_color: "#faf7f3",
+        theme_color: "#c47a4a",
+        icons: [
+          {
+            src: SITE_ROOT + "assets/images/icon-192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: SITE_ROOT + "assets/images/icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      };
+      const blobUrl = URL.createObjectURL(
+        new Blob([JSON.stringify(manifest)], { type: "application/json" }),
+      );
+      link.setAttribute("href", blobUrl);
+    } catch (e) {}
+  }
+
   // Properties configuration (loaded from data/properties.json when available)
   let PROPERTIES = [{ id: "apt-1", name: "Apartment 1" }];
   let PROPERTIES_MAP = { "apt-1": { id: "apt-1", name: "Apartment 1" } };
@@ -141,69 +196,6 @@
     });
   }
 
-  function setupPropertySwitcher() {
-    const btn = document.getElementById("property-btn");
-    const list = document.getElementById("property-list");
-    if (!btn || !list) return;
-    if (btn.dataset.bound === "true") {
-      const currentProperty = getCurrentProperty();
-      const currentPropertyData =
-        PROPERTIES_MAP[currentProperty] || PROPERTIES[0];
-      const labelNode = btn.querySelector(".property-label");
-      if (labelNode && currentPropertyData)
-        labelNode.textContent = currentPropertyData.name;
-      list.querySelectorAll(".property-item").forEach((item) => {
-        item.setAttribute(
-          "aria-selected",
-          String(item.getAttribute("data-id") === currentProperty),
-        );
-      });
-      return;
-    }
-    // populate list
-    list.innerHTML = PROPERTIES.map(
-      (p) =>
-        `<li role="option" data-id="${escapeHtml(p.id)}" class="property-item" aria-selected="false">${escapeHtml(p.name)}</li>`,
-    ).join("");
-    // show current
-    const current = PROPERTIES_MAP[getCurrentProperty()] || PROPERTIES[0];
-    const labelNode = btn.querySelector(".property-label");
-    if (labelNode && current) labelNode.textContent = current.name;
-    list.querySelectorAll(".property-item").forEach((item) => {
-      item.setAttribute(
-        "aria-selected",
-        String(item.getAttribute("data-id") === getCurrentProperty()),
-      );
-    });
-
-    btn.addEventListener("click", () => {
-      list.classList.toggle("open");
-      list.hidden = !list.classList.contains("open");
-      btn.setAttribute("aria-expanded", String(!list.hidden));
-    });
-    list.addEventListener("click", (ev) => {
-      const li = ev.target.closest(".property-item");
-      if (!li) return;
-      const id = li.getAttribute("data-id");
-      if (!id) return;
-      // change property by updating URL (preserve language)
-      const qp = new URLSearchParams(location.search);
-      qp.set("property", id);
-      // navigate to same pathname with new query
-      const newUrl = location.pathname + "?" + qp.toString() + location.hash;
-      location.href = newUrl;
-    });
-    // close when clicking outside
-    document.addEventListener("click", (ev) => {
-      if (!btn.contains(ev.target) && !list.contains(ev.target)) {
-        list.classList.remove("open");
-        list.hidden = true;
-        btn.setAttribute("aria-expanded", "false");
-      }
-    });
-    btn.dataset.bound = "true";
-  }
-
   function getLang() {
     return localStorage.getItem("lang") === "gr" ? "gr" : "en";
   }
@@ -212,7 +204,6 @@
     updateLangButtons(lang);
     // reload content and then re-render cached weather (if any)
     loadContentAndRender(lang).then(() => {
-      setupPropertySwitcher();
       preservePropertyOnLinks();
       try {
         if (window.weatherCache) renderWeather(window.weatherCache, lang);
@@ -328,6 +319,7 @@
     }
     content = deepMerge(sharedContent, propertyContent || {});
     CURRENT_PROPERTY_META = propMeta || null;
+    updateDynamicManifest(content, propMeta);
     if (!content || !Object.keys(content).length) {
       // fallback: basic English shell
       content = {
@@ -495,7 +487,6 @@
       baby: "👶",
       games: "🎲",
       beach: "🚿",
-      transfer: "🚐",
       wellness: "💆",
       rules: "📋",
     };
@@ -519,11 +510,6 @@
         id: "late",
         title: ui.lateCheckoutLabel || "Late Check-out",
         content: pageData.late_checkout,
-      },
-      {
-        id: "transfer",
-        title: ui.transferLabel || "Transfers",
-        content: pageData.transfer,
       },
       {
         id: "ac",
@@ -1402,7 +1388,7 @@
             return `
             <a class="ds-link restaurant-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
               <article class="restaurant-card">
-                <div class="restaurant-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}"><div class="restaurant-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+                <div class="restaurant-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}" loading="lazy" decoding="async"><div class="restaurant-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
                 <div class="restaurant-body"><p class="muted">${escapeHtml(localizedArea || "")} ${it.price ? " • " + escapeHtml(it.price) : ""}</p><p>${escapeHtml(localizedShort || "")}</p>
                   ${timeText ? `<p class="muted time-estimate">${escapeHtml(timeText)}</p>` : ""}
                 </div>
@@ -1412,7 +1398,7 @@
             return `
             <a class="ds-link attraction-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
               <article class="attraction-card">
-                <div class="attraction-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}"><div class="attraction-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+                <div class="attraction-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}" loading="lazy" decoding="async"><div class="attraction-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
                 <div class="attraction-body"><p class="muted">${escapeHtml(localizedArea || "")}</p><p>${escapeHtml(localizedShort || "")}</p>
                   ${timeText ? `<p class="muted time-estimate">${escapeHtml(timeText)}</p>` : ""}
                 </div>
@@ -1422,7 +1408,7 @@
             return `
             <a class="ds-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
               <article class="ds-card">
-                <img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}">
+                <img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}" loading="lazy" decoding="async">
                 <div class="ds-body">
                   <h3>${escapeHtml(localizedName)}</h3>
                   <p class="muted">${escapeHtml(localizedArea || "")} ${it.price ? " • " + escapeHtml(it.price) : ""}</p>
@@ -1570,7 +1556,7 @@
           return `
         <a class="ds-link beach-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">
           <article class="beach-card">
-            <div class="beach-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}"><div class="beach-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
+            <div class="beach-media"><img src="${SITE_ROOT + (it.image || "dataset/images/placeholder.svg")}" alt="${escapeHtml(localizedName)}" loading="lazy" decoding="async"><div class="beach-overlay"><h3>${escapeHtml(localizedName)}</h3></div></div>
             <div class="beach-body"><p class="muted">${escapeHtml(localizedArea || "")}</p><p>${escapeHtml(localizedShort || "")}</p>
               <p class="muted time-estimate">${escapeHtml(timeText)}</p>
             </div>
@@ -2089,14 +2075,12 @@
   document.addEventListener("DOMContentLoaded", async () => {
     attachLangButtons();
     await loadPropertiesIndex();
-    setupPropertySwitcher();
     const lang = getLang();
     updateLangButtons(lang);
     // ensure links include property param before rendering (index cards, etc.)
     preservePropertyOnLinks();
     await loadContentAndRender(lang);
     preservePropertyOnLinks();
-    setupPropertySwitcher();
     initWeather();
   });
 })();
