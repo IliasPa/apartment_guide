@@ -8,8 +8,8 @@
   "pages":{
     "wifi":{
       "title":"Πληροφορίες WiFi",
-      "ssid":"VardaniaConfortStay",
-      "password":"welcome2026",
+      "ssid":"xara",
+      "password":"12345678",
       "notes":"Το router βρίσκεται στο σαλόνι δίπλα στην τηλεόραση. Υπάρχει και NFC για σύνδεση. Κάντε επανεκκίνηση αν χρειαστεί."
     },
     "accommodation":{
