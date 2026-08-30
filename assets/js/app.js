@@ -486,31 +486,34 @@
     return IMAGE_EXTENSIONS.map((ext) => basePath + "." + ext);
   }
 
-  // Swap in the first candidate that loads; hide the slot when none does, so a
-  // subsection without a photo yet simply renders as text.
-  function loadFirstAvailableImage(slot) {
-    const candidates = (slot.getAttribute("data-img-candidates") || "")
+  // Markup for a photo slot: the first candidate as the src, the rest parked on
+  // the element for onImageError to fall back through. The <img> has to be in
+  // the document rather than a detached `new Image()` — WebKit never starts a
+  // lazy load on a detached element, so the photo would never arrive on iOS.
+  function imageSlotHtml(slotClass, imgClass, candidates, alt) {
+    if (!candidates.length) return "";
+    return `<div class="${slotClass}"><img class="${imgClass}" src="${escapeHtml(
+      candidates[0],
+    )}" data-img-fallbacks="${escapeHtml(
+      candidates.slice(1).join("|"),
+    )}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"></div>`;
+  }
+
+  // Try the next extension; hide the slot once none are left, so a subsection
+  // without a photo yet simply renders as text.
+  function onImageError(event) {
+    const img = event.target;
+    const rest = (img.getAttribute("data-img-fallbacks") || "")
       .split("|")
       .filter(Boolean);
-    const alt = slot.getAttribute("data-img-alt") || "";
-    const className = slot.getAttribute("data-img-class") || "";
-    (function attempt(i) {
-      if (i >= candidates.length) {
-        slot.style.display = "none";
-        return;
-      }
-      const img = new Image();
-      img.alt = alt;
-      if (className) img.className = className;
-      img.loading = "lazy";
-      img.decoding = "async";
-      img.onload = () => {
-        slot.innerHTML = "";
-        slot.appendChild(img);
-      };
-      img.onerror = () => attempt(i + 1);
-      img.src = candidates[i];
-    })(0);
+    const next = rest.shift();
+    if (!next) {
+      const slot = img.parentElement;
+      if (slot) slot.style.display = "none";
+      return;
+    }
+    img.setAttribute("data-img-fallbacks", rest.join("|"));
+    img.src = next;
   }
 
   function renderAccommodation(container, pageData, siteContent) {
@@ -674,7 +677,7 @@
             siteContent.pages.wifi &&
             siteContent.pages.wifi.qrImage,
         );
-        html += `<details class="section" id="wifi-accom"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="info-card wifi-card"><div class="info-text wifi-info"><p class="muted">${escapeHtml(ssidLine.replace("Network: ", ""))}</p><div class="wifi-password"><span id="wifi-pass-accom" class="muted">${escapeHtml(passLine.replace("Password: ", ""))}</span><button id="copy-pass-accom" class="btn">${escapeHtml(copyLabel)}</button></div>${noteLine ? `<p class="muted">${escapeHtml(noteLine)}</p>` : ""}</div><div class="wifi-qr" data-img-candidates="${escapeHtml(qrCandidates.join("|"))}" data-img-alt="${escapeHtml(qrAlt)}" data-img-class="wifi-qr-image"></div></div></div></details>`;
+        html += `<details class="section" id="wifi-accom"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="info-card wifi-card"><div class="info-text wifi-info"><p class="muted">${escapeHtml(ssidLine.replace("Network: ", ""))}</p><div class="wifi-password"><span id="wifi-pass-accom" class="muted">${escapeHtml(passLine.replace("Password: ", ""))}</span><button id="copy-pass-accom" class="btn">${escapeHtml(copyLabel)}</button></div>${noteLine ? `<p class="muted">${escapeHtml(noteLine)}</p>` : ""}</div>${imageSlotHtml("wifi-qr", "wifi-qr-image", qrCandidates, qrAlt)}</div></div></details>`;
       } else {
         const links = Array.isArray(s.links)
           ? s.links.filter((l) => l && l.url)
@@ -688,12 +691,15 @@
               .join("")}</ul>`
           : "";
         const media = ACCOMMODATION_IMAGE_SECTIONS.includes(s.id)
-          ? `<div class="info-media" data-img-candidates="${escapeHtml(
+          ? imageSlotHtml(
+              "info-media",
+              "info-image",
               imageCandidates(
                 propertyImages + "accommodation/" + s.id,
                 sectionImages[s.id],
-              ).join("|"),
-            )}" data-img-alt="${escapeHtml(titleText)}" data-img-class="info-image"></div>`
+              ),
+              titleText,
+            )
           : "";
         html += `<details class="section" id="${s.id}"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="info-card"><div class="info-text"><p>${escapeHtml(s.content)}</p>${linksHtml}</div>${media}</div></div></details>`;
       }
@@ -726,10 +732,10 @@
           });
       });
     }
-    // fill the subsection photos and the Wi-Fi QR slot (hidden when absent)
-    container
-      .querySelectorAll("[data-img-candidates]")
-      .forEach(loadFirstAvailableImage);
+    // let the subsection photos and the Wi-Fi QR fall back through extensions
+    container.querySelectorAll("[data-img-fallbacks]").forEach((img) => {
+      img.addEventListener("error", onImageError);
+    });
   }
 
   function renderEmergency(container, pageData) {
