@@ -204,8 +204,38 @@ body {
   outline-offset: 2px;
 }
 
-.wifi-card {
+/* Accommodation subsections: text and photo side by side on wide screens,
+   photo stacked underneath on phones. Shared by the Wi-Fi QR block. */
+.info-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
   border-radius: 10px;
+}
+.info-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.info-media {
+  flex: 0 0 auto;
+  width: 240px;
+  max-width: 40%;
+}
+.info-media .info-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+.section-links {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.section-links li {
+  margin-bottom: 4px;
+}
+.section-links a {
+  color: var(--accent);
 }
 
 .wifi-password {
@@ -234,10 +264,15 @@ body {
   border-radius: 8px;
 }
 
-@media (max-width: 600px) {
-  .wifi-card {
+@media (max-width: 700px) {
+  .info-card {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
+  }
+  .info-media {
+    width: 100%;
+    max-width: 100%;
   }
   .wifi-qr {
     margin-top: 8px;

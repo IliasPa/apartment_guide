@@ -465,6 +465,54 @@
     }
   }
 
+  // Subsections that show a photo beside their text. The photo lives in the
+  // property folder as images/accommodation/<section id>.<ext>; the first
+  // extension that resolves wins, so dropping a real ac.jpg next to the
+  // shipped ac.svg placeholder replaces it with no JSON change.
+  const ACCOMMODATION_IMAGE_SECTIONS = [
+    "ac",
+    "beach",
+    "bbq",
+    "games",
+    "consumables",
+    "iron",
+    "hairdryer",
+    "laundry",
+  ];
+  const IMAGE_EXTENSIONS = ["jpg", "png", "svg"];
+
+  function imageCandidates(basePath, override) {
+    if (override) return [SITE_ROOT + override];
+    return IMAGE_EXTENSIONS.map((ext) => basePath + "." + ext);
+  }
+
+  // Swap in the first candidate that loads; hide the slot when none does, so a
+  // subsection without a photo yet simply renders as text.
+  function loadFirstAvailableImage(slot) {
+    const candidates = (slot.getAttribute("data-img-candidates") || "")
+      .split("|")
+      .filter(Boolean);
+    const alt = slot.getAttribute("data-img-alt") || "";
+    const className = slot.getAttribute("data-img-class") || "";
+    (function attempt(i) {
+      if (i >= candidates.length) {
+        slot.style.display = "none";
+        return;
+      }
+      const img = new Image();
+      img.alt = alt;
+      if (className) img.className = className;
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.onload = () => {
+        slot.innerHTML = "";
+        slot.appendChild(img);
+      };
+      img.onerror = () => attempt(i + 1);
+      img.src = candidates[i];
+    })(0);
+  }
+
   function renderAccommodation(container, pageData, siteContent) {
     const rules =
       (siteContent.pages &&
@@ -487,6 +535,9 @@
       baby: "👶",
       games: "🎲",
       beach: "🚿",
+      iron: "👕",
+      hairdryer: "💇",
+      laundry: "🧺",
       wellness: "💆",
       rules: "📋",
     };
@@ -516,7 +567,12 @@
         title: ui.airConditionLabel || "Air Condition",
         content: pageData.air_condition,
       },
-      { id: "water", title: ui.waterLabel || "Water", content: pageData.water },
+      {
+        id: "water",
+        title: ui.waterLabel || "Water",
+        content: pageData.water,
+        links: pageData.water_links,
+      },
       {
         id: "hot",
         title: ui.hotWaterLabel || "Hot Water",
@@ -537,6 +593,21 @@
         id: "consumables",
         title: ui.consumablesLabel || "Consumables",
         content: pageData.consumables,
+      },
+      {
+        id: "iron",
+        title: ui.ironLabel || "Iron",
+        content: pageData.iron,
+      },
+      {
+        id: "hairdryer",
+        title: ui.hairDryerLabel || "Hair Dryer",
+        content: pageData.hair_dryer,
+      },
+      {
+        id: "laundry",
+        title: ui.laundryLabel || "Laundry",
+        content: pageData.laundry,
       },
       {
         id: "baby",
@@ -577,6 +648,10 @@
     html += `<iframe src="${mapUrl}" style="border:0;width:100%;height:100%;border-radius:8px" loading="lazy"></iframe>`;
     const mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${mapLat},${mapLon}`;
     html += `</div><p class="muted"><a href="${mapsLink}" target="_blank" rel="noopener">${escapeHtml(ui.openInMaps || "Open in Maps")}</a></p></div>`;
+    const propertyId = getCurrentProperty();
+    const propertyImages =
+      SITE_ROOT + "data/properties/" + propertyId + "/images/";
+    const sectionImages = (pageData && pageData.images) || {};
     visibleSections.forEach((s) => {
       const em = emoji[s.id] || "";
       const titleText = s.title || "";
@@ -589,24 +664,38 @@
         const copyLabel =
           (siteContent && siteContent.ui && siteContent.ui.copyPassword) ||
           "Copy password";
-        const propertyId = getCurrentProperty();
-        const defaultQr =
-          SITE_ROOT +
-          "data/properties/" +
-          propertyId +
-          "/images/" +
-          propertyId +
-          "-wifi.png";
-        const propQr =
+        const qrAlt =
+          (siteContent && siteContent.ui && siteContent.ui.wifiQrAlt) ||
+          "WiFi QR code";
+        const qrCandidates = imageCandidates(
+          propertyImages + propertyId + "-wifi",
           siteContent &&
-          siteContent.pages &&
-          siteContent.pages.wifi &&
-          siteContent.pages.wifi.qrImage
-            ? SITE_ROOT + siteContent.pages.wifi.qrImage
-            : defaultQr;
-        html += `<details class="section" id="wifi-accom"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="wifi-card"><div class="wifi-info"><p class="muted">${escapeHtml(ssidLine.replace("Network: ", ""))}</p><div class="wifi-password"><span id="wifi-pass-accom" class="muted">${escapeHtml(passLine.replace("Password: ", ""))}</span><button id="copy-pass-accom" class="btn">${escapeHtml(copyLabel)}</button></div>${noteLine ? `<p class="muted">${escapeHtml(noteLine)}</p>` : ""}</div><div class="wifi-qr" data-qr-src="${propQr}"></div></div></div></details>`;
+            siteContent.pages &&
+            siteContent.pages.wifi &&
+            siteContent.pages.wifi.qrImage,
+        );
+        html += `<details class="section" id="wifi-accom"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="info-card wifi-card"><div class="info-text wifi-info"><p class="muted">${escapeHtml(ssidLine.replace("Network: ", ""))}</p><div class="wifi-password"><span id="wifi-pass-accom" class="muted">${escapeHtml(passLine.replace("Password: ", ""))}</span><button id="copy-pass-accom" class="btn">${escapeHtml(copyLabel)}</button></div>${noteLine ? `<p class="muted">${escapeHtml(noteLine)}</p>` : ""}</div><div class="wifi-qr" data-img-candidates="${escapeHtml(qrCandidates.join("|"))}" data-img-alt="${escapeHtml(qrAlt)}" data-img-class="wifi-qr-image"></div></div></div></details>`;
       } else {
-        html += `<details class="section" id="${s.id}"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><p>${escapeHtml(s.content)}</p></div></details>`;
+        const links = Array.isArray(s.links)
+          ? s.links.filter((l) => l && l.url)
+          : [];
+        const linksHtml = links.length
+          ? `<ul class="section-links">${links
+              .map(
+                (l) =>
+                  `<li><a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label || l.url)}</a></li>`,
+              )
+              .join("")}</ul>`
+          : "";
+        const media = ACCOMMODATION_IMAGE_SECTIONS.includes(s.id)
+          ? `<div class="info-media" data-img-candidates="${escapeHtml(
+              imageCandidates(
+                propertyImages + "accommodation/" + s.id,
+                sectionImages[s.id],
+              ).join("|"),
+            )}" data-img-alt="${escapeHtml(titleText)}" data-img-class="info-image"></div>`
+          : "";
+        html += `<details class="section" id="${s.id}"><summary><strong>${em} ${escapeHtml(titleText)}</strong></summary><div class="section-body"><div class="info-card"><div class="info-text"><p>${escapeHtml(s.content)}</p>${linksHtml}</div>${media}</div></div></details>`;
       }
     });
 
@@ -637,28 +726,10 @@
           });
       });
     }
-    // attempt to load accommodation-specific QR image (if present)
-    const accomQrDiv = container.querySelector("#wifi-accom .wifi-qr");
-    if (accomQrDiv) {
-      const src = accomQrDiv.getAttribute("data-qr-src");
-      if (src) {
-        const img = new Image();
-        img.alt =
-          (siteContent && siteContent.ui && siteContent.ui.wifiQrAlt) ||
-          "WiFi QR code";
-        img.className = "wifi-qr-image";
-        img.onload = () => {
-          accomQrDiv.innerHTML = "";
-          accomQrDiv.appendChild(img);
-        };
-        img.onerror = () => {
-          accomQrDiv.style.display = "none";
-        };
-        img.src = src;
-      } else {
-        accomQrDiv.style.display = "none";
-      }
-    }
+    // fill the subsection photos and the Wi-Fi QR slot (hidden when absent)
+    container
+      .querySelectorAll("[data-img-candidates]")
+      .forEach(loadFirstAvailableImage);
   }
 
   function renderEmergency(container, pageData) {

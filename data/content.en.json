@@ -44,7 +44,10 @@
     "boardGamesLabel":"Board Games",
     "wellnessLabel":"Wellness & Spa",
     "wifiLabel":"Wi-Fi",
-    "houseRulesLabel":"House Rules"
+    "houseRulesLabel":"House Rules",
+    "ironLabel":"Iron",
+    "hairDryerLabel":"Hair Dryer",
+    "laundryLabel":"Laundry"
   },
   "navCards":[
     {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},
@@ -58,6 +61,12 @@
     {"id":"neighborhood","title":"Neighborhood","subtitle":"Supermarket, pharmacy, ATM, bakery and fuel."}
   ],
   "pages":{
+    "accommodation":{
+      "water_links":[
+        {"label":"Municipality of Lefkada — Microbiological analysis (11/2025)","url":"https://lefkada.gov.gr/wp-content/uploads/2025/12/leykada-m-11-2025.pdf"},
+        {"label":"Municipality of Lefkada — Physico-chemical analysis (11/2025)","url":"https://lefkada.gov.gr/wp-content/uploads/2025/12/leykada-fch-11-2025.pdf"}
+      ]
+    },
     "emergency":{
       "title":"Emergency Contacts",
       "contacts":[

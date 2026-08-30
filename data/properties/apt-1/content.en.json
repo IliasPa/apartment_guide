@@ -18,15 +18,18 @@
       "arrival":"Check-in after 15:00. Please contact the host in advance to arrange your arrival.",
       "checkout":"Please check-out by 11:00.",
       "late_checkout":"Late check-out may be available upon request and subject to availability. Contact host in advance to arrange.",
-      "air_condition":"The AC remote is in the living room, next to the TV remote. Recommended setting: 24–26°C for comfort and energy savings.",
+      "air_condition":"The AC remote is in the living room, next to the TV remote. Recommended setting: 24–26°C for comfort and energy savings. The property also features underfloor heating/cooling for more consistent temperature control. When using the underfloor cooling, keep the AC running to help dehumidify the space. To activate it, press the button above until the 'OFF' indicator disappears. When leaving, you can turn it off by pressing the button until the 'OFF' indicator appears, or leave it on to maintain the room temperature until your return.",
       "water":"Tap water is not drinkable. Please use bottled water for drinking.",
       "hot_water":"Hot water is available 24h assisted by solar heating. In winter, on cloudy days, heating may be reduced.",
       "beach_faucet":"There is a faucet outside the apartment to rinse your feet after the beach.",
       "breakfast":"Some basic breakfast items (coffee, tea, bread, jams) are available in the kitchen.",
       "bbq":"If you need a BBQ setup, contact the host in advance so it can be provided and prepared.",
-      "consumables":"Please do not remove consumables except slippers, essentials, breakfasts, chocolates.",
+      "consumables":"You can use all the consumables (slippers, essentials, water, breakfasts, chocolates).",
       "baby_chair":"A baby chair is available if you request it in advance.",
-      "board_games":"There are board games under the TV. Please tidy them up after use and make sure no pieces are lost."
+      "board_games":"There are board games under the TV. Please tidy them up after use and make sure no pieces are lost.",
+      "iron":"An iron and ironing board are in the wardrobe.",
+      "hair_dryer":"A hair dryer is in the bathroom, behind the mirror.",
+      "laundry":"A washing machine is available for your laundry. The detergents are on the shelf above it."
     },
     "house_rules":{
       "title":"📋 House Rules",

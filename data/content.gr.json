@@ -45,7 +45,10 @@
     "boardGamesLabel":"Επιτραπέζια Παιχνίδια",
     "wellnessLabel":"Ευεξία & Σπα",
     "wifiLabel":"Wi-Fi",
-    "houseRulesLabel":"Κανόνες Σπιτιού"
+    "houseRulesLabel":"Κανόνες Σπιτιού",
+    "ironLabel":"Σίδερο",
+    "hairDryerLabel":"Σεσουάρ",
+    "laundryLabel":"Πλυντήριο Ρούχων"
   },
   "navCards":[
     {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, θήκη κλειδιών και αναχώρηση."},
@@ -59,6 +62,12 @@
     {"id":"neighborhood","title":"Γειτονιά","subtitle":"Σούπερ μάρκετ, φαρμακείο, ATM, αρτοποιείο, πρατήριο καυσίμων."}
   ],
   "pages":{
+    "accommodation":{
+      "water_links":[
+        {"label":"Δήμος Λευκάδας — Μικροβιολογική ανάλυση (11/2025)","url":"https://lefkada.gov.gr/wp-content/uploads/2025/12/leykada-m-11-2025.pdf"},
+        {"label":"Δήμος Λευκάδας — Φυσικοχημική ανάλυση (11/2025)","url":"https://lefkada.gov.gr/wp-content/uploads/2025/12/leykada-fch-11-2025.pdf"}
+      ]
+    },
     "emergency":{
       "title":"Επείγοντα",
       "contacts":[
