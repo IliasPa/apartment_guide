@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Washing machine photo placeholder">
-  <rect width="100%" height="100%" fill="#f4e8dd"/>
-  <rect x="24" y="24" width="752" height="552" rx="18" fill="none" stroke="#dcc3aa" stroke-width="4" stroke-dasharray="16 12"/>
-  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#c47a4a" font-size="120" font-family="Helvetica, Arial, sans-serif">◎</text>
-  <text x="50%" y="68%" dominant-baseline="middle" text-anchor="middle" fill="#a9713f" font-size="40" font-family="Helvetica, Arial, sans-serif">Washing machine</text>
-  <text x="50%" y="79%" dominant-baseline="middle" text-anchor="middle" fill="#bd9a78" font-size="26" font-family="Helvetica, Arial, sans-serif">photo placeholder</text>
-</svg>

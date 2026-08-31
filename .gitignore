@@ -1,0 +1,3 @@
+# Local scratch space for full-resolution camera files, if you keep them.
+# Only the resized <section-id>.jpg copies beside them are ever served.
+data/properties/*/images/accommodation/originals/

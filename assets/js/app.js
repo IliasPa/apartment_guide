@@ -467,12 +467,15 @@
 
   // Subsections that show a photo beside their text. The photo lives in the
   // property folder as images/accommodation/<section id>.<ext>; the first
-  // extension that resolves wins, so dropping a real ac.jpg next to the
-  // shipped ac.svg placeholder replaces it with no JSON change.
+  // extension that resolves wins (jpg, then png, then svg), so dropping a real
+  // ac.jpg next to a shipped ac.svg placeholder replaces it with no JSON
+  // change, and an id listed here with no file at all just renders as text.
   const ACCOMMODATION_IMAGE_SECTIONS = [
+    "checkin",
     "ac",
     "parking",
     "beach",
+    "breakfast",
     "bbq",
     "games",
     "consumables",
