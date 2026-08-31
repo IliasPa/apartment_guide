@@ -47,7 +47,8 @@
     "houseRulesLabel":"House Rules",
     "ironLabel":"Iron",
     "hairDryerLabel":"Hair Dryer",
-    "laundryLabel":"Laundry"
+    "laundryLabel":"Laundry",
+    "parkingLabel":"Parking"
   },
   "navCards":[
     {"id":"checkin","title":"Accommodation","subtitle":"Arrival, keybox and departure details."},

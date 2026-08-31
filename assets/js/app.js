@@ -471,6 +471,7 @@
   // shipped ac.svg placeholder replaces it with no JSON change.
   const ACCOMMODATION_IMAGE_SECTIONS = [
     "ac",
+    "parking",
     "beach",
     "bbq",
     "games",
@@ -538,6 +539,7 @@
       baby: "👶",
       games: "🎲",
       beach: "🚿",
+      parking: "🚗",
       iron: "👕",
       hairdryer: "💇",
       laundry: "🧺",
@@ -564,6 +566,11 @@
         id: "late",
         title: ui.lateCheckoutLabel || "Late Check-out",
         content: pageData.late_checkout,
+      },
+      {
+        id: "parking",
+        title: ui.parkingLabel || "Parking",
+        content: pageData.parking,
       },
       {
         id: "ac",

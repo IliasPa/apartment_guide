@@ -48,7 +48,8 @@
     "houseRulesLabel":"Κανόνες Σπιτιού",
     "ironLabel":"Σίδερο",
     "hairDryerLabel":"Σεσουάρ",
-    "laundryLabel":"Πλυντήριο Ρούχων"
+    "laundryLabel":"Πλυντήριο Ρούχων",
+    "parkingLabel":"Στάθμευση"
   },
   "navCards":[
     {"id":"checkin","title":"Κατάλυμα","subtitle":"Άφιξη, θήκη κλειδιών και αναχώρηση."},

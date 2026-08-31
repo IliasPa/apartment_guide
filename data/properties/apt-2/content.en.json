@@ -28,7 +28,8 @@
       "board_games": "There are board games under the TV. Please tidy them up after use and make sure no pieces are lost.",
       "iron": "An iron and ironing board are in the wardrobe.",
       "hair_dryer": "A hair dryer is in the bathroom, behind the mirror.",
-      "laundry": "A washing machine is available for your laundry. The detergents are on the shelf above it."
+      "laundry": "A washing machine is available for your laundry. The detergents are on the shelf above it.",
+      "parking": "Parking is available near the apartment. Please park without blocking the entrance or your neighbours' access."
     },
     "house_rules": {
       "title": "📋 House Rules",

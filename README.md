@@ -34,8 +34,8 @@ Property structure
 
 Accommodation subsection photos
 
-- Some accommodation subsections show a photo next to their text (side by side on wide screens, stacked underneath on phones): AC, Beach Faucet, BBQ, Board Games, Consumables, Iron, Hair Dryer and Laundry.
-- Each photo lives at `data/properties/<property-id>/images/accommodation/<section-id>.<ext>`, where `<section-id>` is one of `ac`, `beach`, `bbq`, `games`, `consumables`, `iron`, `hairdryer`, `laundry`.
+- Some accommodation subsections show a photo next to their text (side by side on wide screens, stacked underneath on phones): AC, Parking, Beach Faucet, BBQ, Board Games, Consumables, Iron, Hair Dryer and Laundry.
+- Each photo lives at `data/properties/<property-id>/images/accommodation/<section-id>.<ext>`, where `<section-id>` is one of `ac`, `parking`, `beach`, `bbq`, `games`, `consumables`, `iron`, `hairdryer`, `laundry`.
 - `.jpg`, `.png` and `.svg` are tried in that order, so to publish a real photo just drop `ac.jpg` next to the shipped `ac.svg` placeholder — no JSON change needed. Delete the `.svg` once every apartment has its real photo. A subsection with no photo at all renders as plain text.
 - The Wi-Fi QR code works the same way: `data/properties/<property-id>/images/<property-id>-wifi.<ext>` (apt-1 currently ships an `.svg` placeholder; apt-2 has the real `.png`). A different path can be set per property in `content.<lang>.json` under `pages.wifi.qrImage`.
 
